@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>失望的山 La Montagna Delusa — 實體專輯企劃作品集</title>
+<style>
+  :root{
+    --paper:#EBE6DA;
+    --paper-deep:#DED7C6;
+    --ink:#2E2C27;
+    --faint:rgba(46,44,39,.58);
+    --hair:rgba(46,44,39,.16);
+    --teal:#9BBFB5;
+    --teal-deep:#7FA89D;
+    --mint:#8FCD9F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC",sans-serif;
+    font-weight:400;
+    line-height:1.85;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:"Noto Serif TC","Noto Serif CJK TC",serif;}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 32px;}
+
+  /* ── utility label, echoing the obi tag type ── */
+  .tag-label{
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--faint);font-weight:500;
+  }
+
+  /* ── the climbing-permit section marker (signature element) ── */
+  .permit{
+    display:inline-flex;align-items:stretch;border:1px solid var(--ink);
+    background:var(--teal);color:var(--ink);margin-bottom:34px;
+  }
+  .permit .elv{
+    padding:10px 14px;border-right:1px solid var(--ink);
+    font-size:11px;letter-spacing:.14em;line-height:1.5;font-weight:700;
+    display:flex;flex-direction:column;justify-content:center;white-space:nowrap;
+  }
+  .permit .elv em{font-style:italic;font-weight:400;}
+  .permit .name{
+    padding:10px 18px;display:flex;align-items:center;
+    font-size:14px;letter-spacing:.3em;font-weight:500;white-space:nowrap;
+  }
+  .permit .tri{font-size:9px;margin-left:10px;}
+
+  /* ── hero ── */
+  header{padding:72px 0 0;}
+  .masthead{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;padding-bottom:26px;}
+  .masthead .left{font-size:12px;letter-spacing:.26em;color:var(--faint);}
+  .masthead .right{font-size:12px;letter-spacing:.26em;color:var(--faint);}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;padding-bottom:54px;}
+  .hero-title .alb-en{
+    font-size:13px;letter-spacing:.34em;color:var(--faint);margin-bottom:18px;display:block;
+  }
+  h1{
+    font-family:"Noto Serif TC","Noto Serif CJK TC",serif;
+    font-size:clamp(64px,9vw,108px);font-weight:600;line-height:1.12;
+    letter-spacing:.06em;
+  }
+  .hero-sub{margin-top:26px;font-size:15px;color:var(--faint);max-width:34em;}
+  .hero-meta{margin-top:34px;display:flex;flex-direction:column;gap:6px;font-size:13px;letter-spacing:.08em;}
+  .hero-meta b{font-weight:700;letter-spacing:.14em;margin-right:10px;}
+  .hero-img img{width:100%;display:block;}
+  figure{margin:0;}
+  figure img{width:100%;display:block;background:var(--paper-deep);}
+  figcaption{
+    padding:12px 2px 0;font-size:12.5px;color:var(--faint);line-height:1.7;letter-spacing:.04em;
+    display:flex;gap:10px;
+  }
+  figcaption .no{font-weight:700;color:var(--ink);letter-spacing:.06em;white-space:nowrap;}
+
+  /* ── torn-edge divider, echoing the die-cut cover ── */
+  .tear{display:block;width:100%;height:30px;}
+  .tear path{fill:var(--paper-deep);}
+
+  section{padding:84px 0;}
+  .deep{background:var(--paper-deep);}
+
+  h2{
+    font-family:"Noto Serif TC","Noto Serif CJK TC",serif;
+    font-size:clamp(30px,4vw,42px);font-weight:600;letter-spacing:.1em;line-height:1.4;
+    margin-bottom:18px;
+  }
+  .statement{
+    font-family:"Noto Serif TC","Noto Serif CJK TC",serif;
+    font-size:clamp(26px,3.6vw,40px);font-weight:600;line-height:1.7;letter-spacing:.08em;
+    max-width:22em;
+  }
+  .lede{max-width:36em;color:var(--ink);}
+  .lede p{margin-top:22px;}
+  .lede p:first-child{margin-top:34px;}
+
+  .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start;}
+
+  /* structure list (A–N papers) */
+  .structure{
+    margin-top:44px;border-top:1px solid var(--ink);
+    display:grid;grid-template-columns:repeat(2,1fr);
+  }
+  .structure div{
+    border-bottom:1px solid var(--hair);padding:9px 4px;font-size:13px;letter-spacing:.1em;
+    display:flex;gap:14px;align-items:baseline;
+  }
+  .structure b{font-weight:700;width:1.2em;}
+  .structure span{color:var(--faint);font-size:12px;margin-left:auto;letter-spacing:.06em;}
+
+  /* roles */
+  .roles{border-top:1px solid var(--ink);margin-top:44px;}
+  .role{
+    display:grid;grid-template-columns:56px 220px 1fr;gap:24px;align-items:baseline;
+    padding:20px 4px;border-bottom:1px solid var(--hair);
+  }
+  .role .idx{font-size:12px;letter-spacing:.2em;color:var(--faint);}
+  .role h3{font-size:17px;font-weight:700;letter-spacing:.16em;}
+  .role p{font-size:14px;color:var(--faint);line-height:1.8;}
+
+  /* photo grids */
+  .plate{margin-top:48px;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px 36px;margin-top:48px;}
+  .grid-2 .tall{grid-row:span 1;}
+
+  /* tracklist */
+  .tracks{border-top:1px solid var(--ink);margin-top:40px;}
+  .track{
+    display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:baseline;
+    padding:13px 4px;border-bottom:1px solid var(--hair);
+  }
+  .track .no{font-size:12px;letter-spacing:.18em;color:var(--faint);}
+  .track .zh{font-size:16px;font-weight:500;letter-spacing:.22em;}
+  .track .en{font-size:12px;letter-spacing:.12em;color:var(--faint);text-align:right;}
+
+  .contents-list{margin-top:40px;}
+  .contents-list li{
+    list-style:none;border-bottom:1px solid var(--hair);padding:11px 4px;
+    font-size:14px;letter-spacing:.1em;display:flex;gap:16px;
+  }
+  .contents-list li:first-child{border-top:1px solid var(--ink);}
+  .contents-list .dot{color:var(--teal-deep);font-weight:700;}
+
+  /* route / process */
+  .route{margin-top:52px;border-left:1px solid var(--ink);padding-left:0;}
+  .stage{
+    display:grid;grid-template-columns:150px 230px 1fr;gap:26px;
+    padding:24px 0 24px 30px;border-bottom:1px solid var(--hair);position:relative;
+  }
+  .stage::before{
+    content:"";position:absolute;left:-4px;top:34px;width:7px;height:7px;
+    background:var(--teal-deep);border:1px solid var(--ink);
+  }
+  .stage .elv-mark{font-size:11px;letter-spacing:.18em;color:var(--faint);font-weight:700;padding-top:3px;}
+  .stage h3{font-size:17px;font-weight:700;letter-spacing:.18em;}
+  .stage p{font-size:14px;color:var(--faint);line-height:1.8;}
+  .stage.summit::before{background:var(--mint);}
+
+  /* colophon */
+  .colophon{padding:72px 0 88px;}
+  .colophon .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;border-top:1px solid var(--ink);padding-top:36px;margin-top:18px;}
+  .colophon dl{font-size:13.5px;letter-spacing:.08em;}
+  .colophon dt{color:var(--faint);font-size:11px;letter-spacing:.22em;margin-top:18px;}
+  .colophon dd{margin-top:3px;}
+  .climber-line{
+    margin-top:46px;border:1px solid var(--ink);background:var(--teal);
+    padding:18px 22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  }
+  .climber-line .lab{font-size:12px;letter-spacing:.26em;font-weight:700;}
+  .climber-line .blank{
+    flex:1;min-width:200px;background:#fff;border:1px solid var(--ink);height:34px;
+    display:flex;align-items:center;padding:0 14px;
+    font-family:"Noto Serif TC",serif;font-size:15px;letter-spacing:.12em;
+  }
+
+  .footnote{margin-top:30px;font-size:11.5px;color:var(--faint);letter-spacing:.06em;line-height:1.9;}
+
+  @media (max-width:840px){
+    .hero-grid,.two-col,.colophon .grid{grid-template-columns:1fr;}
+    .grid-2{grid-template-columns:1fr;}
+    .role{grid-template-columns:40px 1fr;}
+    .role p{grid-column:2;}
+    .stage{grid-template-columns:1fr;gap:6px;}
+    section{padding:60px 0;}
+  }
+
+  /* ───────── print / PDF ───────── */
+  @page{size:A4;margin:0;}
+  @media print{
+    body{font-size:12.5px;}
+    .wrap{max-width:none;padding:0 11mm;}
+    header{padding-top:14mm;}
+    h1{font-size:54pt;}
+    section{padding:11mm 0;}
+    .pb{break-before:page;}
+    .avoid{break-inside:avoid;}
+    figure{break-inside:avoid;}
+    .stage,.role,.track{break-inside:avoid;}
+    .hero-grid{gap:10mm;padding-bottom:10mm;}
+    .grid-2{gap:8mm;}
+    a{color:inherit;text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════ HERO ════════ -->
+<header class="wrap">
+  <div class="masthead">
+    <div class="left">PHYSICAL ALBUM PROJECT — CASE STUDY</div>
+    <div class="right">SOULFA 靈魂沙發 · 3RD ALBUM · 2026</div>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-title">
+      <span class="alb-en serif">“ LA MONTAGNA DELUSA ”</span>
+      <h1>失望的山</h1>
+      <p class="hero-sub">一張可以「攀登」的實體專輯——從概念發想到實體完成的完整企劃紀錄。</p>
+      <div class="hero-meta">
+        <div><b>企劃統籌</b>Kadee Lin 林子歡</div>
+        <div><b>藝人</b>SoulFa 靈魂沙發</div>
+        <div><b>發行</b>WiFi Music Limited · 2026</div>
+        <div><b>試聽</b><a href="https://umg.lnk.to/jThcD3WT" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">umg.lnk.to/jThcD3WT ↗</a></div>
+      </div>
+    </div>
+    <figure class="hero-img">
+      <img src="images/cover-front.jpg" alt="《失望的山》專輯封面:壓印紙板上的撕裂式刀模開窗,露出摺紙山形主視覺">
+    </figure>
+  </div>
+</header>
+
+<svg class="tear" viewBox="0 0 1200 30" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,30 L0,16 L38,12 L74,18 L120,8 L168,15 L214,6 L266,17 L312,9 L368,19 L416,7 L470,14 L522,5 L578,16 L628,8 L684,18 L734,6 L790,15 L842,9 L898,19 L948,7 L1004,14 L1056,6 L1110,16 L1158,9 L1200,14 L1200,30 Z"/>
+</svg>
+
+<!-- ════════ 01 概念 ════════ -->
+<section class="deep">
+  <div class="wrap">
+    <div class="permit">
+      <div class="elv"><span>Elv. <b>0 m</b></span><span>登山口 <em>Trailhead</em></span></div>
+      <div class="name">企劃概念<span class="tri">▲</span></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <p class="statement serif">「真的是帶領大家,<br>一起在爬這座山。」</p>
+        <div class="lede">
+          <p>《失望的山》的核心概念,是把「失望」具象成一座山——一座由日常紙張堆疊而成的山。帳單、考卷、獎狀、情書、發票、傳紙條……這些再平凡不過的紙,在生活裡一張一張累積、摺疊,最後堆成了每個人心裡那座「失望的山」。</p>
+          <p>主視覺中的山,由十張摺起的紙交疊而成——正好對應專輯的十首歌;封底如里程碑,十首歌的秒數逐一累加成為一座座「高度」,而這座山 2,282 公尺的海拔,正是來自整張專輯的長度。</p>
+          <p>於是整張專輯被企劃成一場登山:聽者是「CLIMBER(登山者)」,側標是入山證,十首歌是攀登的路線。企劃期間,我們也邀請團員收集自己人生中真實的紙張——成績單、筆記、票根——讓這座山,真的由大家的人生堆疊而成。</p>
+        </div>
+      </div>
+      <div>
+        <figure>
+          <img src="images/deboss-title.jpg" alt="封面打凸特寫:La Montagna Delusa 字樣與地形壓印,下方露出曲目地圖">
+          <figcaption><span class="no">FIG.01</span>封面以無墨壓印(blind emboss)做出地形質感,撕裂式開窗下藏著以「登山地圖」排版的曲目頁;歌詞本則像一部考古圖鑑,把這座山逐層拆解。</figcaption>
+        </figure>
+        <div class="structure avoid">
+          <div style="grid-column:1/-1;border-bottom:1px solid var(--ink);padding:12px 4px;"><span class="tag-label">STRUCTURE — 這座山由什麼組成(說明頁反面即第一首歌歌詞)</span></div>
+          <div><b>A</b>Old Bills<span>帳單</span></div>
+          <div><b>B</b>Anxiety<span>焦慮</span></div>
+          <div><b>C</b>Secret<span>祕密</span></div>
+          <div><b>D</b>Grandpa’s Notes<span>阿公的筆記</span></div>
+          <div><b>E</b>Happiness<span>快樂</span></div>
+          <div><b>F</b>Certificate of Merit<span>獎狀</span></div>
+          <div><b>G</b>Memory<span>記憶</span></div>
+          <div><b>H</b>Passing Note<span>傳紙條</span></div>
+          <div><b>I</b>Origami<span>摺紙</span></div>
+          <div><b>J</b>Textbook<span>課本</span></div>
+          <div><b>K</b>Label<span>標籤</span></div>
+          <div><b>L</b>Love Letter<span>情書</span></div>
+          <div><b>M</b>Ticket<span>票根</span></div>
+          <div><b>N</b>Invoice<span>發票</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 02 我的角色 ════════ -->
+<section class="pb">
+  <div class="wrap">
+    <div class="permit">
+      <div class="elv"><span>Elv. <b>480 m</b></span><span>整裝 <em>Gearing&nbsp;up</em></span></div>
+      <div class="name">我的角色<span class="tri">▲</span></div>
+    </div>
+    <h2>從一個概念,<br>統籌到一件實體。</h2>
+    <p class="lede" style="margin-top:10px;">實體專輯的概念由我與三位團員共同討論發想——從封面攝影師 Chihhsienchen 拍攝的封面照出發,一路延伸出整座山的世界觀;設計師 JERRY YANG 也在過程中給予非常多靈感與建議。這次的專案完整經歷企劃、設計、製造、宣傳四個階段。</p>
+    <div class="roles">
+      <div class="role"><span class="idx">01</span><h3>概念發想</h3><p>與團員共同發想「失望的山/紙張之山」核心概念與「聽者即登山者」的敘事框架;並邀請團員收集自己人生中的真實紙張,讓概念長出血肉。</p></div>
+      <div class="role"><span class="idx">02</span><h3>整體統籌</h3><p>擔任專案窗口,串聯樂團、設計師、攝影與印刷端,確保概念在每個環節被一致地執行。</p></div>
+      <div class="role"><span class="idx">03</span><h3>視覺方向制定</h3><p>定調「紙的地形」視覺語言:壓印地形、撕裂開窗、入山證側標、星圖內袋等關鍵元素的方向皆由企劃端提出。</p></div>
+      <div class="role"><span class="idx">04</span><h3>設計與印刷溝通</h3><p>與設計師及印刷廠反覆溝通刀模、打凸、特殊裝幀的可行性與成本,跟進打樣到量產的每一次校正。</p></div>
+      <div class="role"><span class="idx">05</span><h3>文案撰寫</h3><p>撰寫專輯文案與企劃文字,讓「登山」的語彙貫穿側標、內頁與宣傳物料。</p></div>
+      <div class="role"><span class="idx">06</span><h3>時程與預算管理</h3><p>規劃從企劃到發行的整體時程與製作預算,在特殊印刷工藝與成本之間取得平衡。</p></div>
+      <div class="role"><span class="idx">07</span><h3>宣傳規劃</h3><p>規劃實體專輯的宣傳視覺與社群露出,延伸專輯世界觀至發行後的推廣素材。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 03 設計與製作 ════════ -->
+<section class="deep pb">
+  <div class="wrap">
+    <div class="permit">
+      <div class="elv"><span>Elv. <b>1,200 m</b></span><span>稜線 <em>The&nbsp;Ridge</em></span></div>
+      <div class="name">設計與製作亮點<span class="tri">▲</span></div>
+    </div>
+    <h2>把概念做進<br>每一道工藝裡。</h2>
+    <figure class="plate">
+      <img src="images/full-contents.jpg" alt="專輯全內容物攤平圖:外盒、歌詞頁、CD、結構說明頁、紙上遊戲等">
+      <figcaption><span class="no">FIG.02</span>專輯完整內容物:壓印外盒、書冊式內裝、十首歌各自獨立的歌詞印刷品、STRUCTURE 結構說明頁、「paper games」紙上遊戲、綠色 CD。</figcaption>
+    </figure>
+    <div class="grid-2">
+      <figure>
+        <img src="images/obi-climber.jpg" alt="側標特寫:Elv. 2,282m、The (3)rd MT.、CLIMBER 空白欄">
+        <figcaption><span class="no">FIG.03</span>側標設計成「入山證」:標示海拔 2,282 m、The (3)rd MT.(第三張專輯=第三座山),並留下 CLIMBER 欄位讓樂迷寫上自己的名字。</figcaption>
+      </figure>
+      <figure>
+        <img src="images/deboss-corner.jpg" alt="外盒打凸特寫:3rd Album 字樣與山形鋼印">
+        <figcaption><span class="no">FIG.04</span>外盒全面以無墨打凸處理:地形紋理、書名、山形紋章皆以浮雕呈現,讓「山」可以被觸摸。</figcaption>
+      </figure>
+      <figure>
+        <img src="images/open-cd-pop.jpg" alt="打開包裝後,CD 從紙結構中立起">
+        <figcaption><span class="no">FIG.05</span>翻開書冊,內頁的紙結構讓 CD 如山峰般立起——開箱本身就是一次「登頂」的儀式。</figcaption>
+      </figure>
+      <figure>
+        <img src="images/constellation.jpg" alt="星圖內袋與圓形開窗,內含 CD">
+        <figcaption><span class="no">FIG.06</span>CD 盤後藏著一個可旋轉的小星座盤,概念來自〈銀河之王〉——轉動星盤,就能在星空中找到藏起來的皇冠標誌。</figcaption>
+      </figure>
+      <figure>
+        <img src="images/pocket-prints.jpg" alt="內頁口袋,收納十首歌的獨立印刷品">
+        <figcaption><span class="no">FIG.07</span>十首歌、十張獨立印刷物:半透明描圖紙的人像層疊出「無形的束縛」、童年紙上遊戲交疊成一張圖、團員舊照摺成相片卡、隨機摺法的紙摺出「曲折的一條路」——每張紙都是一首歌的轉譯。</figcaption>
+      </figure>
+      <figure>
+        <img src="images/deboss-tracklist.jpg" alt="撕裂開窗下的曲目頁,曲名以登山路線方式排版">
+        <figcaption><span class="no">FIG.08</span>曲目頁將十首歌排成蜿蜒的登山路線,曲名與時長如地圖上的地名與標高。</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 04 內容物與曲目 ════════ -->
+<section class="pb">
+  <div class="wrap">
+    <div class="permit">
+      <div class="elv"><span>Elv. <b>1,800 m</b></span><span>森林界線 <em>Treeline</em></span></div>
+      <div class="name">內容物與曲目<span class="tri">▲</span></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <h2>攀登路線<br><span class="tag-label" style="font-size:13px;">TRACKLIST — 10 TRACKS · <a href="https://umg.lnk.to/jThcD3WT" target="_blank" rel="noopener" style="color:var(--teal-deep);text-decoration:underline;text-underline-offset:3px;">線上試聽 ↗</a></span></h2>
+        <div class="tracks">
+          <div class="track"><span class="no">I</span><span class="zh">失望的山</span><span class="en">La Montagna Delusa</span></div>
+          <div class="track"><span class="no">II</span><span class="zh">Best Life</span><span class="en">Best Life</span></div>
+          <div class="track"><span class="no">III</span><span class="zh">We Talk To iPhone But Not Our Best Friend</span><span class="en"></span></div>
+          <div class="track"><span class="no">IV</span><span class="zh">銀河之王</span><span class="en">King Of Galaxy</span></div>
+          <div class="track"><span class="no">V</span><span class="zh">咒</span><span class="en">Spell</span></div>
+          <div class="track"><span class="no">VI</span><span class="zh">So Sad</span><span class="en">So Sad</span></div>
+          <div class="track"><span class="no">VII</span><span class="zh">盪在空中</span><span class="en">Swaying In The Air</span></div>
+          <div class="track"><span class="no">VIII</span><span class="zh">無聲</span><span class="en">Muted</span></div>
+          <div class="track"><span class="no">IX</span><span class="zh">一個漂亮的青年</span><span class="en">A Beautiful Youth</span></div>
+          <div class="track"><span class="no">X</span><span class="zh">荒唐的盡頭</span><span class="en">Where Absurdity Fades</span></div>
+        </div>
+      </div>
+      <div>
+        <h2 style="visibility:hidden;">.</h2>
+        <ul class="contents-list avoid">
+          <li style="border-top:1px solid var(--ink);"><span class="tag-label" style="font-size:11px;">內容物 PACKAGE CONTENTS</span></li>
+          <li><span class="dot">▲</span>地形壓印外盒(撕裂式刀模開窗)</li>
+          <li><span class="dot">▲</span>入山證式側標(CLIMBER 簽名欄)</li>
+          <li><span class="dot">▲</span>書冊式內裝(CD 立起紙結構)</li>
+          <li><span class="dot">▲</span>星圖 CD 內袋+可旋轉星座盤</li>
+          <li><span class="dot">▲</span>十首歌獨立歌詞印刷品 × 10</li>
+          <li><span class="dot">▲</span>STRUCTURE 結構說明頁</li>
+          <li><span class="dot">▲</span>「paper games」紙上遊戲頁</li>
+          <li><span class="dot">▲</span>綠色版面 CD × 1</li>
+        </ul>
+        <figure style="margin-top:40px;">
+          <img src="images/inserts-spread.jpg" alt="歌詞頁與印刷品散開的細節">
+          <figcaption><span class="no">FIG.09</span>每首歌的歌詞印刷品使用不同紙材與印刷處理——描圖紙、騎縫摺頁、相片印刷——各自對應歌曲的質地。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 05 企劃歷程 ════════ -->
+<section class="deep pb">
+  <div class="wrap">
+    <div class="permit">
+      <div class="elv"><span>Elv. <b>2,282 m</b></span><span>山頂 <em>Summit</em></span></div>
+      <div class="name">企劃歷程<span class="tri">▲</span></div>
+    </div>
+    <h2>從 0 到 2,282 公尺<br>的企劃路線。</h2>
+    <div class="route">
+      <div class="stage"><span class="elv-mark">ELV. 0 M</span><h3>概念發想</h3><p>從「失望」出發,與團員共同發想以紙張堆疊成山的核心意象,確立專輯世界觀及「登山」敘事。</p></div>
+      <div class="stage"><span class="elv-mark">ELV. 450 M</span><h3>視覺方向制定</h3><p>定義主視覺(摺紙之山)、材質方向(裸紙、壓印)與關鍵物件(入山證側標、星圖內袋),撰寫設計需求文件。</p></div>
+      <div class="stage"><span class="elv-mark">ELV. 900 M</span><h3>設計協作</h3><p>與設計師逐項收斂封面、內裝、十張歌詞印刷品與宣傳物的設計,同步撰寫專輯文案。</p></div>
+      <div class="stage"><span class="elv-mark">ELV. 1,400 M</span><h3>印刷打樣</h3><p>與印刷廠來回測試刀模、打凸深度、紙材搭配與裝幀結構,於預算內保住每一道關鍵工藝。</p></div>
+      <div class="stage"><span class="elv-mark">ELV. 1,900 M</span><h3>量產與品管</h3><p>監督量產時程與品質,確認多紙材、多印刷品的組裝順序與成品一致性。</p></div>
+      <div class="stage summit"><span class="elv-mark">ELV. 2,282 M</span><h3>發行與宣傳</h3><p>規劃發行宣傳:拍攝陶藝物件宣傳視覺、製作逐格動畫開箱影片,並企劃「邀請設計師一起開箱」的對談影片,讓設計理念由創作者親口說給樂迷聽。</p></div>
+    </div>
+    <div class="grid-2" style="margin-top:56px;">
+      <figure>
+        <img src="images/ceramics-scene.jpg" alt="宣傳視覺:專輯與陶藝物件(摺紙山線香座、王冠、頭像)合影">
+        <figcaption><span class="no">FIG.10</span>宣傳視覺延伸:以陶藝物件(摺紙山線香座、王冠、人像)重演專輯中的意象,作為社群與宣傳素材。</figcaption>
+      </figure>
+      <figure>
+        <img src="images/cd-crown.jpg" alt="綠色 CD 立於王冠形陶座上">
+        <figcaption><span class="no">FIG.11</span>綠色唱片置於王冠陶座——呼應曲目〈銀河之王〉,也是宣傳照中的記憶點。</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ COLOPHON ════════ -->
+<section class="colophon">
+  <div class="wrap">
+    <div class="tag-label">COLOPHON — 專輯資訊</div>
+    <div class="grid">
+      <dl>
+        <dt>專輯</dt><dd>《失望的山》“La Montagna Delusa”</dd>
+        <dt>藝人</dt><dd>SoulFa 靈魂沙發(第三張錄音室專輯)</dd>
+        <dt>發行</dt><dd>WiFi Music Limited,2026</dd>
+        <dt>規格</dt><dd>CD・地形壓印外盒・書冊式內裝・歌詞印刷品 × 10</dd>
+      </dl>
+      <dl>
+        <dt>企劃統籌 Album Planner</dt><dd>Kadee Lin 林子歡(概念、視覺方向、文案、製作管理、宣傳)</dd>
+        <dt>SoulFa 靈魂沙發</dt><dd>顏鵬軒 Panson Yen(Vocalist・Guitarist)<br>蘇祐霆 Poopoo(Guitarist)<br>林仲信 Henry Lin(Bassist)</dd>
+        <dt>裝幀設計 Graphic Designer</dt><dd>楊鎮源 JERRY YANG</dd>
+        <dt>封面攝影 Cover Photographer</dt><dd>Chihhsienchen</dd>
+        <dt>平面攝影 Photographer</dt><dd>Mo Chen</dd>
+        <dt>實體作品攝影 Product Photographer</dt><dd>張皓晴</dd>
+      </dl>
+    </div>
+    <div class="climber-line avoid">
+      <span class="lab">CLIMBER:</span>
+      <span class="blank">Kadee Lin 林子歡</span>
+      <span style="font-size:11px;letter-spacing:.14em;">ELV. 2,282 M — 登頂完成 ▲</span>
+    </div>
+    <p class="footnote">本作品集所載照片為《失望的山》實體專輯成品紀錄。專輯著作權屬 WiFi Music Limited 與 SoulFa 靈魂沙發所有;本頁面僅作個人求職作品集用途。</p>
+  </div>
+</section>
+
+</body>
+</html>
