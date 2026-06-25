@@ -233,10 +233,10 @@ class Component extends DCLogic {
     if (flEl) {
       flEl.style.display = 'flex';
       flEl.style.flexWrap = 'wrap';
-      flEl.style.gap = '12px 10px';
-      flEl.style.padding = '0';
-      flEl.style.justifyContent = 'space-between';
-      flEl.style.alignItems = 'flex-start';
+      flEl.style.gap = '12px';
+      flEl.style.padding = '24px 0 0 0';
+      flEl.style.justifyContent = 'flex-start';
+      flEl.style.alignItems = 'center';
       flEl.innerHTML = freelance.map(([date, title, desc, lnk]) => {
         const label = lnk ? `${title} ↗` : title;
         const inner = lnk
