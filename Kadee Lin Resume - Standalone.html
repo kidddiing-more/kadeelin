@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>林子歡 Kadee Lin 履歷</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #ffffff; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
+    #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #ffffff; z-index: 9999; }
+    #__bundler_thumbnail svg { width: 100%; height: 100%; object-fit: contain; }
+    #__bundler_placeholder { color: #999; font-size: 14px; }
+  </style>
+  <noscript>
+    <style>#__bundler_loading { display: none; }</style>
+    <div style="position:fixed;bottom:12px;left:12px;font:13px/1.4 -apple-system,BlinkMacSystemFont,sans-serif;color:#999;background:rgba(255,255,255,0.9);padding:6px 12px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.08);z-index:10000;">
+      This page requires JavaScript to display.
+    </div>
+  </noscript>
+</head>
+<body>
+  <div id="__bundler_thumbnail">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#ffffff"></rect>
+    <circle cx="100" cy="60" r="35" fill="#C6FF00" stroke="#0a0a0a" stroke-width="2"></circle>
+    <rect x="50" y="110" width="100" height="60" rx="8" fill="#C6FF00" stroke="#0a0a0a" stroke-width="2"></rect>
+    <text x="100" y="155" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#0a0a0a">KADEE LIN</text>
+  </svg>
+</div>
+  <div id="__bundler_loading">Unpacking...</div>
+
+  <script>
+    
+document.addEventListener('DOMContentLoaded', async function() {
+  const loading = document.getElementById('__bundler_loading');
+  function setStatus(msg) { if (loading) loading.textContent = msg; }
+
+  // Error sink persists across replaceWith since it's on window, not the DOM.
+  window.addEventListener('error', function(e) {
+    var p = document.body || document.documentElement;
+    var d = document.getElementById('__bundler_err') || p.appendChild(document.createElement('div'));
+    d.id = '__bundler_err';
+    d.style.cssText = 'position:fixed;bottom:12px;left:12px;right:12px;font:12px/1.4 ui-monospace,monospace;background:#2a1215;color:#ff8a80;padding:10px 14px;border-radius:8px;border:1px solid #5c2b2e;z-index:99999;white-space:pre-wrap;max-height:40vh;overflow:auto';
+    d.textContent = (d.textContent ? d.textContent + String.fromCharCode(10) : '') +
+      '[bundle] ' + (e.message || e.type) +
+      (e.filename ? ' (' + e.filename.slice(0, 60) + ':' + e.lineno + ')' : '');
+  }, true);
+
+  try {
+    const manifestEl = document.querySelector('script[type="__bundler/manifest"]');
+    const templateEl = document.querySelector('script[type="__bundler/template"]');
+    if (!manifestEl || !templateEl) {
+      setStatus('Error: missing bundle data');
+      console.error('[bundler] Missing script tags — manifestEl:', !!manifestEl, 'templateEl:', !!templateEl);
+      return;
+    }
+
+    const manifest = JSON.parse(manifestEl.textContent);
+    let template = JSON.parse(templateEl.textContent);
+
+    const uuids = Object.keys(manifest);
+    setStatus('Unpacking ' + uuids.length + ' assets...');
+
+    const blobUrls = {};
+    await Promise.all(uuids.map(async (uuid) => {
+      const entry = manifest[uuid];
+      try {
+        const binaryStr = atob(entry.data);
+        const bytes = new Uint8Array(binaryStr.length);
+        for (let i = 0; i < binaryStr.length; i++) bytes[i] = binaryStr.charCodeAt(i);
+
+        let finalBytes = bytes;
+        if (entry.compressed) {
+          if (typeof DecompressionStream !== 'undefined') {
+            const ds = new DecompressionStream('gzip');
+            const writer = ds.writable.getWriter();
+            const reader = ds.readable.getReader();
+            writer.write(bytes);
+            writer.close();
+            const chunks = [];
+            let totalLen = 0;
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+              chunks.push(value);
+              totalLen += value.length;
+            }
+            finalBytes = new Uint8Array(totalLen);
+            let offset = 0;
+            for (const chunk of chunks) { finalBytes.set(chunk, offset); offset += chunk.length; }
+          } else {
+            console.warn('DecompressionStream not available, asset ' + uuid + ' may not render');
+          }
+        }
+
+        blobUrls[uuid] = URL.createObjectURL(new Blob([finalBytes], { type: entry.mime }));
+      } catch (err) {
+        console.error('Failed to decode asset ' + uuid + ':', err);
+        blobUrls[uuid] = URL.createObjectURL(new Blob([], { type: entry.mime }));
+      }
+    }));
+
+    const extResEl = document.querySelector('script[type="__bundler/ext_resources"]');
+    const extResources = extResEl ? JSON.parse(extResEl.textContent) : [];
+    const resourceMap = {};
+    for (const entry of extResources) {
+      if (blobUrls[entry.uuid]) resourceMap[entry.id] = blobUrls[entry.uuid];
+    }
+
+    setStatus('Rendering...');
+    for (const uuid of uuids) template = template.split(uuid).join(blobUrls[uuid]);
+
+    // Strip integrity + crossorigin — blob URLs from a file:// document inherit
+    // a null origin, so crossorigin forces a CORS fetch that SRI then rejects.
+    // The manifest bytes are ours; SRI protects against CDN compromise, not this.
+    template = template.replace(/\s+integrity="[^"]*"/gi, '').replace(/\s+crossorigin="[^"]*"/gi, '');
+
+    const resourceScript = '<script>window.__resources = ' +
+      JSON.stringify(resourceMap).split('</' + 'script>').join('<\\/' + 'script>') +
+      ';</' + 'script>';
+    // Inject after <head> so the DOCTYPE stays first; prepending the script
+    // would push the parser into quirks mode. DOMParser always emits a <head>
+    // (synthesizing one if the source HTML omitted it) but may carry
+    // attributes through, so match the full opening tag. slice() rather than
+    // replace() keeps us clear of $-pattern substitution in resourceScript.
+    const headOpen = template.match(/<head[^>]*>/i);
+    if (headOpen) {
+      const i = headOpen.index + headOpen[0].length;
+      template = template.slice(0, i) + resourceScript + template.slice(i);
+    }
+
+    // Parse the template and swap the root element. Scripts inserted via
+    // DOMParser/replaceWith are inert per spec — re-create each with
+    // createElement so they execute, awaiting onload for src scripts to
+    // preserve ordering (React before ReactDOM before Babel before text/babel).
+    const doc = new DOMParser().parseFromString(template, 'text/html');
+    document.documentElement.replaceWith(doc.documentElement);
+    const dead = Array.from(document.scripts);
+    for (const old of dead) {
+      const s = document.createElement('script');
+      for (const a of old.attributes) s.setAttribute(a.name, a.value);
+      s.textContent = old.textContent;
+      // text/babel scripts with a src: fetch and inline. transformScriptTags
+      // does XHR against the src, but blob:null/ from a file:// origin is
+      // silently dropped. Inlining makes it a plain inline babel script,
+      // which transformScriptTags handles unconditionally.
+      if ((s.type === 'text/babel' || s.type === 'text/jsx') && s.src) {
+        const r = await fetch(s.src);
+        s.textContent = await r.text();
+        s.removeAttribute('src');
+      }
+      const p = s.src ? new Promise(function(r) { s.onload = s.onerror = r; }) : null;
+      old.replaceWith(s);
+      if (p) await p;
+    }
+    // Babel standalone auto-transforms type=text/babel on DOMContentLoaded,
+    // which fired before we swapped the document. Trigger manually if present.
+    if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
+      window.Babel.transformScriptTags();
+    }
+  } catch (err) {
+    setStatus('Error unpacking: ' + err.message);
+    console.error('Bundle unpack error:', err);
+  }
+});
+
+  </script>
+
+  <script type="__bundler/manifest">
+{}
+  </script>
+
+  <script type="__bundler/ext_resources">
+[]
+  </script>
+
+  <script type="__bundler/template">
+"<!DOCTYPE html>\n<html><head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>林子歡 Kadee Lin 履歷<\u002Ftitle>\n<style>\n  *{box-sizing:border-box;}\n  html{scroll-behavior:smooth;}\n  body{margin:0;background:#ffffff;font-family:system-ui,-apple-system,'Segoe UI','Noto Sans TC',sans-serif;}\n  a{color:inherit;text-decoration:none;}\n  ::selection{background:#C6FF00;color:#0a0a0a;}\n<\u002Fstyle>\n\n<\u002Fhead>\n<body>\n\n<div style=\"font-family:'Noto Sans TC',sans-serif;color:#0a0a0a;background:#ffffff;width:100%;overflow-x:hidden;-webkit-font-smoothing:antialiased;\">\n\n  <!-- STICKY NAV -->\n  <nav style=\"position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:2px solid #0a0a0a;\">\n    <div style=\"max-width:960px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;\">\n      <a href=\"#top\" style=\"font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:900;font-size:18px;letter-spacing:-0.02em;text-decoration:none;display:flex;align-items:center;gap:8px;white-space:nowrap;\">\n        <span style=\"display:inline-block;width:12px;height:12px;background:#C6FF00;border:2px solid #0a0a0a;border-radius:50%;\"><\u002Fspan>\n        Kadee Lin\n      <\u002Fa>\n      <div style=\"display:flex;gap:4px;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none;\">\n        <a href=\"#about\" style=\"text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;\">關於<\u002Fa>\n        <a href=\"#skills\" style=\"text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;\">技能<\u002Fa>\n        <a href=\"#freelance\" style=\"text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;\">接案中<\u002Fa>\n        <a href=\"#experience\" style=\"text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;\">工作經歷<\u002Fa>\n        <a href=\"#projects\" style=\"text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;\">音樂專案<\u002Fa>\n        <a href=\"#works\" style=\"text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;\">作品<\u002Fa>\n      <\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fnav>\n\n  <!-- HERO -->\n  <header id=\"top\" data-screen-label=\"Hero\" style=\"max-width:960px;margin:0 auto;padding:56px 20px 24px;scroll-margin-top:72px;\">\n    <div style=\"display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;\">\n      <div style=\"flex:1 1 300px;min-width:260px;\">\n        <p style=\"margin:0 0 14px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#5a5a52;\">Taipei, TW · 1985<\u002Fp>\n        <h1 style=\"margin:0;font-weight:900;font-size:clamp(40px,8vw,72px);line-height:1.02;letter-spacing:-0.02em;\">\n          林子歡\n          <span style=\"display:inline-block;background:linear-gradient(transparent 58%,#C6FF00 58%);padding:0 4px;\">Kadee&nbsp;Lin<\u002Fspan>\n        <\u002Fh1>\n        <p style=\"margin:18px 0 0;font-size:clamp(14px,1.8vw,17px);font-weight:500;color:#3a3a34;\">Music Industry&nbsp;·&nbsp;Content Strategy&nbsp;·&nbsp;Project Leadership<\u002Fp>\n      <\u002Fdiv>\n      <div style=\"flex:none;display:block;width:clamp(120px,18vw,168px);height:clamp(120px,18vw,168px);border-radius:50%;object-fit:cover;border:3px solid #C6FF00;background:#fff;background-image:url('data:image/svg+xml;utf8,&lt;svg xmlns=\" http:=\"\" www.w3.org=\"\" 2000=\"\" svg\"=\"\" viewbox=\"0 0 168 168\"><circle cx=\"84\" cy=\"84\" r=\"84\" fill=\"%23f4f4f0\">');background-size:cover;\"&gt;<\u002Fcircle><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fheader>\n\n  <!-- ABOUT -->\n  <section id=\"about\" data-screen-label=\"About\" style=\"max-width:960px;margin:0 auto;padding:48px 20px;scroll-margin-top:72px;\">\n    <div style=\"display:flex;align-items:baseline;gap:14px;margin-bottom:22px;\">\n      <span style=\"font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;\">01<\u002Fspan>\n      <h2 style=\"margin:0;font-weight:900;font-size:clamp(24px,4vw,34px);letter-spacing:-0.01em;\">關於我 <span style=\"font-family:'Archivo',sans-serif;font-weight:500;font-size:0.6em;color:#5a5a52;\">About<\u002Fspan><\u002Fh2>\n    <\u002Fdiv>\n    <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;font-size:16px;line-height:1.9;color:#1a1a18;\">\n      <p style=\"margin:0;\">曾任職於數位音樂內容平台，長期投入行銷宣傳、社群經營與內容企劃領域，累積多年音樂產業相關經驗。擁有 <b style=\"background:linear-gradient(transparent 60%,#C6FF00 60%);\">14 年以上<\u002Fb>數位內容、品牌行銷與專案管理經驗，深耕音樂產業<b style=\"background:linear-gradient(transparent 60%,#C6FF00 60%);\">超過 10 年<\u002Fb>，曾任 StreetVoice 行銷社群統籌，參與音樂平台營運、音樂節、演唱會、音樂獎項及品牌合作等多元專案。<\u002Fp>\n      <p style=\"margin:0;\">擅長內容策略規劃、社群經營、媒體宣傳、公關合作及跨部門專案整合，熟悉從企劃發想、執行推進到成效追蹤的完整流程。近年以 Freelance 身份參與音樂專案，持續協助創作者與品牌建立更具影響力的市場溝通，期望透過自身經驗與企劃能力，協助更多優秀的作品與創作者被更多人看見。<\u002Fp>\n    <\u002Fdiv>\n  <\u002Fsection>\n\n  <!-- SKILLS -->\n  <section id=\"skills\" data-screen-label=\"Skills\" style=\"background:#0a0a0a;color:#ffffff;scroll-margin-top:60px;\">\n    <div style=\"max-width:960px;margin:0 auto;padding:56px 20px;\">\n      <div style=\"display:flex;align-items:baseline;gap:14px;margin-bottom:32px;\">\n        <span style=\"font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;\">02<\u002Fspan>\n        <h2 style=\"margin:0;font-weight:900;font-size:clamp(24px,4vw,34px);letter-spacing:-0.01em;color:#fff;\">技能專長 <span style=\"font-family:'Archivo',sans-serif;font-weight:500;font-size:0.6em;color:#C6FF00;\">Skills<\u002Fspan><\u002Fh2>\n      <\u002Fdiv>\n      <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;\">\n        <div style=\"border:1px solid #2a2a26;border-radius:14px;padding:22px;background:#141412;\">\n          <h3 style=\"margin:0 0 12px;font-size:15px;font-weight:700;color:#C6FF00;\">程式與數位工具<\u002Fh3>\n          <p style=\"margin:0;font-size:14px;line-height:1.85;color:#d4d4cc;\">Adobe 系列：Photoshop、Illustrator<br>影音剪輯：Premiere Pro、CapCut<br>Office：Word、PowerPoint、Excel<br>網站／APP 前期企劃與內容架構規劃、UI／UX 流程設計與優化、專案時程管理、功能測試與內容檢核。<\u002Fp>\n          <p style=\"margin:14px 0 0;font-size:13px;color:#8a8a82;\">中打 ≈ 120 字／min　·　英打 ≈ 50 words／min<\u002Fp>\n        <\u002Fdiv>\n        <div style=\"border:1px solid #2a2a26;border-radius:14px;padding:22px;background:#141412;\">\n          <h3 style=\"margin:0 0 12px;font-size:15px;font-weight:700;color:#C6FF00;\">社群運用<\u002Fh3>\n          <p style=\"margin:0;font-size:14px;line-height:1.85;color:#d4d4cc;\">熟悉 Facebook、Instagram、YouTube 等社群平台操作，具備 GA 數據分析、Facebook 廣告投放及 SEO 關鍵字優化經驗。<\u002Fp>\n        <\u002Fdiv>\n        <div style=\"border:1px solid #2a2a26;border-radius:14px;padding:22px;background:#141412;\">\n          <h3 style=\"margin:0 0 12px;font-size:15px;font-weight:700;color:#C6FF00;\">宣傳公關 · 活動執行<\u002Fh3>\n          <p style=\"margin:0;font-size:14px;line-height:1.85;color:#d4d4cc;\">新聞稿撰寫、發布與宣傳內容規劃；媒體通告安排、媒體關係維護與宣傳窗口對接；公關活動、演唱會、音樂節及專輯宣傳企劃執行、品牌異業合作，熟悉音樂產業宣傳流程與專案時程管理。<\u002Fp>\n        <\u002Fdiv>\n      <\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fsection>\n\n  <!-- FREELANCE -->\n  <section id=\"freelance\" data-screen-label=\"Freelance\" style=\"max-width:960px;margin:0 auto;padding:56px 20px;scroll-margin-top:72px;\">\n    <div style=\"display:flex;align-items:baseline;gap:14px;margin-bottom:10px;\">\n      <span style=\"font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;\">03<\u002Fspan>\n      <h2 style=\"margin:0;font-weight:900;font-size:clamp(20px,3.4vw,30px);letter-spacing:-0.01em;line-height:1.25;\">現階段以 freelance 形式進行音樂產業相關專案合作<\u002Fh2>\n    <\u002Fdiv>\n    <p style=\"margin:0 0 28px;font-size:15px;color:#5a5a52;font-weight:500;\">（音樂專案行銷企劃、宣傳、社群投放、商務經紀）<\u002Fp>\n\n    <ul id=\"freelance-list\" style=\"list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;border-top:2px solid #0a0a0a;\"><\u002Ful>\n  <\u002Fsection>\n\n  <!-- EXPERIENCE -->\n  <section id=\"experience\" data-screen-label=\"Experience\" style=\"background:#f4f4f0;scroll-margin-top:60px;border-top:2px solid #0a0a0a;border-bottom:2px solid #0a0a0a;\">\n    <div style=\"max-width:960px;margin:0 auto;padding:56px 20px;\">\n      <button id=\"exp-toggle\" type=\"button\" style=\"width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:2px solid #0a0a0a;border-radius:16px;padding:22px 24px;cursor:pointer;text-align:left;box-shadow:4px 4px 0 #0a0a0a;font-family:inherit;\">\n        <span style=\"display:flex;align-items:flex-start;gap:12px;\">\n          <span style=\"color:#9bbf00;font-size:20px;line-height:1.2;\">04<\u002Fspan>\n          <span>\n            <span style=\"display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;\">工作經歷<\u002Fspan>\n            <span style=\"display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;font-family:'Archivo',sans-serif;letter-spacing:0.04em;\">Work Experience｜點擊收合<\u002Fspan>\n          <\u002Fspan>\n        <\u002Fspan>\n        <span id=\"exp-toggle-icon\" style=\"flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;\">▾<\u002Fspan>\n      <\u002Fbutton>\n      <div id=\"exp-body\" style=\"display:grid;grid-template-columns:1fr;gap:20px;\"><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fsection>\n\n  <!-- MUSIC INDUSTRY PROJECTS -->\n  <section id=\"projects\" data-screen-label=\"Projects\" style=\"max-width:960px;margin:0 auto;padding:56px 20px;scroll-margin-top:72px;\">\n    <div style=\"display:flex;align-items:baseline;gap:14px;margin-bottom:8px;\">\n      <span style=\"font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;\">05<\u002Fspan>\n      <h2 style=\"margin:0;font-weight:900;font-size:clamp(24px,4vw,34px);letter-spacing:-0.01em;\">音樂產業專案與行銷統籌<\u002Fh2>\n    <\u002Fdiv>\n    <p style=\"margin:0 0 32px;font-size:15px;color:#5a5a52;font-weight:500;\">Music industry projects &amp; marketing leadership<\u002Fp>\n    <div id=\"proj-groups\" style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;\"><\u002Fdiv>\n  <\u002Fsection>\n\n  <!-- AWARDS / FEATURE -->\n  <section id=\"awards\" data-screen-label=\"Awards\" style=\"background:#0a0a0a;color:#fff;scroll-margin-top:60px;\">\n    <div style=\"max-width:960px;margin:0 auto;padding:56px 20px;\">\n      <h2 style=\"margin:0 0 18px;font-weight:900;font-size:clamp(22px,3.6vw,30px);line-height:1.25;\">\n        ☆ StreetVoice 街聲年度音樂趨勢大獎\n      <\u002Fh2>\n      <div style=\"border:1px solid #2a2a26;overflow:hidden;border-radius:10px;background:#141412;margin-bottom:24px;height:300px;background:linear-gradient(135deg, #1a1a18 0%, #2a2a26 100%);\"><\u002Fdiv>\n      <p style=\"margin:0 0 16px;font-size:15px;line-height:1.9;color:#d4d4cc;\">致力於推動新生代原創音樂作品走向更大的舞台，透過內容策劃、社群行銷與媒體宣傳，提升音樂作品與創作者的市場能見度與影響力。<\u002Fp>\n      <p style=\"margin:0 0 24px;font-size:15px;line-height:1.9;color:#d4d4cc;\"><b style=\"color:#fff;\">參與規劃 2024 首屆及 2025 第二屆<\u002Fb>，負責獎項企劃統籌、頒獎典禮現場執行，以及媒體宣傳與社群行銷操作，打造具話題性與產業影響力的年度音樂指標活動。<\u002Fp>\n\n      <div style=\"border-top:1px solid #2a2a26;padding-top:24px;\">\n        <p style=\"margin:0 0 12px;font-size:15px;line-height:1.9;color:#d4d4cc;\">☆ 任職 friDay 音樂期間，協助執行 <b style=\"color:#fff;\">「絕對音樂．絕對星盛事」2017 hito 流行音樂獎<\u002Fb>後台直擊直播工作。<\u002Fp>\n        <p style=\"margin:0;font-size:14px;line-height:1.9;color:#8a8a82;\">專訪藝人包括 BOXING、Bii 畢書盡、Christopher、Erika、Miss Ko、丁噹、方大同、王心凌、艾怡良、安心亞、兄弟本色、李千娜、李佳薇、李榮浩、林俊傑、周湯豪、韋禮安、范瑋琪、周興哲、鼓鼓、陳勢安、郭靜、楊乃文、楊丞琳、獅子合唱團、魏如萱 等。<\u002Fp>\n      <\u002Fdiv>\n\n      <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:28px;\">\n        <div style=\"border:1px solid #2a2a26;overflow:hidden;border-radius:10px;background:#141412;height:200px;background:linear-gradient(135deg, #1a1a18 0%, #2a2a26 100%);\"><\u002Fdiv>\n        <div style=\"border:1px solid #2a2a26;overflow:hidden;border-radius:10px;background:#141412;height:200px;background:linear-gradient(135deg, #1a1a18 0%, #2a2a26 100%);\"><\u002Fdiv>\n      <\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fsection>\n\n  <!-- STREETVOICE PLATFORM CASES -->\n  <section id=\"sv-cases\" data-screen-label=\"SV Cases\" style=\"max-width:960px;margin:0 auto;padding:48px 20px 8px;scroll-margin-top:72px;\">\n    <button id=\"sv-toggle\" type=\"button\" style=\"width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:2px solid #0a0a0a;border-radius:16px;padding:22px 24px;cursor:pointer;text-align:left;box-shadow:4px 4px 0 #C6FF00;font-family:inherit;\">\n      <span style=\"display:flex;align-items:flex-start;gap:12px;\">\n        <span style=\"color:#9bbf00;font-size:20px;line-height:1.2;\">☆<\u002Fspan>\n        <span>\n          <span style=\"display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;\">StreetVoice 平台企劃案例<\u002Fspan>\n          <span style=\"display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;\">拍拍手 PAPOAR 打賞功能 · 畢業歌徵選年度企劃｜點擊展開<\u002Fspan>\n        <\u002Fspan>\n      <\u002Fspan>\n      <span id=\"sv-toggle-icon\" style=\"flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;\">▾<\u002Fspan>\n    <\u002Fbutton>\n    <div id=\"sv-cases-body\" style=\"display:none;margin-top:24px;\"><\u002Fdiv>\n  <\u002Fsection>\n\n  <!-- OMUSIC PROJECTS -->\n  <section id=\"omusic\" data-screen-label=\"Omusic\" style=\"max-width:960px;margin:0 auto;padding:48px 20px 8px;scroll-margin-top:72px;\">\n    <button id=\"omusic-toggle\" type=\"button\" style=\"width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:2px solid #0a0a0a;border-radius:16px;padding:22px 24px;cursor:pointer;text-align:left;box-shadow:4px 4px 0 #C6FF00;font-family:inherit;\">\n      <span style=\"display:flex;align-items:flex-start;gap:12px;\">\n        <span style=\"color:#9bbf00;font-size:20px;line-height:1.2;\">☆<\u002Fspan>\n        <span>\n          <span style=\"display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;\">Omusic 網路活動專案<\u002Fspan>\n          <span style=\"display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;\">數位下載兌換 · APP 活動介面｜點擊展開<\u002Fspan>\n        <\u002Fspan>\n      <\u002Fspan>\n      <span id=\"omusic-toggle-icon\" style=\"flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;\">▾<\u002Fspan>\n    <\u002Fbutton>\n    <div id=\"omusic-body\" style=\"display:none;margin-top:24px;\"><\u002Fdiv>\n  <\u002Fsection>\n\n  <!-- FOOTER -->\n  <footer style=\"background:#0a0a0a;color:#fff;\">\n    <div style=\"max-width:960px;margin:0 auto;padding:48px 20px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;\">\n      <div>\n        <p style=\"margin:0;font-family:'Archivo',sans-serif;font-weight:900;font-size:24px;letter-spacing:-0.01em;\">林子歡 · Kadee Lin<\u002Fp>\n        <p style=\"margin:6px 0 0;font-size:14px;color:#8a8a82;\">Music Marketing · Taipei, TW<\u002Fp>\n      <\u002Fdiv>\n      <a href=\"https://www.cake.me/me/kidhuan?ref=resume_toolbar_profile\" target=\"_blank\" rel=\"noopener\" style=\"text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:#C6FF00;color:#0a0a0a;font-weight:700;font-size:15px;padding:13px 22px;border:2px solid #0a0a0a;border-radius:999px;box-shadow:3px 3px 0 #0a0a0a;\">聯絡我 ✉<\u002Fa>\n    <\u002Fdiv>\n  <\u002Ffooter>\n\n<\u002Fdiv>\n\n<script>\nconst freelance = [\n  ['2026.06–Now', 'LINION 2026 海外巡演計畫', '單曲宣傳、數位廣告投放規劃與執行'],\n  ['2026.06–Now', '紙鳶 Seizer 募資計畫', '募資專案宣傳'],\n  ['2026.06–Now', '虎小島《背對光的時候》EP', '專案宣傳'],\n  ['2026.06–Now', '柴郡貓 2026 年度計畫', '專案宣傳'],\n  ['2025.12–Now', 'JOYCE 就以斯《才華換桃花》', '專輯專場宣傳、新聞曝光執行'],\n  ['2025.04–Now', '羅大佑《季四季望雨》《四季戀紅交響宴音樂會》', '社群數位行銷、廣告投放執行'],\n  ['2025.12–2026.03', 'SoulFa 靈魂沙發《失望的山》專輯', '專輯企劃宣傳'],\n  ['2025.04–2026.05', '給樂音樂｜行銷宣傳顧問', '合作藝人：芒果醬 Mango Jump、黃宇寒、Rainy Knight、VH'],\n  ['2019–Now', 'Wring Out Laura', '商務經紀與專案合作統籌'],\n];\n\nconst flEl = document.getElementById('freelance-list');\nif (flEl) {\n  flEl.innerHTML = freelance.map(([date, title, desc]) => {\n    return `<li style=\"display:grid;grid-template-columns:120px 1fr;gap:18px;padding:18px 4px;border-bottom:1px solid #e2e2da;align-items:start;\">\n      <span style=\"font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;color:#5a5a52;letter-spacing:0.01em;padding-top:2px;\">${date}<\u002Fspan>\n      <span><b style=\"font-size:16px;font-weight:700;line-height:1.5;\">${title}<\u002Fb><br><span style=\"font-size:14px;color:#5a5a52;\">${desc}<\u002Fspan><\u002Fspan>\n    <\u002Fli>`;\n  }).join('');\n}\n\nconst exp = [\n  {n:'01', role:'行銷總監', org:'街聲股份有限公司（StreetVoice）', time:'2019/03 – 2025/04',\n   lead:'負責 StreetVoice 網站涵蓋數位音樂推廣，協助 StreetVoice 從無正式行銷部門，逐步建立行銷職能與工作流程。',\n   points:['音樂數位產品推廣、品牌知名度建立與策略擬定','行銷活動規劃與執行、平台內容發展策略及效益追蹤','音樂人鐵粉招募與關係維護','會員招募管理、訂閱服務成效追蹤並協助系統優化','規劃並執行社群內容策略，整合 FB、IG 等平台溝通與成長','宣傳內容製作、主題歌單編製與宣傳操作','唱片公司及異業集團服務整合業務洽談','統籌大型音樂節及品牌活動之行銷宣傳、媒體溝通與贊助合作'],\n   skill:'品牌行銷 · 網站營運 · 社群經營 · 異業行銷活動規劃 · 活動現場執行'},\n  {n:'02', role:'資深編輯', org:'歐銻銻娛樂股份有限公司（愛奇藝台灣站）', time:'2018/07 – 2019/02',\n   lead:'負責愛奇藝台灣站電影頻道內容營運。',\n   points:['電影頻道日常生產與編輯管理','重點電影頻道宣傳推廣','項目引進評估、制訂排期與方案','監測用戶行為、掌握市場趨勢、週期性完成分析報告','經營電影頻道社群平台','頻道異業結合推廣合作'],\n   skill:'社群經營 · 異業行銷活動規劃'},\n  {n:'03', role:'社群專案經理', org:'博客來數位科技有限公司', time:'2018/04 – 2018/06',\n   lead:'負責博客來粉絲團營運及廣告投放操作。',\n   points:['博客來粉絲團專案經營、發文安排','FB 廣告投放操作安排','7-11 OPEN POINT 點數專案'],\n   skill:'社群經營 · 網路活動企畫執行 · 跨部門溝通協調 · 異業行銷活動規劃'},\n  {n:'04', role:'行銷副理', org:'Omusic 全音樂股份有限公司', time:'2013/02 – 2018/01',\n   lead:'負責 friDay 音樂線上音樂服務以及遠傳電信 900 來電答鈴之行銷業務。',\n   points:['音樂數位產品推廣','實體行銷活動規劃與執行','活動網站規劃、文案發想及成效追蹤','社群推廣與粉絲團管理、活動經營與廣告投放','唱片公司及異業廠商合作洽談'],\n   skill:'社群經營 · 音樂市場研究 · APP 使用推廣 · 影音推廣 · 網路活動企畫 · 跨部門協調 · 異業行銷'},\n  {n:'05', role:'內容企劃專員', org:'GOMAJI 夠麻吉_一起行銷股份有限公司', time:'2012/05 – 2013/01',\n   lead:'負責 GOMAJI 團購網站內容企劃規劃。',\n   points:['團購網站內容方案企畫','版面圖文編輯','網頁流程安排','合約審核','商品上下架','商品內容專案規劃'],\n   skill:'網站內容規劃 · 店家關係維護'},\n  {n:'06', role:'助理專員', org:'春水堂科技娛樂股份有限公司', time:'2010/09 – 2012/05',\n   lead:'負責中華電信的 Hami 系列手機 APP 服務以及相關後台操作。',\n   points:['影音編輯（動畫、音樂、MV）','電子書製作（e-Pub、PDF、每日新聞）','數位內容上架、管理、審核','行銷活動支援、贈品處理','HAMI MUSIC 數位內容與手機操作'],\n   skill:'影音編輯 · 後台操作管理 · 跨部門合作'},\n];\n\nconst expBody = document.getElementById('exp-body');\nif (expBody) {\n  expBody.innerHTML = exp.map(e => `\n    <article style=\"background:#fff;border:2px solid #0a0a0a;border-radius:16px;overflow:hidden;box-shadow:4px 4px 0 #0a0a0a;\">\n      <div style=\"padding:24px 24px 20px;\">\n        <div style=\"display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px;\">\n          <span style=\"font-family:'Archivo',sans-serif;font-weight:900;font-size:14px;background:#C6FF00;border:2px solid #0a0a0a;border-radius:8px;padding:1px 8px;\">${e.n}<\u002Fspan>\n          <h3 style=\"margin:0;font-size:clamp(18px,2.6vw,22px);font-weight:900;\">${e.role}<\u002Fh3>\n          <span style=\"font-size:15px;font-weight:500;color:#3a3a34;\">${e.org}<\u002Fspan>\n        <\u002Fdiv>\n        <p style=\"margin:0 0 14px;font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;color:#5a5a52;\">${e.time}<\u002Fp>\n        <p style=\"margin:0 0 16px;font-size:15px;line-height:1.85;color:#1a1a18;\">${e.lead}<\u002Fp>\n        <ol style=\"margin:0 0 18px;padding-left:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px 20px;\">\n          ${e.points.map((p,i)=>`<li style=\"font-size:14px;line-height:1.7;color:#2a2a26;display:flex;gap:8px;\"><span style=\"flex:none;font-family:'Archivo',sans-serif;font-weight:700;color:#9bbf00;\">${String(i+1).padStart(2,'0')}<\u002Fspan><span>${p}<\u002Fspan><\u002Fli>`).join('')}\n        <\u002Fol>\n        <p style=\"margin:0;font-size:13px;font-weight:700;color:#0a0a0a;background:#f4f4f0;border-radius:8px;padding:10px 14px;border:1px solid #e2e2da;\"><span style=\"color:#9bbf00;\">工作技能<\u002Fspan>　${e.skill}<\u002Fp>\n      <\u002Fdiv>\n    <\u002Farticle>`).join('');\n}\n\nconst expToggle = document.getElementById('exp-toggle');\nconst expIcon = document.getElementById('exp-toggle-icon');\nif (expToggle && expBody) {\n  expToggle.addEventListener('click', () => {\n    const open = expBody.style.display !== 'none';\n    expBody.style.display = open ? 'none' : 'grid';\n    if (expIcon) expIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';\n  });\n}\n\nconst groups = [\n  {title:'音樂宣傳執行', items:[\n    '2026.01 頑童 MJ116《OGS》台中洲際演唱會｜宣傳執行',\n    '2025.12 鄭興《尋找鄭先生》｜網路宣傳執行',\n    '2025.10 Lola Amour 媒體見面會｜活動規劃執行',\n    '2025.09 Ed Sheeran《PLAY》搶聽會｜活動規劃執行',\n  ]},\n  {title:'音樂節 / 大型活動行銷統籌', items:[\n    '2019 Simple Urban+ 簡單生活節｜行銷宣傳統籌',\n    '2020 簡單生活節｜行銷宣傳統籌',\n    '2019–2022 金音獎｜協力網路宣傳執行',\n    '2023 StreetVoice × 芒果醬 × 好丘《貝愛的人修成正果》粉絲見面會｜活動統籌',\n    '2024 鶴 The Crane 年度專場《Meet Me At The Dining Room》｜行銷社群規劃',\n    '2025 竇靖童《狀況外》巡迴演唱會 台北站｜行銷社群規劃',\n  ]},\n  {title:'音樂徵選 / 原創企劃統籌', items:[\n    '2020 街聲首屆畢業歌徵選｜專案籌劃，第二屆徵件突破百件',\n    '2020、2021 Vans Musicians Wanted｜音樂人徵選企劃執行',\n    '2021 agnès b.《LISTEN!! 原創音樂線上募集大賞》｜徵件數突破千件',\n    '2022 MUSIC MAKER 音樂主理人｜音樂徵選企劃',\n    '2022、2023 金牌啤酒百萬代言人金牌原創音樂徵選｜專案執行',\n    '2023《1500 聲量音樂祭》五月天瑪莎大師講座｜徵選規劃',\n  ]},\n  {title:'品牌異業合作 / 音樂策展', items:[\n    '2020 荷爾蒙少年《黑色台北 Urban Noir》發片企劃，串聯在地酒吧 Draft Land 整合規劃',\n    '2021《大團誕生》我要上 COVER：荷爾蒙少年｜企劃統籌',\n    '2021 拍拍手《萬聖節抓鬼！LÜCY 近距離專場》｜網頁活動企劃執行',\n    '2022《臺北街角遇見設計－臺北繞個路》｜音樂策展規劃',\n    '2022 陶喆《自選 25：BRING THE LIGHT IN》珍藏演唱會｜徵選宣傳執行',\n    '2023 LINION《梨民活動中心》專場｜結合站上電商開站行銷規劃',\n  ]},\n  {title:'行銷社群規劃統籌', items:[\n    '2019–2025.5 StreetVoice 行銷社群統籌',\n    '2019、2020、2023 簡單生活節 行銷社群統籌',\n    '2023、2024 StreetVoice Park Park Carnival 叭叭嘉年華 行銷社群統籌',\n    '2025 有朝一日音樂節 行銷社群統籌',\n    '2025 土屋安娜巡迴演唱會 台北站 行銷社群統籌',\n    '2025 秋OUT音樂節 社群執行',\n    '2025 樂團祭活動 社群統籌規劃',\n  ]},\n];\n\nconst pgEl = document.getElementById('proj-groups');\nif (pgEl) {\n  pgEl.innerHTML = groups.map(g => `\n    <div style=\"border:2px solid #0a0a0a;border-radius:16px;padding:24px;background:#fff;\">\n      <h3 style=\"margin:0 0 16px;font-size:17px;font-weight:900;display:flex;align-items:center;gap:8px;\"><span style=\"color:#9bbf00;\">■<\u002Fspan>${g.title}<\u002Fh3>\n      <ul style=\"list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;\">\n        ${g.items.map(it=>`<li style=\"font-size:14px;line-height:1.7;color:#1a1a18;display:flex;gap:9px;\"><span style=\"flex:none;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;font-weight:900;\">·<\u002Fspan><span>${it}<\u002Fspan><\u002Fli>`).join('')}\n      <\u002Ful>\n    <\u002Fdiv>`).join('');\n}\n\nconst omusicToggle = document.getElementById('omusic-toggle');\nconst omusicIcon = document.getElementById('omusic-toggle-icon');\nconst omusicBody = document.getElementById('omusic-body');\nif (omusicToggle && omusicBody) {\n  omusicToggle.addEventListener('click', () => {\n    const open = omusicBody.style.display !== 'none';\n    omusicBody.style.display = open ? 'none' : 'block';\n    if (omusicIcon) omusicIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';\n  });\n}\n\nconst svToggle = document.getElementById('sv-toggle');\nconst svIcon = document.getElementById('sv-toggle-icon');\nconst svBody = document.getElementById('sv-cases-body');\nif (svToggle && svBody) {\n  svToggle.addEventListener('click', () => {\n    const open = svBody.style.display !== 'none';\n    svBody.style.display = open ? 'none' : 'block';\n    if (svIcon) svIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';\n  });\n}\n\n// Sticky nav\nconst navLinks = [...document.querySelectorAll('nav a[href^=\"#\"]')];\nconst map = {};\nnavLinks.forEach(a => { const id = a.getAttribute('href').slice(1); if(id) map[id]=a; });\nconst obs = new IntersectionObserver((entries) => {\n  entries.forEach(en => {\n    const a = map[en.target.id];\n    if (!a) return;\n    if (en.isIntersecting) {\n      navLinks.forEach(x => { x.style.background='transparent'; x.style.color='#0a0a0a'; });\n      a.style.background = '#C6FF00';\n      a.style.color = '#0a0a0a';\n    }\n  });\n}, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });\n['about','skills','freelance','experience','projects','awards','sv-cases','omusic'].forEach(id => {\n  const el = document.getElementById(id); if (el) obs.observe(el);\n});\n<\u002Fscript>\n\n\n<\u002Fbody><\u002Fhtml>"
+  </script>
+</body>
+</html>

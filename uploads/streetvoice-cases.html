@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreetVoice 平台企劃 Case Studies — 林子歡 Kadee Lin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --lime:#C8FF00;
+  --lime-dk:#9AC800;
+  --black:#0A0A0A;
+  --white:#FFFFFF;
+  --off:#F5F5F2;
+  --gray:#767676;
+  --gray-lt:#B0B0B0;
+  --border:#E0E0E0;
+  --border-dk:#C8C8C8;
+  --hv:#F0F0EE;
+  --font: Helvetica Neue, Helvetica, Arial, 'Noto Sans TC', sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--font);font-weight:400;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 56px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.nav-logo{font-size:13px;font-weight:700;letter-spacing:0.18em;color:var(--black);text-decoration:none;text-transform:uppercase}
+.nav-back{font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--gray);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.nav-back:hover{color:var(--black)}
+
+/* PAGE HERO */
+.page-hero{padding:160px 56px 72px;border-bottom:1px solid var(--border)}
+.ph-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.28em;color:var(--gray);text-transform:uppercase;margin-bottom:24px}
+.ph-title{font-size:clamp(44px,7vw,96px);font-weight:700;line-height:0.95;letter-spacing:-0.03em;margin-bottom:28px}
+.ph-title em{font-style:normal;color:var(--lime-dk)}
+.ph-desc{font-size:15px;color:var(--gray);line-height:1.85;max-width:560px}
+.ph-meta{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap}
+.ph-meta-item{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray)}
+.ph-meta-item b{display:block;font-size:13px;color:var(--black);letter-spacing:0.02em;margin-top:4px}
+
+/* SECTION BASE */
+.s-wrap{padding:96px 56px;max-width:1280px;margin:0 auto;border-bottom:1px solid var(--border)}
+.s-label{font-size:10px;font-weight:700;letter-spacing:0.28em;color:var(--gray);text-transform:uppercase;margin-bottom:48px;display:flex;align-items:center;gap:16px}
+.s-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* CASE HEADER */
+.case-head{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:end;margin-bottom:56px}
+.case-num{font-size:clamp(64px,9vw,120px);font-weight:700;letter-spacing:-0.04em;line-height:0.85;color:var(--lime-dk)}
+.case-title{font-size:clamp(28px,4vw,52px);font-weight:700;letter-spacing:-0.02em;line-height:1.05}
+.case-title span{display:block;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gray);margin-bottom:12px}
+.case-link{display:inline-block;background:var(--lime);color:var(--black);padding:12px 28px;font-size:10px;font-weight:700;letter-spacing:0.18em;text-decoration:none;text-transform:uppercase;transition:background 0.15s;white-space:nowrap}
+.case-link:hover{background:var(--lime-dk)}
+
+/* CASE INTRO */
+.case-intro{display:grid;grid-template-columns:260px 1fr;gap:48px;margin-bottom:56px;align-items:start}
+.ci-label{font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime-dk);padding-top:6px}
+.ci-text{font-size:clamp(18px,2.2vw,26px);font-weight:700;line-height:1.5;letter-spacing:-0.01em;max-width:760px}
+.ci-sub{font-size:13px;color:var(--gray);line-height:1.85;margin-top:20px;font-weight:400;max-width:640px}
+
+/* ROLE BAR */
+.role-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:56px}
+.role-cell{background:var(--off);padding:22px 28px}
+.role-cell .rc-k{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
+.role-cell .rc-v{font-size:13px;font-weight:700;letter-spacing:-0.01em}
+
+/* WHAT I DID */
+.did-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:56px}
+.did-card{background:var(--white);padding:40px 36px}
+.did-num{font-size:11px;font-weight:700;letter-spacing:0.2em;color:var(--lime-dk);margin-bottom:20px}
+.did-title{font-size:16px;font-weight:700;margin-bottom:12px;line-height:1.35;letter-spacing:-0.01em}
+.did-desc{font-size:13px;color:var(--gray);line-height:1.8}
+
+/* FLOW (mechanism) */
+.flow-label{font-size:10px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--gray);margin-bottom:20px}
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:stretch;border:1px solid var(--border);margin-bottom:56px}
+.flow-step{padding:32px 28px;background:var(--white)}
+.flow-step .fs-num{display:inline-block;background:var(--black);color:var(--lime);font-size:10px;font-weight:700;letter-spacing:0.1em;padding:4px 10px;margin-bottom:16px}
+.flow-step .fs-title{font-size:14px;font-weight:700;margin-bottom:8px;letter-spacing:-0.01em}
+.flow-step .fs-desc{font-size:12px;color:var(--gray);line-height:1.75}
+.flow-arrow{display:flex;align-items:center;justify-content:center;padding:0 8px;font-size:18px;font-weight:700;color:var(--lime-dk);background:var(--off);border-left:1px solid var(--border);border-right:1px solid var(--border)}
+
+/* CASE COVER */
+.case-cover{display:block;border:1px solid var(--border);margin-bottom:56px;overflow:hidden}
+.case-cover img{display:block;width:100%;height:340px;object-fit:cover;object-position:center;transition:transform 0.4s ease}
+.case-cover:hover img{transform:scale(1.015)}
+
+/* ARTISTS (拍拍主打星) */
+.artist-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:56px}
+.artist-cell{background:var(--white);text-decoration:none;color:inherit;transition:background 0.15s;display:flex;flex-direction:column}
+.artist-cell:hover{background:var(--hv)}
+.artist-img{display:block;width:100%;height:150px;object-fit:cover;object-position:center;border-bottom:1px solid var(--border);background:var(--off)}
+.artist-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.artist-idx{font-size:9px;font-weight:700;letter-spacing:0.2em;color:var(--lime-dk)}
+.artist-name{font-size:14px;font-weight:700;letter-spacing:-0.01em;line-height:1.35}
+.artist-note{font-size:11px;color:var(--gray);line-height:1.6;flex:1}
+.artist-arrow{font-size:11px;font-weight:700;color:var(--lime-dk)}
+
+/* EDITIONS (畢業歌歷屆) */
+.ed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:56px}
+.ed-cell{background:var(--white);text-decoration:none;color:inherit;transition:background 0.15s;display:flex;flex-direction:column}
+.ed-cell:hover{background:var(--hv)}
+.ed-img{display:block;width:100%;height:170px;object-fit:cover;object-position:center;border-bottom:1px solid var(--border);background:var(--off)}
+.ed-body{padding:18px 22px;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.ed-year{font-size:20px;font-weight:700;letter-spacing:-0.02em}
+.ed-note{font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--lime-dk);text-transform:uppercase}
+.ed-cell.now{background:var(--black)}
+.ed-cell.now .ed-year{color:var(--lime)}
+.ed-cell.now .ed-note{color:#999}
+.ed-cell.now:hover{background:#1a1a1a}
+
+/* TIMELINE (editions) */
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);margin-bottom:56px;border:1px solid var(--border)}
+.tl-cell{background:var(--white);padding:28px 24px;transition:background 0.15s}
+.tl-cell:hover{background:var(--hv)}
+.tl-year{font-size:26px;font-weight:700;letter-spacing:-0.02em;line-height:1;margin-bottom:10px}
+.tl-note{font-size:11px;color:var(--gray);line-height:1.6}
+.tl-cell.now{background:var(--black)}
+.tl-cell.now .tl-year{color:var(--lime)}
+.tl-cell.now .tl-note{color:#999}
+
+/* STATS */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.stat-cell{background:var(--off);padding:36px 32px}
+.stat-num{font-size:clamp(32px,4vw,48px);font-weight:700;letter-spacing:-0.03em;line-height:1;margin-bottom:8px}
+.stat-num em{font-style:normal;color:var(--lime-dk)}
+.stat-label{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray)}
+
+/* TAKEAWAY */
+.takeaway{background:var(--black);padding:96px 56px}
+.takeaway .tw-inner{max-width:1280px;margin:0 auto}
+.tw-label{font-size:10px;font-weight:700;letter-spacing:0.28em;color:var(--lime);text-transform:uppercase;margin-bottom:32px}
+.tw-text{font-size:clamp(22px,3vw,36px);font-weight:700;line-height:1.45;letter-spacing:-0.01em;color:var(--white);max-width:880px}
+.tw-text em{font-style:normal;color:var(--lime)}
+
+/* CONTACT */
+#contact{padding:120px 56px;background:var(--off)}
+.contact-big{font-size:clamp(40px,6vw,88px);font-weight:700;letter-spacing:-0.03em;line-height:0.95;margin-bottom:32px}
+.contact-big em{font-style:normal;color:var(--lime-dk)}
+.contact-sub{font-size:13px;color:var(--gray);margin-bottom:40px;max-width:400px}
+.contact-email{display:inline-block;color:var(--black);font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.04em;border-bottom:2px solid var(--lime-dk);padding-bottom:4px;transition:border-color 0.2s}
+.contact-email:hover{border-color:var(--black)}
+
+footer{padding:28px 56px;display:flex;justify-content:space-between;align-items:center;background:var(--white);border-top:1px solid var(--border)}
+footer span{font-size:10px;font-weight:700;letter-spacing:0.14em;color:var(--gray);text-transform:uppercase}
+
+/* FADE */
+.fi{opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease}
+.fi.in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  nav{padding:14px 24px}
+  .page-hero{padding:120px 24px 56px}
+  .s-wrap{padding:64px 24px}
+  .case-head{grid-template-columns:1fr;gap:20px;align-items:start}
+  .case-intro{grid-template-columns:1fr;gap:16px}
+  .role-bar,.did-grid,.stat-row{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .flow-arrow{border:none;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px;transform:rotate(90deg) scaleX(1)}
+  .flow-arrow{transform:none}
+  .flow-arrow::before{content:'↓'}
+  .flow-arrow span{display:none}
+  .timeline{grid-template-columns:1fr 1fr}
+  .artist-grid{grid-template-columns:1fr 1fr}
+  .ed-grid{grid-template-columns:1fr 1fr}
+  .case-cover img{height:200px}
+  .takeaway{padding:72px 24px}
+  #contact{padding:80px 24px}
+  footer{padding:24px;flex-direction:column;gap:8px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){.fi{opacity:1;transform:none;transition:none}}
+
+
+/* ── SIBLING NAV ── */
+.sibling-nav{display:flex;flex-wrap:nowrap;overflow-x:auto;border-top:1px solid var(--border,#E0E0E0);background:var(--off,#F5F5F2);-webkit-overflow-scrolling:touch}
+.sib-home{padding:10px 18px;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--black,#0A0A0A);text-decoration:none;white-space:nowrap;border-right:1px solid var(--border,#E0E0E0);background:var(--off,#F5F5F2);transition:background 0.15s;flex-shrink:0}
+.sib-home:hover{background:var(--border,#E0E0E0)}
+.sib-link{padding:10px 16px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray,#767676);text-decoration:none;white-space:nowrap;border-right:1px solid var(--border,#E0E0E0);transition:background 0.15s,color 0.15s;flex-shrink:0}
+.sib-link:hover{background:var(--white,#fff);color:var(--black,#0A0A0A)}
+.sib-link.active{background:var(--white,#fff);color:var(--black,#0A0A0A);font-weight:700;border-bottom:2px solid #C8FF00}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="kadee-lin_.html" class="nav-logo">Kadee Lin</a>
+  <a href="kadee-lin_.html#projects" class="nav-back">← Back to Projects</a>
+</nav>
+<div class="sibling-nav">
+  <a href="kadee-lin.html" class="sib-home">↖ Kadee Lin</a>
+  <a href="joyce-project.html" class="sib-link">JOYCE 就以斯</a>
+  <a href="shiwang/index.html" class="sib-link">失望的山</a>
+  <a href="sv-draftland-2019_.html" class="sib-link">Draft Land</a>
+  <a href="kadee-cases.html" class="sib-link">數位企劃案例</a>
+  <a href="streetvoice-cases.html" class="sib-link active">平台企劃案例</a>
+  <a href="campaign-archive-preview.html" class="sib-link">數位活動檔案</a>
+  <a href="kadee-social.html" class="sib-link">社群媒體</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="ph-eyebrow fi">Case Study · StreetVoice 街聲 · 2021 — 2025</div>
+  <h1 class="ph-title fi">平台企劃<br><em>兩個代表案例</em></h1>
+  <p class="ph-desc fi">在 StreetVoice 擔任行銷總監期間，除了大型活動宣傳，我也主導了兩個「長出來、留下來」的平台企劃——一個是把樂迷支持變成創作人收益的產品功能，一個是連續多屆深入校園的年度 IP。</p>
+  <div class="ph-meta fi">
+    <div class="ph-meta-item">Role<b>行銷總監 · 企劃統籌</b></div>
+    <div class="ph-meta-item">Scope<b>產品行銷 / 年度企劃 / 社群推廣</b></div>
+    <div class="ph-meta-item">Status<b>兩項企劃均延續營運至今</b></div>
+  </div>
+</div>
+
+<!-- ============ CASE 01 拍拍手 ============ -->
+<section class="s-wrap" id="papoar">
+  <div class="s-label">Case 01 — Product Marketing</div>
+
+  <div class="case-head fi">
+    <div class="case-num">01</div>
+    <div class="case-title"><span>產品行銷 · 創作者經濟</span>拍拍手 PAPOAR<br>音樂人打賞功能</div>
+    <a href="https://guide.streetvoice.com/clap/" target="_blank" class="case-link">查看功能頁 ↗</a>
+  </div>
+
+  <a href="https://guide.streetvoice.com/clap/" target="_blank" class="case-cover fi"><img src="https://guide.streetvoice.com/content/images/2023/04/cover.jpg" alt="拍拍手 PAPOAR 主視覺 — 街聲為音樂人鼓掌計畫" loading="lazy"></a>
+
+  <div class="case-intro fi">
+    <div class="ci-label">What</div>
+    <div>
+      <div class="ci-text">把樂迷聆聽時的感動，變成創作人帳戶裡實質的收益。</div>
+      <p class="ci-sub">「拍拍手」是 StreetVoice 於 2021 年推出的音樂人打賞功能：樂迷點擊拍手按鈕給予掌聲，扣除金流手續費後，至少 80% 收益直接分配給音樂人。這不是一檔活動，而是一套至今仍在營運的創作者收益機制。</p>
+    </div>
+  </div>
+
+  <div class="role-bar fi">
+    <div class="role-cell"><div class="rc-k">My Role</div><div class="rc-v">功能上線推廣統籌</div></div>
+    <div class="role-cell"><div class="rc-k">Period</div><div class="rc-v">2021 — 2025</div></div>
+    <div class="role-cell"><div class="rc-k">Keywords</div><div class="rc-v">產品溝通 · 分潤機制 · 加值企劃</div></div>
+  </div>
+
+  <div class="did-grid fi">
+    <div class="did-card">
+      <div class="did-num">A</div>
+      <div class="did-title">上線推廣與品牌溝通</div>
+      <div class="did-desc">以「街聲為音樂人鼓掌計畫」為溝通主軸，把抽象的打賞功能包裝成有溫度的品牌行動，統籌官網、社群與站內資源的上線推廣。</div>
+    </div>
+    <div class="did-card">
+      <div class="did-num">B</div>
+      <div class="did-title">機制轉譯與用戶教育</div>
+      <div class="did-desc">將分潤比例、拍拍卡收藏、置頂拍拍留言等產品機制，轉譯成樂迷一看就懂的內容與教學頁，降低首次打賞的門檻。</div>
+    </div>
+    <div class="did-card">
+      <div class="did-num">C</div>
+      <div class="did-title">「拍拍主打星」加值企劃</div>
+      <div class="did-desc">結合創作人的歌曲企劃與實體演出，打造拍拍手加值內容「拍拍主打星」，首波即集結 8 組音樂人專屬企劃，讓功能與宣傳互相導流。</div>
+    </div>
+  </div>
+
+  <div class="flow-label fi">How It Works — 機制設計</div>
+  <div class="flow fi">
+    <div class="flow-step">
+      <span class="fs-num">STEP 1</span>
+      <div class="fs-title">樂迷拍手給掌聲</div>
+      <div class="fs-desc">在歌曲或播放器點擊 👏 按鈕，自選掌聲數量，把聆聽的感動化為支持。</div>
+    </div>
+    <div class="flow-arrow"><span>→</span></div>
+    <div class="flow-step">
+      <span class="fs-num">STEP 2</span>
+      <div class="fs-title">收藏拍拍卡與留言</div>
+      <div class="fs-desc">樂迷獲得獨一無二的拍拍卡（內含創作人親寫感謝函），留言更會置頂顯示。</div>
+    </div>
+    <div class="flow-arrow"><span>→</span></div>
+    <div class="flow-step">
+      <span class="fs-num">STEP 3</span>
+      <div class="fs-title">創作人累積收益</div>
+      <div class="fs-desc">掌聲數累積達門檻即可提領，至少 80% 收益直接回到音樂人手中。</div>
+    </div>
+  </div>
+
+  <div class="flow-label fi">Featured — 拍拍主打星首波音樂人企劃</div>
+  <div class="artist-grid fi">
+    <a href="https://streetvoice.com/pages/papoar/emptyorio-papoar2021/" target="_blank" class="artist-cell">
+      <img class="artist-img" src="https://guide.streetvoice.com/assets/images/papoar-star/img-star-02.png" alt="EmptyORio 拍拍主打星" loading="lazy">
+      <div class="artist-body">
+        <span class="artist-idx">STAR 01</span>
+        <span class="artist-name">EmptyORio</span>
+        <span class="artist-note">拍拍手限定企劃</span>
+        <span class="artist-arrow">查看企劃頁 ↗</span>
+      </div>
+    </a>
+    <a href="https://streetvoice.com/pages/papoar/amazingshow2021/" target="_blank" class="artist-cell">
+      <img class="artist-img" src="https://guide.streetvoice.com/assets/images/papoar-star/img-star-04.png" alt="美秀集團 拍拍主打星" loading="lazy">
+      <div class="artist-body">
+        <span class="artist-idx">STAR 02</span>
+        <span class="artist-name">美秀集團 Amazing Show</span>
+        <span class="artist-note">新歌〈懲罰〉搶先聽 × 富貴一路門票</span>
+        <span class="artist-arrow">查看企劃頁 ↗</span>
+      </div>
+    </a>
+    <a href="https://streetvoice.com/pages/papoar/wenfang-alive2021/" target="_blank" class="artist-cell">
+      <img class="artist-img" src="https://guide.streetvoice.com/assets/images/papoar-star/img-star-07.jpg" alt="吳汶芳 拍拍主打星" loading="lazy">
+      <div class="artist-body">
+        <span class="artist-idx">STAR 03</span>
+        <span class="artist-name">吳汶芳 Fang Wu</span>
+        <span class="artist-note">拍拍手限定企劃</span>
+        <span class="artist-arrow">查看企劃頁 ↗</span>
+      </div>
+    </a>
+    <a href="https://streetvoice.com/pages/papoar/eastwave2021/" target="_blank" class="artist-cell">
+      <img class="artist-img" src="https://guide.streetvoice.com/assets/images/papoar-star/img-star-08.jpg" alt="東波 EastWave 拍拍主打星" loading="lazy">
+      <div class="artist-body">
+        <span class="artist-idx">STAR 04</span>
+        <span class="artist-name">東波 EastWave</span>
+        <span class="artist-note">日記單曲計畫 CH01 — CH04</span>
+        <span class="artist-arrow">查看企劃頁 ↗</span>
+      </div>
+    </a>
+    <a href="https://streetvoice.com/pages/papoar/pia-liveconcert2021/" target="_blank" class="artist-cell">
+      <img class="artist-img" src="https://guide.streetvoice.com/assets/images/papoar-star/img-star-03.png" alt="PiA 吳蓓雅 拍拍主打星" loading="lazy">
+      <div class="artist-body">
+        <span class="artist-idx">STAR 05</span>
+        <span class="artist-name">PiA 吳蓓雅</span>
+        <span class="artist-note">演唱會限定企劃</span>
+        <span class="artist-arrow">查看企劃頁 ↗</span>
+      </div>
+    </a>
+    <a href="https://streetvoice.com/pages/papoar/shallowlevee2021/" target="_blank" class="artist-cell">
+      <img class="artist-img" src="https://guide.streetvoice.com/assets/images/papoar-star/img-star-06.jpg" alt="淺堤 拍拍主打星" loading="lazy">
+      <div class="artist-body">
+        <span class="artist-idx">STAR 06</span>
+        <span class="artist-name">淺堤 Shallow Levée</span>
+        <span class="artist-note">拍拍手限定企劃</span>
+        <span class="artist-arrow">查看企劃頁 ↗</span>
+      </div>
+    </a>
+    <a href="https://streetvoice.com/pages/papoar/hormoneboys-super2021/" target="_blank" class="artist-cell">
+      <img class="artist-img" src="https://guide.streetvoice.com/assets/images/papoar-star/img-star-05.jpg" alt="荷爾蒙少年 拍拍主打星" loading="lazy">
+      <div class="artist-body">
+        <span class="artist-idx">STAR 07</span>
+        <span class="artist-name">荷爾蒙少年 Hormone Boys</span>
+        <span class="artist-note">拍拍手限定企劃</span>
+        <span class="artist-arrow">查看企劃頁 ↗</span>
+      </div>
+    </a>
+    <a href="https://streetvoice.com/pages/papoar/lucy-oh-gosh/" target="_blank" class="artist-cell">
+      <img class="artist-img" src="https://guide.streetvoice.com/assets/images/papoar-star/img-star-01.png" alt="LÜCY 拍拍主打星" loading="lazy">
+      <div class="artist-body">
+        <span class="artist-idx">STAR 08</span>
+        <span class="artist-name">LÜCY</span>
+        <span class="artist-note">Oh gosh! 萬聖節抓鬼企劃 × 私密派對</span>
+        <span class="artist-arrow">查看企劃頁 ↗</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="stat-row fi">
+    <div class="stat-cell"><div class="stat-num"><em>80%</em>+</div><div class="stat-label">收益直接分配給音樂人</div></div>
+    <div class="stat-cell"><div class="stat-num"><em>1萬</em>+</div><div class="stat-label">上線三週累積掌聲數</div></div>
+    <div class="stat-cell"><div class="stat-num">8 <em>組</em></div><div class="stat-label">首波拍拍主打星企劃</div></div>
+  </div>
+</section>
+
+<!-- ============ CASE 02 畢業歌徵選 ============ -->
+<section class="s-wrap" id="graduateyeah">
+  <div class="s-label">Case 02 — Annual Campaign</div>
+
+  <div class="case-head fi">
+    <div class="case-num">02</div>
+    <div class="case-title"><span>年度企劃 · 校園行銷</span>StreetVoice<br>畢業歌徵選</div>
+    <a href="https://streetvoice.com/pages/graduateyeah/" target="_blank" class="case-link">查看活動頁 ↗</a>
+  </div>
+
+  <a href="https://streetvoice.com/pages/graduateyeah/" target="_blank" class="case-cover fi"><img src="https://streetvoice.com/pages/graduateyeah/static/images/cover-2025.jpg" alt="StreetVoice 畢業歌徵選主視覺" loading="lazy"></a>
+
+  <div class="case-intro fi">
+    <div class="ci-label">What</div>
+    <div>
+      <div class="ci-text">把一年一度的畢業季，經營成連結全台校園創作能量的固定 IP。</div>
+      <p class="ci-sub">畢業歌徵選讓學生創作者把屬於自己世代的歌留在 StreetVoice。從徵件機制、宣傳節奏到訂閱名單經營，這個企劃一屆一屆迭代，成為平台每年穩定觸及校園族群的入口。</p>
+    </div>
+  </div>
+
+  <div class="role-bar fi">
+    <div class="role-cell"><div class="rc-k">My Role</div><div class="rc-v">年度企劃統籌</div></div>
+    <div class="role-cell"><div class="rc-k">Period</div><div class="rc-v">2021 — 2025</div></div>
+    <div class="role-cell"><div class="rc-k">Keywords</div><div class="rc-v">校園擴散 · 徵件機制 · 名單經營</div></div>
+  </div>
+
+  <div class="did-grid fi">
+    <div class="did-card">
+      <div class="did-num">A</div>
+      <div class="did-title">從單次徵件到年度 IP</div>
+      <div class="did-desc">將畢業歌徵選定調為每年固定回歸的企劃，建立可複用的徵件流程與專頁架構，讓每一屆都站在前一屆累積的基礎上。</div>
+    </div>
+    <div class="did-card">
+      <div class="did-num">B</div>
+      <div class="did-title">校園社群擴散設計</div>
+      <div class="did-desc">瞄準畢業季的情感節點，規劃社群宣傳節奏，鼓勵學生為自己的團隊、學長姐與學弟妹拉票應援，讓活動自帶擴散動能。</div>
+    </div>
+    <div class="did-card">
+      <div class="did-num">C</div>
+      <div class="did-title">訂閱名單長期經營</div>
+      <div class="did-desc">以 Email 訂閱機制承接每屆參與者，確保隔年活動通知不漏接，把一次性的活動流量沉澱為平台可長期溝通的校園名單。</div>
+    </div>
+  </div>
+
+  <div class="flow-label fi">Editions — 歷屆企劃</div>
+  <div class="ed-grid fi">
+    <a href="https://streetvoice.com/opportunities/865/" target="_blank" class="ed-cell">
+      <img class="ed-img" src="https://streetvoice.com/pages/graduateyeah/static/images/img-menu-01.jpg" alt="畢業歌徵選 第一屆" loading="lazy">
+      <div class="ed-body"><span class="ed-year">第 1 屆</span><span class="ed-note">徵件啟動 ↗</span></div>
+    </a>
+    <a href="https://streetvoice.com/opportunities/908/" target="_blank" class="ed-cell">
+      <img class="ed-img" src="https://streetvoice.com/pages/graduateyeah/static/images/img-menu-02.jpg" alt="畢業歌徵選 第二屆" loading="lazy">
+      <div class="ed-body"><span class="ed-year">第 2 屆</span><span class="ed-note">機制迭代 ↗</span></div>
+    </a>
+    <a href="http://pages.streetvoice.com/graduateyeah/2022/" target="_blank" class="ed-cell">
+      <img class="ed-img" src="https://streetvoice.com/pages/graduateyeah/static/images/img-menu-03.jpg" alt="畢業歌徵選 2022" loading="lazy">
+      <div class="ed-body"><span class="ed-year">2022</span><span class="ed-note">獨立專頁上線 ↗</span></div>
+    </a>
+    <a href="http://pages.streetvoice.com/graduateyeah/2023/" target="_blank" class="ed-cell">
+      <img class="ed-img" src="https://streetvoice.com/pages/graduateyeah/static/images/img-menu-04.jpg" alt="畢業歌徵選 2023" loading="lazy">
+      <div class="ed-body"><span class="ed-year">2023</span><span class="ed-note">校園擴散 ↗</span></div>
+    </a>
+    <a href="http://pages.streetvoice.com/graduateyeah/2024/" target="_blank" class="ed-cell">
+      <img class="ed-img" src="https://streetvoice.com/pages/graduateyeah/static/images/img-menu-05.jpg" alt="畢業歌徵選 2024" loading="lazy">
+      <div class="ed-body"><span class="ed-year">2024</span><span class="ed-note">持續累積 ↗</span></div>
+    </a>
+    <a href="http://pages.streetvoice.com/graduateyeah/2025/" target="_blank" class="ed-cell now">
+      <img class="ed-img" src="https://streetvoice.com/pages/graduateyeah/static/images/img-menu-06.jpg" alt="畢業歌徵選 2025" loading="lazy">
+      <div class="ed-body"><span class="ed-year">2025</span><span class="ed-note">延續營運中 ↗</span></div>
+    </a>
+  </div>
+
+  <div class="stat-row fi">
+    <div class="stat-cell"><div class="stat-num"><em>6</em> 屆</div><div class="stat-label">連續年度企劃統籌</div></div>
+    <div class="stat-cell"><div class="stat-num">全台<em>校園</em></div><div class="stat-label">畢業季學生創作者觸及</div></div>
+    <div class="stat-cell"><div class="stat-num">年度 <em>IP</em></div><div class="stat-label">活動延續至今持續回歸</div></div>
+  </div>
+</section>
+
+<!-- TAKEAWAY -->
+<div class="takeaway">
+  <div class="tw-inner">
+    <div class="tw-label fi">Takeaway</div>
+    <div class="tw-text fi">好的平台企劃不是辦完就結束的活動，<br>而是<em>留得下來的機制</em>——拍拍手成為創作人的收益來源，畢業歌成為每年回歸的校園入口。</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-big fi">LET'S MAKE<br><em>MUSIC LOUDER</em></div>
+  <p class="contact-sub fi">有演唱會、專輯宣傳、音樂節行銷或社群合作的需求，歡迎聯絡。</p>
+  <a href="mailto:kidddiing@gmail.com" class="contact-email fi">kidddiing@gmail.com</a>
+</section>
+
+<footer>
+  <span>© 2026 林子歡 Kadee Lin</span>
+  <span>Music Marketing · Taipei, TW</span>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),i*60)})
+},{threshold:0.08,rootMargin:'0px 0px -24px 0px'})
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el))
+</script>
+</body>
+</html>

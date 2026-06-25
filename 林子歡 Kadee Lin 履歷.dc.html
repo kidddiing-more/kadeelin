@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#ffffff"/>
+    <circle cx="100" cy="60" r="35" fill="#C6FF00" stroke="#0a0a0a" stroke-width="2"/>
+    <rect x="50" y="110" width="100" height="60" rx="8" fill="#C6FF00" stroke="#0a0a0a" stroke-width="2"/>
+    <text x="100" y="155" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#0a0a0a">KADEE</text>
+  </svg>
+</template>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Archivo:wght@500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#ffffff;}
+  a{color:inherit;}
+  ::selection{background:#C6FF00;color:#0a0a0a;}
+</style>
+</helmet>
+
+<div style="font-family:'Noto Sans TC',sans-serif;color:#0a0a0a;background:#ffffff;width:100%;overflow-x:hidden;-webkit-font-smoothing:antialiased;">
+
+  <!-- STICKY NAV -->
+  <nav style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:2px solid #0a0a0a;">
+    <div style="max-width:960px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;">
+      <a href="#top" style="font-family:'Archivo',sans-serif;font-weight:900;font-size:18px;letter-spacing:-0.02em;text-decoration:none;display:flex;align-items:center;gap:8px;white-space:nowrap;">
+        <span style="display:inline-block;width:12px;height:12px;background:#C6FF00;border:2px solid #0a0a0a;border-radius:50%;"></span>
+        Kadee Lin
+      </a>
+      <div style="display:flex;gap:4px;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none;">
+        <a href="#about" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;">關於</a>
+        <a href="#skills" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;">技能</a>
+        <a href="#freelance" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;">接案中</a>
+        <a href="#experience" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;">工作經歷</a>
+        <a href="#projects" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;">音樂專案</a>
+        <a href="#works" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;">作品</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" data-screen-label="Hero" style="max-width:960px;margin:0 auto;padding:56px 20px 24px;scroll-margin-top:72px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;">
+      <div style="flex:1 1 300px;min-width:260px;">
+        <p style="margin:0 0 14px;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#5a5a52;">Taipei, TW · 1985</p>
+        <h1 style="margin:0;font-weight:900;font-size:clamp(40px,8vw,72px);line-height:1.02;letter-spacing:-0.02em;">
+          林子歡
+          <span style="display:inline-block;background:linear-gradient(transparent 58%,#C6FF00 58%);padding:0 4px;">Kadee&nbsp;Lin</span>
+        </h1>
+        <p style="margin:18px 0 0;font-size:clamp(14px,1.8vw,17px);font-weight:500;color:#3a3a34;">Music Industry&nbsp;·&nbsp;Content Strategy&nbsp;·&nbsp;Project Leadership</p>
+      </div>
+      <img src="assets/avatar.png" alt="林子歡 Kadee Lin 大頭照" style="flex:none;display:block;width:clamp(120px,18vw,168px);height:clamp(120px,18vw,168px);border-radius:50%;object-fit:cover;border:3px solid #C6FF00;background:#fff;" loading="eager">
+    </div>
+
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" data-screen-label="About" style="max-width:960px;margin:0 auto;padding:48px 20px;scroll-margin-top:72px;">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:22px;">
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;">01</span>
+      <h2 style="margin:0;font-weight:900;font-size:clamp(24px,4vw,34px);letter-spacing:-0.01em;">關於我 <span style="font-family:'Archivo',sans-serif;font-weight:500;font-size:0.6em;color:#5a5a52;">About</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;font-size:16px;line-height:1.9;color:#1a1a18;">
+      <p style="margin:0;">曾任職於數位音樂內容平台，長期投入行銷宣傳、社群經營與內容企劃領域，累積多年音樂產業相關經驗。擁有 <b style="background:linear-gradient(transparent 60%,#C6FF00 60%);">14 年以上</b>數位內容、品牌行銷與專案管理經驗，深耕音樂產業<b style="background:linear-gradient(transparent 60%,#C6FF00 60%);">超過 10 年</b>，曾任 <a href="https://streetvoice.com/" target="_blank" rel="noopener" style="font-weight:700;border-bottom:2px solid #C6FF00;text-decoration:none;">StreetVoice</a> 行銷社群統籌，參與音樂平台營運、音樂節、演唱會、音樂獎項及品牌合作等多元專案。</p>
+      <p style="margin:0;">擅長內容策略規劃、社群經營、媒體宣傳、公關合作及跨部門專案整合，熟悉從企劃發想、執行推進到成效追蹤的完整流程。近年以 Freelance 身份參與音樂專案，持續協助創作者與品牌建立更具影響力的市場溝通，期望透過自身經驗與企劃能力，協助更多優秀的作品與創作者被更多人看見。</p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" data-screen-label="Skills" style="background:#0a0a0a;color:#ffffff;scroll-margin-top:60px;">
+    <div style="max-width:960px;margin:0 auto;padding:56px 20px;">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:32px;">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;">02</span>
+        <h2 style="margin:0;font-weight:900;font-size:clamp(24px,4vw,34px);letter-spacing:-0.01em;color:#fff;">技能專長 <span style="font-family:'Archivo',sans-serif;font-weight:500;font-size:0.6em;color:#C6FF00;">Skills</span></h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;">
+        <div style="border:1px solid #2a2a26;border-radius:14px;padding:22px;background:#141412;">
+          <h3 style="margin:0 0 12px;font-size:15px;font-weight:700;color:#C6FF00;">程式與數位工具</h3>
+          <p style="margin:0;font-size:14px;line-height:1.85;color:#d4d4cc;">Adobe 系列：Photoshop、Illustrator<br>影音剪輯：Premiere Pro、CapCut<br>Office：Word、PowerPoint、Excel<br>網站／APP 前期企劃與內容架構規劃、UI／UX 流程設計與優化、專案時程管理、功能測試與內容檢核。</p>
+          <p style="margin:14px 0 0;font-size:13px;color:#8a8a82;">中打 ≈ 120 字／min　·　英打 ≈ 50 words／min</p>
+        </div>
+        <div style="border:1px solid #2a2a26;border-radius:14px;padding:22px;background:#141412;">
+          <h3 style="margin:0 0 12px;font-size:15px;font-weight:700;color:#C6FF00;">社群運用</h3>
+          <p style="margin:0;font-size:14px;line-height:1.85;color:#d4d4cc;">熟悉 Facebook、Instagram、YouTube 等社群平台操作，具備 GA 數據分析、Facebook 廣告投放及 SEO 關鍵字優化經驗。</p>
+        </div>
+        <div style="border:1px solid #2a2a26;border-radius:14px;padding:22px;background:#141412;">
+          <h3 style="margin:0 0 12px;font-size:15px;font-weight:700;color:#C6FF00;">宣傳公關 · 活動執行</h3>
+          <p style="margin:0;font-size:14px;line-height:1.85;color:#d4d4cc;">新聞稿撰寫、發布與宣傳內容規劃；媒體通告安排、媒體關係維護與宣傳窗口對接；公關活動、演唱會、音樂節及專輯宣傳企劃執行、品牌異業合作，熟悉音樂產業宣傳流程與專案時程管理。</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FREELANCE -->
+  <section id="freelance" data-screen-label="Freelance" style="max-width:960px;margin:0 auto;padding:56px 20px;scroll-margin-top:72px;">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:10px;">
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;">03</span>
+      <h2 style="margin:0;font-weight:900;font-size:clamp(20px,3.4vw,30px);letter-spacing:-0.01em;line-height:1.25;">現階段以 freelance 形式進行音樂產業相關專案合作</h2>
+    </div>
+    <p style="margin:0 0 28px;font-size:15px;color:#5a5a52;font-weight:500;">（音樂專案行銷企劃、宣傳、社群投放、商務經紀）</p>
+
+    <ul id="freelance-list" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;border-top:2px solid #0a0a0a;"></ul>
+  </section>
+  <section id="experience" data-screen-label="Experience" style="background:#f4f4f0;scroll-margin-top:60px;border-top:2px solid #0a0a0a;border-bottom:2px solid #0a0a0a;">
+    <div style="max-width:960px;margin:0 auto;padding:56px 20px;">
+      <button id="exp-toggle" type="button" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:2px solid #0a0a0a;border-radius:16px;padding:22px 24px;cursor:pointer;text-align:left;box-shadow:4px 4px 0 #0a0a0a;font-family:inherit;margin-bottom:28px;">
+        <span style="display:flex;align-items:flex-start;gap:12px;">
+          <span style="color:#9bbf00;font-size:20px;line-height:1.2;">04</span>
+          <span>
+            <span style="display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;">工作經歷</span>
+            <span style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;font-family:'Archivo',sans-serif;letter-spacing:0.04em;">Work Experience｜點擊收合</span>
+          </span>
+        </span>
+        <span id="exp-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;">▾</span>
+      </button>
+      <div id="exp-body" style="display:grid;grid-template-columns:1fr;gap:20px;"></div>
+    </div>
+  </section>
+
+  <!-- MUSIC INDUSTRY PROJECTS -->
+  <section id="projects" data-screen-label="Projects" style="max-width:960px;margin:0 auto;padding:56px 20px;scroll-margin-top:72px;">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;">
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;">05</span>
+      <h2 style="margin:0;font-weight:900;font-size:clamp(24px,4vw,34px);letter-spacing:-0.01em;">音樂產業專案與行銷統籌</h2>
+    </div>
+    <p style="margin:0 0 32px;font-size:15px;color:#5a5a52;font-weight:500;">Music industry projects &amp; marketing leadership</p>
+    <div id="proj-groups" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;"></div>
+
+  </section>
+
+  <!-- AWARDS / FEATURE -->
+  <section id="awards" data-screen-label="Awards" style="background:#0a0a0a;color:#fff;scroll-margin-top:60px;">
+    <div style="max-width:960px;margin:0 auto;padding:56px 20px;">
+      <h2 style="margin:0 0 18px;font-weight:900;font-size:clamp(22px,3.6vw,30px);line-height:1.25;">
+        ☆ <a href="https://streetvoice.com/pages/saa/" target="_blank" rel="noopener" style="color:#C6FF00;text-decoration:none;border-bottom:2px solid #C6FF00;">StreetVoice 街聲年度音樂趨勢大獎</a>
+      </h2>
+      <div style="border:1px solid #2a2a26;overflow:hidden;border-radius:10px;background:#141412;margin-bottom:24px;">
+        <img src="https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/4aBBR/kidhuan/03e0821c-f403-48c6-ab28-65ecf9308cc9.png" alt="StreetVoice 年度音樂趨勢大獎" style="display:block;width:100%;height:auto;" loading="lazy">
+      </div>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.9;color:#d4d4cc;">致力於推動新生代原創音樂作品走向更大的舞台，透過內容策劃、社群行銷與媒體宣傳，提升音樂作品與創作者的市場能見度與影響力。</p>
+      <p style="margin:0 0 24px;font-size:15px;line-height:1.9;color:#d4d4cc;"><b style="color:#fff;">參與規劃 2024 首屆及 2025 第二屆</b>，負責獎項企劃統籌、頒獎典禮現場執行，以及媒體宣傳與社群行銷操作，打造具話題性與產業影響力的年度音樂指標活動。（相關資訊 <a href="https://blow.streetvoice.com/t/streetvoice-awards-%E8%A1%97%E8%81%B2%E5%B9%B4%E5%BA%A6%E9%9F%B3%E6%A8%82%E8%B6%A8%E5%8B%A2%E5%A4%A7%E7%8D%8E/" target="_blank" rel="noopener" style="color:#C6FF00;text-decoration:none;border-bottom:1px solid #C6FF00;">請見連結</a>）</p>
+
+      <div style="border-top:1px solid #2a2a26;padding-top:24px;">
+        <p style="margin:0 0 12px;font-size:15px;line-height:1.9;color:#d4d4cc;">☆ 任職 friDay 音樂期間，協助執行 <b style="color:#fff;">「絕對音樂．絕對星盛事」2017 hito 流行音樂獎</b>後台直擊直播工作。</p>
+        <p style="margin:0;font-size:14px;line-height:1.9;color:#8a8a82;">專訪藝人包括 BOXING、Bii 畢書盡、Christopher、Erika、Miss Ko、丁噹、方大同、王心凌、艾怡良、安心亞、兄弟本色、李千娜、李佳薇、李榮浩、林俊傑、周湯豪、韋禮安、范瑋琪、周興哲、鼓鼓、陳勢安、郭靜、楊乃文、楊丞琳、獅子合唱團、魏如萱 等。　影片：<a href="http://bit.ly/2JasNAu" target="_blank" rel="noopener" style="color:#C6FF00;text-decoration:none;border-bottom:1px solid #C6FF00;">請點連結</a></p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:28px;">
+        <div style="border:1px solid #2a2a26;overflow:hidden;border-radius:10px;background:#141412;"><img src="https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/90f38a85-a41c-4cc1-b008-e1e3c443b1e6.png" alt="hito 直播" style="display:block;width:100%;height:auto;" loading="lazy"></div>
+        <div style="border:1px solid #2a2a26;overflow:hidden;border-radius:10px;background:#141412;"><img src="https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/b10cce5a-7fe3-4414-a921-d29e2f683535.png" alt="hito 直播" style="display:block;width:100%;height:auto;" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STREETVOICE PLATFORM CASES (collapsible) -->
+  <section id="sv-cases" data-screen-label="SV Cases" style="max-width:960px;margin:0 auto;padding:48px 20px 8px;scroll-margin-top:72px;">
+    <button id="sv-toggle" type="button" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:2px solid #0a0a0a;border-radius:16px;padding:22px 24px;cursor:pointer;text-align:left;box-shadow:4px 4px 0 #C6FF00;font-family:inherit;">
+      <span style="display:flex;align-items:flex-start;gap:12px;">
+        <span style="color:#9bbf00;font-size:20px;line-height:1.2;">☆</span>
+        <span>
+          <span style="display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;">StreetVoice 平台企劃案例</span>
+          <span style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;">拍拍手 PAPOAR 打賞功能 · 畢業歌徵選年度企劃｜點擊展開</span>
+        </span>
+      </span>
+      <span id="sv-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;">▾</span>
+    </button>
+    <div id="sv-cases-body" style="display:none;margin-top:24px;"></div>
+  </section>
+
+  <!-- OMUSIC PROJECTS (collapsible) -->
+  <section id="omusic" data-screen-label="Omusic" style="max-width:960px;margin:0 auto;padding:48px 20px 8px;scroll-margin-top:72px;">
+    <button id="omusic-toggle" type="button" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:2px solid #0a0a0a;border-radius:16px;padding:22px 24px;cursor:pointer;text-align:left;box-shadow:4px 4px 0 #C6FF00;font-family:inherit;">
+      <span style="display:flex;align-items:flex-start;gap:12px;">
+        <span style="color:#9bbf00;font-size:20px;line-height:1.2;">☆</span>
+        <span>
+          <span style="display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;">Omusic 網路活動專案</span>
+          <span style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;">數位下載兌換 · APP 活動介面｜點擊展開</span>
+        </span>
+      </span>
+      <span id="omusic-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;">▾</span>
+    </button>
+    <div id="omusic-body" style="display:none;margin-top:24px;"></div>
+  </section>
+
+
+
+  <!-- FOOTER -->
+  <footer style="background:#0a0a0a;color:#fff;">
+    <div style="max-width:960px;margin:0 auto;padding:48px 20px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;">
+      <div>
+        <p style="margin:0;font-family:'Archivo',sans-serif;font-weight:900;font-size:24px;letter-spacing:-0.01em;">林子歡 · Kadee Lin</p>
+        <p style="margin:6px 0 0;font-size:14px;color:#8a8a82;">Music Marketing · Taipei, TW</p>
+      </div>
+      <a href="https://www.cake.me/me/kidhuan?ref=resume_toolbar_profile" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:#C6FF00;color:#0a0a0a;font-weight:700;font-size:15px;padding:13px 22px;border:2px solid #0a0a0a;border-radius:999px;box-shadow:3px 3px 0 #0a0a0a;">聯絡我 ✉</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const link = (s) => s.replace(/\{\{([^|]+)\|([^}]+)\}\}/g, (m,t,u) => `<a href="${u}" target="_blank" rel="noopener" style="font-weight:700;color:#0a0a0a;text-decoration:none;border-bottom:2px solid #C6FF00;">${t} ↗</a>`);
+
+    // ---- Freelance list ----
+    const freelance = [
+      ['2026.06–Now', 'LINION 2026 海外巡演計畫', '單曲宣傳、數位廣告投放規劃與執行'],
+      ['2026.06–Now', '紙鳶 Seizer 募資計畫', '募資專案宣傳'],
+      ['2026.06–Now', '虎小島《背對光的時候》EP', '專案宣傳'],
+      ['2026.06–Now', '柴郡貓 2026 年度計畫', '專案宣傳'],
+      ['2025.12–Now', 'JOYCE 就以斯《才華換桃花》', '專輯專場宣傳、新聞曝光執行'],
+      ['2025.04–Now', '羅大佑《季四季望雨》《四季戀紅交響宴音樂會》', '社群數位行銷、廣告投放執行'],
+      ['2025.12–2026.03', 'SoulFa 靈魂沙發《失望的山》專輯', '專輯企劃宣傳'],
+      ['2025.04–2026.05', '給樂音樂｜行銷宣傳顧問', '合作藝人：芒果醬 Mango Jump、黃宇寒、Rainy Knight、VH'],
+      ['2019–Now', 'Wring Out Laura', '商務經紀與專案合作統籌', 'http://linktr.ee/wring_out_laura'],
+    ];
+    const flEl = document.getElementById('freelance-list');
+    if (flEl) {
+      flEl.innerHTML = freelance.map(([date, title, desc, lnk]) => {
+        const titleHtml = lnk
+          ? `<a href="${lnk}" target="_blank" rel="noopener" style="color:#0a0a0a;text-decoration:none;border-bottom:2px solid #C6FF00;">${title} ↗</a>`
+          : title;
+        return `<li style="display:grid;grid-template-columns:120px 1fr;gap:18px;padding:18px 4px;border-bottom:1px solid #e2e2da;align-items:start;">
+          <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;color:#5a5a52;letter-spacing:0.01em;padding-top:2px;">${date}</span>
+          <span><b style="font-size:16px;font-weight:700;line-height:1.5;">${titleHtml}</b><br><span style="font-size:14px;color:#5a5a52;">${desc}</span></span>
+        </li>`;
+      }).join('');
+    }
+
+    // ---- Work experience ----
+    const exp = [
+      {n:'01', role:'行銷總監', org:'街聲股份有限公司（StreetVoice）', time:'2019/03 – 2025/04',
+       lead:'負責 {{StreetVoice 街聲|https://streetvoice.com/}} 網站涵蓋數位音樂推廣，協助 StreetVoice 從無正式行銷部門，逐步建立行銷職能與工作流程，涵蓋社群內容規劃、活動宣傳、媒體溝通、品牌合作、數位廣告投放與成效整理，提升平台行銷推廣的系統性與執行效率。',
+       points:['音樂數位產品推廣、品牌知名度建立與策略擬定','行銷活動規劃與執行、平台內容發展策略及效益追蹤','音樂人鐵粉招募與關係維護','會員招募管理、訂閱服務成效追蹤並協助系統優化','規劃並執行社群內容策略，整合 FB、IG 等平台溝通與成長','宣傳內容製作、主題歌單編製與宣傳操作','唱片公司及異業集團服務整合業務洽談','統籌大型音樂節及品牌活動之行銷宣傳、媒體溝通與贊助合作'],
+       skill:'品牌行銷 · 網站營運 · 社群經營 · 異業行銷活動規劃 · 活動現場執行',
+       img:'https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/4aBBR/kidhuan/565b3ecc-5139-4a28-a7bd-8b4a5bea2928.png'},
+      {n:'02', role:'資深編輯', org:'歐銻銻娛樂股份有限公司（愛奇藝台灣站）', time:'2018/07 – 2019/02',
+       lead:'負責 {{愛奇藝台灣站電影頻道|https://tw.iqiyi.com/dianying/}} 內容營運。',
+       points:['電影頻道日常生產與編輯管理','重點電影頻道宣傳推廣','項目引進評估、制訂排期與方案','監測用戶行為、掌握市場趨勢、週期性完成分析報告','經營電影頻道社群平台','頻道異業結合推廣合作'],
+       skill:'社群經營 · 異業行銷活動規劃',
+       img:'https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/85790e1c-83e0-46a4-af64-ce265e3d33ce.png'},
+      {n:'03', role:'社群專案經理', org:'博客來數位科技有限公司', time:'2018/04 – 2018/06',
+       lead:'負責博客來粉絲團營運及廣告投放操作。',
+       points:['博客來粉絲團專案經營、發文安排','FB 廣告投放操作安排','7-11 OPEN POINT 點數專案'],
+       skill:'社群經營 · 網路活動企畫執行 · 跨部門溝通協調 · 異業行銷活動規劃',
+       img:'https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/0603ef79-9dd4-44c8-b948-a39f2e3707b7.png'},
+      {n:'04', role:'行銷副理', org:'Omusic 全音樂股份有限公司', time:'2013/02 – 2018/01',
+       lead:'負責 {{firDay 音樂線上音樂服務|http://omusic.friday.tw/index.php}} 以及 {{遠傳電信 900 來電答鈴|http://www.fetnet.net/}} 之行銷業務。',
+       points:['音樂數位產品推廣','實體行銷活動規劃與執行','活動網站規劃、文案發想及成效追蹤','社群推廣與 {{FB 粉絲團|https://www.facebook.com/omusictw/}} 管理、活動經營與廣告投放','唱片公司及異業廠商合作洽談'],
+       skill:'社群經營 · 音樂市場研究 · APP 使用推廣 · 影音推廣 · 網路活動企畫 · 跨部門協調 · 異業行銷',
+       img:'https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/251907f5-dfe6-4098-a3b8-636e17712775.png'},
+      {n:'05', role:'內容企劃專員', org:'GOMAJI 夠麻吉_一起行銷股份有限公司', time:'2012/05 – 2013/01',
+       lead:'負責 {{GOMAJI 團購網站|http://www.gomaji.com/}} 內容企劃規劃。',
+       points:['團購網站內容方案企畫','版面圖文編輯','網頁流程安排','合約審核','商品上下架','商品內容專案規劃'],
+       skill:'網站內容規劃 · 店家關係維護',
+       img:'https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/5ee22ab0-a4f8-4656-97b0-e7fa39e9c2de.png'},
+      {n:'06', role:'助理專員', org:'春水堂科技娛樂股份有限公司', time:'2010/09 – 2012/05',
+       lead:'負責中華電信的 Hami 系列手機 APP 服務以及相關後台操作。',
+       points:['影音編輯（動畫、音樂、MV）','電子書製作（e-Pub、PDF、每日新聞）','數位內容上架、管理、審核','行銷活動支援、贈品處理','HAMI MUSIC 數位內容與手機操作，編輯每日出刊 Hami 新聞'],
+       skill:'影音編輯 · 後台操作管理 · 跨部門合作',
+       img:'https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/b6afe850-d929-443e-a145-f1394104d7a2.png'},
+    ];
+    const expBody = document.getElementById('exp-body');
+    if (expBody) {
+      expBody.innerHTML = exp.map(e => `
+        <article style="background:#fff;border:2px solid #0a0a0a;border-radius:16px;overflow:hidden;box-shadow:4px 4px 0 #0a0a0a;">
+          <div style="padding:24px 24px 20px;">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px;">
+              <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:14px;background:#C6FF00;border:2px solid #0a0a0a;border-radius:8px;padding:1px 8px;">${e.n}</span>
+              <h3 style="margin:0;font-size:clamp(18px,2.6vw,22px);font-weight:900;">${e.role}</h3>
+              <span style="font-size:15px;font-weight:500;color:#3a3a34;">${e.org}</span>
+              <img src="${e.img}" alt="${e.org}" style="flex:none;display:block;max-width:135px;width:100%;height:auto;margin-left:auto;" loading="lazy">
+            </div>
+            <p style="margin:0 0 14px;font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;color:#5a5a52;">${e.time}</p>
+            <p style="margin:0 0 16px;font-size:15px;line-height:1.85;color:#1a1a18;">${link(e.lead)}</p>
+            <ol style="margin:0 0 18px;padding-left:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px 20px;">
+              ${e.points.map((p,i)=>`<li style="font-size:14px;line-height:1.7;color:#2a2a26;display:flex;gap:8px;"><span style="flex:none;font-family:'Archivo',sans-serif;font-weight:700;color:#9bbf00;">${String(i+1).padStart(2,'0')}</span><span>${link(p)}</span></li>`).join('')}
+            </ol>
+            <p style="margin:0;font-size:13px;font-weight:700;color:#0a0a0a;background:#f4f4f0;border-radius:8px;padding:10px 14px;border:1px solid #e2e2da;"><span style="color:#9bbf00;">工作技能</span>　${e.skill}</p>
+          </div>
+        </article>`).join('');
+    }
+
+    // ---- Work experience toggle ----
+    const expToggle = document.getElementById('exp-toggle');
+    const expIcon = document.getElementById('exp-toggle-icon');
+    if (expToggle && expBody) {
+      expToggle.addEventListener('click', () => {
+        const open = expBody.style.display !== 'none';
+        expBody.style.display = open ? 'none' : 'grid';
+        if (expIcon) expIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
+    }
+
+    // ---- Music industry project groups ----
+    const groups = [
+      {title:'音樂宣傳執行', items:[
+        '2026.01 頑童 MJ116《OGS》台中洲際演唱會｜宣傳執行',
+        '2025.12 鄭興《尋找鄭先生》｜網路宣傳執行',
+        '2025.10 Lola Amour 媒體見面會｜活動規劃執行',
+        '2025.09 Ed Sheeran《PLAY》搶聽會｜活動規劃執行',
+      ]},
+      {title:'音樂節 / 大型活動行銷統籌', items:[
+        '2019 Simple Urban+ {{簡單生活節|https://simplelife.streetvoice.com/2019/}}｜行銷宣傳統籌',
+        '{{2020 簡單生活節|https://simplelife.streetvoice.com/2020/}}｜行銷宣傳統籌',
+        '2019–2022 金音獎｜協力網路宣傳執行',
+        '2023 StreetVoice × 芒果醬 × 好丘《貝愛的人修成正果》粉絲見面會｜{{活動統籌|https://streetvoice.com/pages/mangojump520/bagelpass/}}',
+        '2024 鶴 The Crane 年度專場《Meet Me At The Dining Room》｜行銷社群規劃',
+        '2025 竇靖童《狀況外》巡迴演唱會 台北站｜行銷社群規劃',
+      ]},
+      {title:'音樂徵選 / 原創企劃統籌', items:[
+        '2020 街聲首屆畢業歌徵選｜專案籌劃，第二屆徵件突破百件',
+        '2020、2021 Vans Musicians Wanted｜音樂人徵選企劃執行',
+        '2021 agnès b.《LISTEN!! 原創音樂線上募集大賞》｜徵件數突破千件',
+        '2022 MUSIC MAKER 音樂主理人（原台灣創造）｜音樂徵選企劃',
+        '2022、2023 金牌啤酒百萬代言人金牌原創音樂徵選｜專案執行',
+        '2023《1500 聲量音樂祭》五月天瑪莎大師講座｜徵選規劃',
+      ]},
+      {title:'品牌異業合作 / 音樂策展', items:[
+        '2020 {{荷爾蒙少年《黑色台北 Urban Noir》發片企劃|https://blow.streetvoice.com/50195/}}，串聯在地酒吧 Draft Land 整合規劃',
+        '2021《大團誕生》我要上 COVER：荷爾蒙少年（{{上|https://youtu.be/nE0isnXibNY?si=Nt9nzX-_pnGNr9P9}}、{{下|https://youtu.be/5tccJ7LhCHQ?si=r2uISrcnBaRMPDmB}}）｜企劃統籌',
+        '2021 拍拍手《{{萬聖節抓鬼！LÜCY 近距離專場|https://blow.streetvoice.com/57207/}}》｜{{網頁活動|https://streetvoice.com/pages/papoar/lucy-oh-gosh/}}企劃執行',
+        '2022《臺北街角遇見設計－臺北繞個路》｜{{音樂策展規劃|https://2022goaroundtaipei.medium.com/%E8%87%BA%E5%8C%97%E7%B9%9E%E5%80%8B%E8%B7%AF-streetvoice-%E8%A1%97%E8%81%B2-fa04e14a38b9}}',
+        '2022 陶喆《自選 25：BRING THE LIGHT IN》珍藏演唱會｜徵選宣傳執行',
+        '2023 LINION《梨民活動中心》專場｜{{結合站上電商開站行銷規劃|https://blow.streetvoice.com/67780/}}',
+      ]},
+      {title:'行銷社群規劃統籌', items:[
+        '2019–2025.5 StreetVoice 行銷社群統籌',
+        '2019、2020、2023 簡單生活節 行銷社群統籌',
+        '2023、2024 StreetVoice Park Park Carnival 叭叭嘉年華 行銷社群統籌',
+        '2025 {{有朝一日音樂節|https://www.instagram.com/onedayfest.tw/}} 行銷社群統籌',
+        '2025 土屋安娜巡迴演唱會 台北站 行銷社群統籌',
+        '2025 {{秋OUT音樂節|https://www.instagram.com/chillout_fest/}} 社群執行',
+        '2025 {{樂團祭活動|https://www.instagram.com/bandstival/}} 社群統籌規劃',
+      ]},
+    ];
+    const pgEl = document.getElementById('proj-groups');
+    if (pgEl) {
+      pgEl.innerHTML = groups.map(g => `
+        <div style="border:2px solid #0a0a0a;border-radius:16px;padding:24px;background:#fff;">
+          <h3 style="margin:0 0 16px;font-size:17px;font-weight:900;display:flex;align-items:center;gap:8px;"><span style="color:#9bbf00;">■</span>${g.title}</h3>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;">
+            ${g.items.map(it=>`<li style="font-size:14px;line-height:1.7;color:#1a1a18;display:flex;gap:9px;"><span style="flex:none;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;font-weight:900;">·</span><span>${link(it)}</span></li>`).join('')}
+          </ul>
+        </div>`).join('');
+    }
+
+    // ---- Omusic collapsible section ----
+    const omusic = `
+      <article style="border:2px solid #0a0a0a;border-radius:16px;overflow:hidden;background:#fff;margin-bottom:20px;">
+        <div style="padding:28px 24px;">
+          <h3 style="margin:0 0 16px;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;">電腦數位下載網頁專案</h3>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.85;color:#5a5a52;">2017/07/21 五月天「作品 9 號」USB 版預購延後取貨，於短時間內緊急規劃兌換專頁及實際執行支援客服兌換專案。</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
+            <div style="border:2px solid #0a0a0a;overflow:hidden;background:#f4f4f0;border-radius:12px;"><img src="https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/e43b664e-159a-453c-bfa4-6c64ef3a57fa.png" alt="兌換專頁" style="display:block;width:100%;height:auto;" loading="lazy"></div>
+            <div style="border:2px solid #0a0a0a;overflow:hidden;background:#f4f4f0;border-radius:12px;"><img src="https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/5d40c13a-253f-4cac-b575-b1fec312d76b.png" alt="兌換專頁" style="display:block;width:100%;height:auto;" loading="lazy"></div>
+          </div>
+        </div>
+      </article>
+
+      <article style="border:2px solid #0a0a0a;border-radius:16px;overflow:hidden;background:#fff;">
+        <div style="padding:28px 24px;">
+          <h3 style="margin:0 0 16px;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;">APP 活動介面規劃及維運</h3>
+          <p style="margin:0 0 4px;font-size:15px;line-height:1.85;color:#5a5a52;"><b style="background:linear-gradient(transparent 60%,#C6FF00 60%);">OPASS</b>　friDay 音樂 APP 會員每月獨享演唱會門票之兌換頁面</p>
+          <p style="margin:0 0 20px;font-size:14px;line-height:1.85;color:#5a5a52;">用戶僅需於每月領取想參與的表演場次，開演前至票口兌換即可輕鬆觀賞演唱會。</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
+            <div style="border:2px solid #0a0a0a;overflow:hidden;background:#f4f4f0;border-radius:12px;"><img src="https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/0a310060-1ff8-4a32-9215-b60b5fbdb69e.png" alt="OPASS" style="display:block;width:100%;height:auto;" loading="lazy"></div>
+            <div style="border:2px solid #0a0a0a;overflow:hidden;background:#f4f4f0;border-radius:12px;"><img src="https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/kidhuan/2164fa31-fb71-41a8-8a39-31bb27b3c2a3.png" alt="OPASS" style="display:block;width:100%;height:auto;" loading="lazy"></div>
+          </div>
+        </div>
+      </article>
+
+      <article style="border:2px solid #0a0a0a;border-radius:16px;overflow:hidden;background:#fff;">
+        <div style="padding:28px 24px;">
+          <h3 style="margin:0 0 20px;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;">數位活動企劃檔案</h3>
+          <p style="margin:0 0 24px;font-size:15px;line-height:1.85;color:#5a5a52;">2013–2016 年間操刀的會員招募與訂閱推廣活動。從五月天數位專輯、戲劇 IP 到醜比頭授權合作，涵蓋電信、銀行、超商等異業串聯，以多元兌換與抽獎機制帶入新會員。</p>
+          
+          <div style="margin:20px 0;font-size:12px;color:#5a5a52;">
+            💡 點擊活動名稱展開圖片預覽（縮圖網格）
+          </div>
+          <table style="width:100%;border-collapse:collapse;font-size:14px;">
+            <thead>
+              <tr style="background:#f4f4f0;border-bottom:2px solid #0a0a0a;">
+                <th style="padding:14px 16px;text-align:left;font-weight:700;font-size:12px;letter-spacing:0.04em;color:#9bbf00;">分類</th>
+                <th style="padding:14px 16px;text-align:left;font-weight:700;font-size:12px;letter-spacing:0.04em;color:#9bbf00;">活動名稱</th>
+                <th style="padding:14px 16px;text-align:center;font-weight:700;font-size:12px;letter-spacing:0.04em;color:#9bbf00;width:80px;">年份</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">藝人合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">五月天數位專輯《作品 9 號》兌換頁 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2016</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/五月天數位專輯「作品9號」兌換頁.png" style="max-width:100%;max-height:500px;border-radius:8px;"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">戲劇 IP 行銷</td>
+                <td style="padding:14px 16px;font-weight:600;color:#0a0a0a;cursor:pointer;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">《來自星星的你》都教授音樂觀察記錄 × 首爾看星星 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2014</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ 音樂免費聽30天_-66243d18.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">IP 授權合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic 大進擊！醜比頭陪你 FUN 音樂 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2015</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ Omusic大進擊!!! 醜比頭免費聽音樂-e904b405.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">藝人合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">左左右右數位單曲免費下載 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2014</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/左左右右數位單曲免費下載-ab352604.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">藝人合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">蔡黃汝《安全感》數位單曲免費珍藏 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2013</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ Omusic蔡黃汝安全感 單曲免費-18a251a9.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">異業合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic × Kingston 兌換 30 天免費優惠 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2013</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ Omusic x Kingston兌換30天免費優惠-74c1f042.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">異業合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic × 全家 Let's Café 序號暢聽企劃 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2014</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ Omusic x全家Let_s Café_-8d25da68.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">異業合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic 搶先聽 線上音樂 30 天免費 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2013</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ Omusic搶先聽 線上音樂聽到飽30天免費-5cd90d03.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">異業合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic × 台灣大車隊 55688 紅利點數 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2013</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ Omusic x 台灣大車隊55688紅利點數-0624fc2f.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">異業合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic × 遠東商銀 HAPPY GO 大紅利 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2015</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ 遠銀卡友i兌換專屬優惠，大紅利免費音樂無限聽-830d11b4.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">異業合作</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic 五購好康 × 永豐餘合作 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2015</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ Omusic五購好康(永豐餘合作)-8897ab3d.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">會員經營</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic 週年瘋樂趣一起 Fun ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2015</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/Omusic週年瘋樂趣一起Fun-66c68033.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">會員經營</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">音樂免費聽 30 天 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2016</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ 音樂免費聽30天_-66243d18.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">會員經營</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic 越聽樂精彩，送你免費聽音樂 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2015</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/ Omusic越聽樂精彩，送你免費聽音樂-199f9bc7.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e2da;">
+                <td style="padding:14px 16px;color:#5a5a52;">社群互動</td>
+                <td style="padding:14px 16px;font-weight:600;cursor:pointer;color:#0a0a0a;" onclick="this.parentElement.nextElementSibling.style.display=this.parentElement.nextElementSibling.style.display==='none'?'table-row':'none'">Omusic 我和你的主題曲 ▼</td>
+                <td style="padding:14px 16px;text-align:center;color:#5a5a52;">2014</td>
+              </tr>
+              <tr style="display:none;">
+                <td colspan="3" style="padding:14px 16px;text-align:center;"><img src="uploads/Omusic我和你的主題曲-0ba0acb0.png" style="max-width:100%;max-height:500px;border-radius:8px;" loading="lazy"></td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </article>
+    `;
+    const omusicBody = document.getElementById('omusic-body');
+    if (omusicBody) {
+      omusicBody.innerHTML = omusic;
+    }
+    const omusicToggle = document.getElementById('omusic-toggle');
+    const omusicIcon = document.getElementById('omusic-toggle-icon');
+    if (omusicToggle && omusicBody) {
+      omusicToggle.addEventListener('click', () => {
+        const open = omusicBody.style.display !== 'none';
+        omusicBody.style.display = open ? 'none' : 'block';
+        if (omusicIcon) omusicIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
+    }
+
+    // ---- StreetVoice platform cases (collapsible) ----
+    const svCases = [
+      {
+        num:'01', eyebrow:'三方串聯 · 異業合作', title:'StreetVoice × 芒果醬 × 好丘「芒果愛の考驗」聯名企劃',
+        link:'https://streetvoice.com/pages/mangojump520/bagelpass/',
+        cover:'assets/mango-cover.png',
+        featImg:'assets/mango-phase2-bagel.jpg',
+        what:'串聯ㄎㄧㄤ團與貝果品牌推出聯名商品，以兩波活動操作完整走完商品週期。',
+        sub:'上市前以快閃試吃會累積期待感，上市後透過序號機制帶動門市轉換。邀請樂迷登入街聲帳號回答題目獲得試吃資格，購買聯名貝果即獲抽獎序號，兌換芒果醬樂團專屬好禮。',
+        newsLink:'https://www.storm.mg/lifestyle/4792384',
+        role:[['My Role','企劃統籌 · 設計溝通 · 上線執行'],['Period','2023'],['Partners','芒果醬 · 好丘 GOOD CHO\'S']],
+        did:[['A','快閃試吃會設計','限量 40 名與芒果醬近距離品嚐新品，登入街聲帳號回答題目即獲抽獎資格，活動期間每日可重複參戰。'],['B','序號登錄機制','購買聯名貝果獲抽獎序號，登錄抽芒果醬樂團專屬好禮，以序號機制直接帶動門市轉換。'],['C','宣傳與社群推廣','統籌官網、社群與站內宣傳，整合品牌與樂團粉絲資源，擴大聯名商品聲量。']],
+        featLabel:'兩階段企劃流程',
+        feat:[
+          ['快閃試吃會現場','「芒果愛の考驗」上市前造勢','https://streetvoice.com/pages/mangojump520/bagelpass/','assets/mango-phase1.webp'],
+          ['粉絲見面會','「#貝愛的人 修成正果」序號登錄抽獎','https://streetvoice.com/pages/mangojump520/bagelpass/','assets/mango-phase2-concert.webp'],
+        ],
+        stats:[['2 階段','完整商品週期',''],['40 名','快閃試吃名額',''],['樂迷 × 消費者','雙重身份轉換','']],
+      },
+      {
+        num:'02', eyebrow:'產品行銷 · 創作者經濟', title:'拍拍手 PAPOAR 音樂人打賞功能',
+        link:'https://guide.streetvoice.com/clap/',
+        cover:'https://guide.streetvoice.com/content/images/2023/04/cover.jpg',
+        what:'把樂迷聆聽時的感動，變成創作人帳戶裡實質的收益。',
+        sub:'「拍拍手」是 StreetVoice 於 2021 年推出的音樂人打賞功能：樂迷點擊拍手按鈕給予掌聲，扣除金流手續費後，至少 80% 收益直接分配給音樂人。這不是一檔活動，而是一套至今仍在營運的創作者收益機制。',
+        role:[['My Role','功能上線推廣統籌'],['Period','2021 — 2025'],['Keywords','產品溝通 · 分潤機制 · 加值企劃']],
+        did:[['A','上線推廣與品牌溝通','以「街聲為音樂人鼓掌計畫」為溝通主軸，把抽象的打賞功能包裝成有溫度的品牌行動，統籌官網、社群與站內資源的上線推廣。'],['B','機制轉譯與用戶教育','將分潤比例、拍拍卡收藏、置頂拍拍留言等產品機制，轉譯成樂迷一看就懂的內容與教學頁。'],['C','「拍拍主打星」加值企劃','結合創作人歌曲企劃與實體演出，打造加值內容「拍拍主打星」，首波集結 8 組音樂人專屬企劃。']],
+        featLabel:'拍拍主打星首波音樂人企劃',
+        feat:[
+          ['EmptyORio','拍拍手限定企劃','https://streetvoice.com/pages/papoar/emptyorio-papoar2021/','https://guide.streetvoice.com/assets/images/papoar-star/img-star-02.png'],
+          ['美秀集團 Amazing Show','新歌〈懲罰〉搶先聽 × 富貴一路門票','https://streetvoice.com/pages/papoar/amazingshow2021/','https://guide.streetvoice.com/assets/images/papoar-star/img-star-04.png'],
+          ['吳汶芳 Fang Wu','拍拍手限定企劃','https://streetvoice.com/pages/papoar/wenfang-alive2021/','https://guide.streetvoice.com/assets/images/papoar-star/img-star-07.jpg'],
+          ['東波 EastWave','日記單曲計畫 CH01 — CH04','https://streetvoice.com/pages/papoar/eastwave2021/','https://guide.streetvoice.com/assets/images/papoar-star/img-star-08.jpg'],
+          ['PiA 吳蓓雅','演唱會限定企劃','https://streetvoice.com/pages/papoar/pia-liveconcert2021/','https://guide.streetvoice.com/assets/images/papoar-star/img-star-03.png'],
+          ['淺堤 Shallow Levée','拍拍手限定企劃','https://streetvoice.com/pages/papoar/shallowlevee2021/','https://guide.streetvoice.com/assets/images/papoar-star/img-star-06.jpg'],
+          ['荷爾蒙少年 Hormone Boys','拍拍手限定企劃','https://streetvoice.com/pages/papoar/hormoneboys-super2021/','https://guide.streetvoice.com/assets/images/papoar-star/img-star-05.jpg'],
+          ['LÜCY','Oh gosh! 萬聖節抓鬼企劃 × 私密派對','https://streetvoice.com/pages/papoar/lucy-oh-gosh/','https://guide.streetvoice.com/assets/images/papoar-star/img-star-01.png'],
+        ],
+        stats:[['80%+','收益直接分配給音樂人'],['1萬+','上線三週累積掌聲數'],['8 組','首波拍拍主打星企劃']],
+      },
+      {
+        num:'03', eyebrow:'年度企劃 · 校園行銷', title:'StreetVoice 畢業歌徵選',
+        link:'https://streetvoice.com/pages/graduateyeah/',
+        cover:'assets/graduate-yeah.jpg',
+        what:'把一年一度的畢業季，經營成連結全台校園創作能量的固定 IP。',
+        sub:'畢業歌徵選讓學生創作者把屬於自己世代的歌留在 StreetVoice。從徵件機制、宣傳節奏到訂閱名單經營，這個企劃一屆一屆迭代，成為平台每年穩定觸及校園族群的入口。',
+        role:[['My Role','年度企劃統籌'],['Period','2021 — 2024'],['Keywords','校園擴散 · 徵件機制 · 名單經營']],
+        did:[['A','從單次徵件到年度 IP','將畢業歌徵選定調為每年固定回歸的企劃，建立可複用的徵件流程與專頁架構。'],['B','校園社群擴散設計','瞄準畢業季情感節點，規劃社群宣傳節奏，鼓勵學生為團隊與學長姐拉票應援。'],['C','訂閱名單長期經營','以 Email 訂閱機制承接每屆參與者，把一次性流量沉澱為可長期溝通的校園名單。']],
+        featLabel:'歷屆企劃 Editions',
+        feat:[
+          ['第 1 屆','徵件啟動','https://streetvoice.com/opportunities/865/','https://streetvoice.com/pages/graduateyeah/static/images/img-menu-01.jpg'],
+          ['第 2 屆','機制迭代','https://streetvoice.com/opportunities/908/','https://streetvoice.com/pages/graduateyeah/static/images/img-menu-02.jpg'],
+          ['2022','獨立專頁上線','http://pages.streetvoice.com/graduateyeah/2022/','https://streetvoice.com/pages/graduateyeah/static/images/img-menu-03.jpg'],
+          ['2023','校園擴散','http://pages.streetvoice.com/graduateyeah/2023/','https://streetvoice.com/pages/graduateyeah/static/images/img-menu-04.jpg'],
+          ['2024','持續累積','http://pages.streetvoice.com/graduateyeah/2024/','https://streetvoice.com/pages/graduateyeah/static/images/img-menu-05.jpg'],
+        ],
+        stats:[['5 屆','連續年度企劃統籌'],['全台校園','畢業季學生創作者觸及'],['年度 IP','活動延續至今持續回歸']],
+      },
+    ];
+    const svBody = document.getElementById('sv-cases-body');
+    if (svBody) {
+      svBody.innerHTML = svCases.map(c => `
+        <article style="border:2px solid #0a0a0a;border-radius:16px;overflow:hidden;background:#fff;margin-bottom:20px;">
+          <div style="padding:28px 24px;">
+            <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:16px;justify-content:space-between;">
+              <div style="display:flex;align-items:flex-start;gap:16px;">
+                <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(40px,7vw,64px);line-height:0.85;color:#C6FF00;-webkit-text-stroke:2px #0a0a0a;">${c.num}</span>
+                <div>
+                  <p style="margin:0 0 6px;font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5a5a52;">${c.eyebrow}</p>
+                  <h3 style="margin:0;font-size:clamp(20px,3.4vw,30px);font-weight:900;line-height:1.1;letter-spacing:-0.01em;">${c.title}</h3>
+                </div>
+              </div>
+              <a href="${c.link}" target="_blank" rel="noopener" style="flex:none;text-decoration:none;background:#C6FF00;color:#0a0a0a;font-weight:700;font-size:13px;padding:10px 18px;border:2px solid #0a0a0a;border-radius:999px;">查看頁面 ↗</a>
+            </div>
+
+            ${c.cover && c.num !== '01' ? `<a href="${c.link}" target="_blank" rel="noopener" style="display:block;margin:22px 0;border:2px solid #0a0a0a;overflow:hidden;background:#f4f4f0;">
+              <img src="${c.cover}" alt="${c.title}" style="display:block;width:100%;height:clamp(180px,30vw,300px);object-fit:cover;" loading="lazy">
+            </a>` : ''}
+
+            ${c.featImg ? `<div style="margin:48px 0 24px;border:2px solid #0a0a0a;border-radius:12px;background:#f4f4f0;"><img src="${c.featImg}" alt="" style="display:block;width:100%;height:auto;" loading="lazy"></div>` : ''}
+
+            <div style="border-left:3px solid #C6FF00;padding-left:18px;margin-bottom:24px;">
+              <p style="margin:0;font-size:clamp(17px,2.4vw,22px);font-weight:700;line-height:1.5;">${c.what}</p>
+              <p style="margin:12px 0 0;font-size:14px;line-height:1.85;color:#5a5a52;">${c.sub}</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:#e2e2da;border:1px solid #e2e2da;margin-bottom:24px;">
+              ${c.role.map(([k,v])=>`<div style="background:#f4f4f0;padding:16px 18px;"><div style="font-family:'Archivo',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#9bbf00;margin-bottom:5px;">${k}</div><div style="font-size:14px;font-weight:700;">${v}</div></div>`).join('')}
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px;">
+              ${c.did.map(([n,t,d])=>`<div style="border:1px solid #e2e2da;border-radius:12px;padding:20px;"><div style="font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9bbf00;margin-bottom:10px;">${n}</div><div style="font-size:15px;font-weight:700;margin-bottom:8px;line-height:1.35;">${t}</div><div style="font-size:13px;line-height:1.75;color:#5a5a52;">${d}</div></div>`).join('')}
+            </div>
+
+            <p style="margin:0 0 14px;font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5a5a52;">${c.featLabel}</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;">
+              ${c.feat.map(([name,note,url,img])=>`<a href="${url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;border:2px solid #0a0a0a;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;background:#fff;box-shadow:3px 3px 0 #0a0a0a;">
+                <img src="${img}" alt="${name}" style="display:block;width:100%;height:150px;object-fit:cover;background:#f4f4f0;" loading="lazy">
+                <span style="padding:16px 18px;display:flex;flex-direction:column;gap:8px;flex:1;">
+                  <b style="font-size:15px;font-weight:900;line-height:1.25;letter-spacing:-0.01em;">${name}</b>
+                  <span style="font-size:13px;color:#5a5a52;line-height:1.5;flex:1;">${note}</span>
+                  <span style="font-size:13px;font-weight:700;color:#9bbf00;margin-top:4px;">查看 ↗</span>
+                </span>
+              </a>`).join('')}
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:#e2e2da;border:1px solid #e2e2da;margin-bottom:${c.newsLink ? '24px' : '0'};">
+              ${c.stats.map(([n,l])=>`<div style="background:#f4f4f0;padding:22px 20px;"><div style="font-family:'Archivo',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:900;letter-spacing:-0.02em;line-height:1;margin-bottom:8px;">${n}</div><div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#5a5a52;">${l}</div></div>`).join('')}
+            </div>
+            ${c.newsLink ? `<a href="${c.newsLink}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#C6FF00;color:#0a0a0a;border:2px solid #0a0a0a;border-radius:12px;padding:16px 20px;text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;transition:all 0.2s;"><span>📰 活動報導</span><span style="font-size:12px;">↗</span></a>` : ''}
+          </div>
+        </article>`).join('');
+    }
+    const svToggle = document.getElementById('sv-toggle');
+    const svIcon = document.getElementById('sv-toggle-icon');
+    if (svToggle && svBody) {
+      svToggle.addEventListener('click', () => {
+        const open = svBody.style.display !== 'none';
+        svBody.style.display = open ? 'none' : 'block';
+        if (svIcon) svIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
+    }
+
+    // ---- Sticky nav active state ----
+    const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
+    const map = {};
+    navLinks.forEach(a => { const id = a.getAttribute('href').slice(1); if(id) map[id]=a; });
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        const a = map[en.target.id];
+        if (!a) return;
+        if (en.isIntersecting) {
+          navLinks.forEach(x => { x.style.background='transparent'; x.style.color='#0a0a0a'; });
+          a.style.background = '#C6FF00';
+          a.style.color = '#0a0a0a';
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+    ['about','skills','freelance','experience','projects','works'].forEach(id => {
+      const el = document.getElementById(id); if (el) obs.observe(el);
+    });
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
