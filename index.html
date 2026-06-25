@@ -730,15 +730,23 @@ class Component extends DCLogic {
     const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
     const map = {};
     navLinks.forEach(a => { const id = a.getAttribute('href').slice(1); if(id) map[id]=a; });
+
+    const setActive = (a) => {
+      navLinks.forEach(x => { x.style.background='transparent'; x.style.color='#0a0a0a'; x.style.fontWeight='500'; });
+      a.style.background = '#C6FF00';
+      a.style.color = '#0a0a0a';
+      a.style.fontWeight = '700';
+    };
+
+    navLinks.forEach(a => {
+      a.addEventListener('click', () => setActive(a));
+    });
+
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(en => {
         const a = map[en.target.id];
         if (!a) return;
-        if (en.isIntersecting) {
-          navLinks.forEach(x => { x.style.background='transparent'; x.style.color='#0a0a0a'; });
-          a.style.background = '#C6FF00';
-          a.style.color = '#0a0a0a';
-        }
+        if (en.isIntersecting) setActive(a);
       });
     }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
     ['about','skills','freelance','experience','projects','works-header'].forEach(id => {
