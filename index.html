@@ -700,7 +700,7 @@ class Component extends DCLogic {
         }
       });
     }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-    ['about','skills','freelance','experience','projects','works'].forEach(id => {
+    ['about','skills','freelance','experience','projects','awards'].forEach(id => {
       const el = document.getElementById(id); if (el) obs.observe(el);
     });
   }
