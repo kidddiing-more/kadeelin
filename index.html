@@ -495,7 +495,10 @@ class Component extends DCLogic {
     if (flEl) {
       flEl.innerHTML = freelance.map(([date, title, desc, lnk]) => {
         const titleHtml = lnk
-          ? `<a href="${lnk}" target="_blank" rel="noopener" style="color:#0a0a0a;text-decoration:none;border-bottom:2px solid #C6FF00;">${title} ↗</a>`
+          ? `<span style="display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <a href="${lnk}" target="_blank" rel="noopener" style="color:#0a0a0a;text-decoration:none;border-bottom:2px solid #C6FF00;">${title}</a>
+              <a href="${lnk}" target="_blank" rel="noopener" title="查看案例頁面" style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:#C6FF00;border:1.5px solid #0a0a0a;text-decoration:none;flex-shrink:0;"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 9L9 2M9 2H4M9 2V7" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </span>`
           : title;
         return `<li style="display:grid;grid-template-columns:120px 1fr;gap:18px;padding:18px 4px;border-bottom:1px solid #e2e2da;align-items:start;">
           <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;color:#5a5a52;letter-spacing:0.01em;padding-top:2px;">${date}</span>
