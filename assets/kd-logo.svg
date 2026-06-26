@@ -1,0 +1,53 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="500" fill="#ffffff"/>
+<pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+  <rect x="9" y="9" width="2" height="2" fill="#ebebea"/>
+</pattern>
+<rect width="500" height="500" fill="url(#dots)"/>
+
+<!-- K shadow -->
+<g fill="#0a0a0a" transform="translate(5,5)">
+  <rect x="50" y="40" width="40" height="400"/>
+  <rect x="90" y="160" width="40" height="40"/>
+  <rect x="130" y="120" width="40" height="40"/>
+  <rect x="170" y="80" width="40" height="40"/>
+  <rect x="90" y="260" width="40" height="40"/>
+  <rect x="130" y="300" width="40" height="40"/>
+  <rect x="170" y="340" width="40" height="40"/>
+  <rect x="170" y="380" width="40" height="40"/>
+</g>
+<!-- K green -->
+<g fill="#C6FF00">
+  <rect x="50" y="40" width="40" height="400"/>
+  <rect x="90" y="160" width="40" height="40"/>
+  <rect x="130" y="120" width="40" height="40"/>
+  <rect x="170" y="80" width="40" height="40"/>
+  <rect x="90" y="260" width="40" height="40"/>
+  <rect x="130" y="300" width="40" height="40"/>
+  <rect x="170" y="340" width="40" height="40"/>
+  <rect x="170" y="380" width="40" height="40"/>
+</g>
+
+<!-- D shadow -->
+<g fill="#0a0a0a" transform="translate(5,5)">
+  <rect x="230" y="40" width="40" height="400"/>
+  <rect x="270" y="40" width="60" height="40"/>
+  <rect x="330" y="80" width="40" height="40"/>
+  <rect x="370" y="120" width="40" height="40"/>
+  <rect x="410" y="160" width="40" height="160"/>
+  <rect x="370" y="320" width="40" height="40"/>
+  <rect x="330" y="360" width="40" height="40"/>
+  <rect x="270" y="400" width="60" height="40"/>
+</g>
+<!-- D green -->
+<g fill="#C6FF00">
+  <rect x="230" y="40" width="40" height="400"/>
+  <rect x="270" y="40" width="60" height="40"/>
+  <rect x="330" y="80" width="40" height="40"/>
+  <rect x="370" y="120" width="40" height="40"/>
+  <rect x="410" y="160" width="40" height="160"/>
+  <rect x="370" y="320" width="40" height="40"/>
+  <rect x="330" y="360" width="40" height="40"/>
+  <rect x="270" y="400" width="60" height="40"/>
+</g>
+</svg>
