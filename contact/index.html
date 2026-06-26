@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>聯絡我 · Kadee Lin Portfolio</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Noto Sans TC", "PingFang TC", sans-serif;
+    background: #0a0a0a;
+    color: #d4d4cc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* BACK NAV */
+  .back-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 2px solid #0a0a0a;
+    padding: 0 24px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .back-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #0a0a0a;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .back-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #C6FF00;
+    border: 2px solid #0a0a0a;
+    border-radius: 50%;
+    font-size: 14px;
+    line-height: 1;
+    box-shadow: 2px 2px 0 #0a0a0a;
+  }
+  .nav-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #C6FF00;
+    border: 2px solid #0a0a0a;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #C6FF00, 0 0 16px #C6FF00;
+  }
+
+  /* MAIN */
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 540px;
+  }
+
+  .card-header {
+    margin-bottom: 40px;
+  }
+  .card-eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C6FF00;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .card-sub {
+    font-size: 14px;
+    color: #5a5a52;
+  }
+  .card-sub a {
+    color: #C6FF00;
+    text-decoration: none;
+    border-bottom: 1px solid #C6FF00;
+  }
+
+  /* FORM */
+  form { display: flex; flex-direction: column; gap: 20px; }
+
+  .field { display: flex; flex-direction: column; gap: 8px; }
+
+  label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a8a82;
+  }
+
+  input, textarea {
+    background: #141412;
+    border: 1px solid #2a2a26;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #fff;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  input:focus, textarea:focus {
+    border-color: #C6FF00;
+    box-shadow: 0 0 0 3px rgba(198,255,0,0.08);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 140px;
+    line-height: 1.6;
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #C6FF00;
+    color: #0a0a0a;
+    font-weight: 900;
+    font-size: 15px;
+    padding: 15px 28px;
+    border: 2px solid #0a0a0a;
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 #C6FF00aa;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+    transition: transform 0.15s, box-shadow 0.15s;
+    align-self: flex-start;
+  }
+  .submit-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 #C6FF00aa;
+  }
+  .submit-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 #C6FF00aa;
+  }
+
+  .note {
+    font-size: 12px;
+    color: #3a3a36;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- BACK NAV -->
+<nav class="back-nav">
+  <a href="../index.html">
+    <span class="back-arrow">←</span>
+    Kadee Lin Portfolio
+  </a>
+  <span class="nav-dot"></span>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="card-header">
+      <p class="card-eyebrow">Contact</p>
+      <h1 class="card-title">寄信給我 ✉</h1>
+      <p class="card-sub">或直接寄信至 <a href="mailto:kidddiing@gmail.com">kidddiing@gmail.com</a></p>
+    </div>
+
+    <form action="mailto:kidddiing@gmail.com" method="post" enctype="text/plain">
+      <div class="field">
+        <label for="sender">寄件人</label>
+        <input type="text" id="sender" name="寄件人" placeholder="你的名字或稱呼" required>
+      </div>
+      <div class="field">
+        <label for="subject">主旨</label>
+        <input type="text" id="subject" name="主旨" placeholder="想聊什麼？" required>
+      </div>
+      <div class="field">
+        <label for="body">內容</label>
+        <textarea id="body" name="內容" placeholder="留下你的訊息…" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">送出 →</button>
+      <p class="note">點擊送出後會開啟你的郵件程式寄送。</p>
+    </form>
+  </div>
+</main>
+
+</body>
+</html>
