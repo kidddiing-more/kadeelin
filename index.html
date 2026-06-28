@@ -133,7 +133,7 @@
             <span id="exp-toggle-label" style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;font-family:'Archivo',sans-serif;letter-spacing:0.04em;">Work Experience｜點擊展開</span>
           </span>
         </span>
-        <span id="exp-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;transform:rotate(-90deg);">▾</span>
+        <span id="exp-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;">▾</span>
       </button>
       <div id="exp-body" style="display:none;grid-template-columns:1fr;gap:20px;"></div>
     </div>
@@ -569,7 +569,7 @@ class Component extends DCLogic {
       expToggle.addEventListener('click', () => {
         const open = expBody.style.display !== 'none';
         expBody.style.display = open ? 'none' : 'grid';
-        if (expIcon) expIcon.style.transform = open ? 'rotate(-90deg)' : 'rotate(0deg)';
+        if (expIcon) expIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
         if (expLabel) expLabel.textContent = open ? 'Work Experience｜點擊展開' : 'Work Experience｜點擊收合';
       });
     }
