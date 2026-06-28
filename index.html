@@ -33,7 +33,7 @@
   body{margin:0;background:#ffffff;}
   a{color:inherit;}
   .toggle-btn-default{border:2px solid #0a0a0a !important;border-radius:16px !important;box-shadow:4px 4px 0 #0a0a0a !important;}
-  .toggle-btn-sketch{border:2.5px solid #C6FF00 !important;border-radius:4px 14px 6px 12px/12px 4px 14px 5px !important;box-shadow:4px 4px 0 #0a0a0a !important;}
+  .hint-badge{display:inline-block;padding:1px 8px;border:2px solid #C6FF00;border-radius:4px 10px 5px 8px/8px 5px 10px 4px;box-shadow:2px 2px 0 #0a0a0a;font-size:11px;font-weight:700;color:#0a0a0a;background:#fff;vertical-align:middle;margin-left:4px;}
   ::selection{background:#C6FF00;color:#0a0a0a;}
 </style>
 </helmet>
@@ -127,12 +127,12 @@
   </section>
   <section id="experience" data-screen-label="Experience" style="background:#f4f4f0;scroll-margin-top:60px;border-top:2px solid #0a0a0a;border-bottom:2px solid #0a0a0a;">
     <div style="max-width:960px;margin:0 auto;padding:56px 20px;">
-      <button id="exp-toggle" type="button" class="toggle-btn-sketch" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:22px 24px;cursor:pointer;text-align:left;font-family:inherit;margin-bottom:28px;">
+      <button id="exp-toggle" type="button" class="toggle-btn-default" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:22px 24px;cursor:pointer;text-align:left;font-family:inherit;margin-bottom:28px;">
         <span style="display:flex;align-items:flex-start;gap:12px;">
           <span style="color:#9bbf00;font-size:20px;line-height:1.2;">04</span>
           <span>
             <span style="display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;">工作經歷</span>
-            <span id="exp-toggle-label" style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;font-family:'Archivo',sans-serif;letter-spacing:0.04em;">Work Experience｜點擊展開</span>
+            <span id="exp-toggle-label" style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;font-family:'Archivo',sans-serif;letter-spacing:0.04em;">Work Experience｜<span id="exp-hint" class="hint-badge">點擊展開</span></span>
           </span>
         </span>
         <span id="exp-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;">▾</span>
@@ -205,12 +205,12 @@
 
   <!-- STREETVOICE PLATFORM CASES (collapsible) -->
   <section id="sv-cases" data-screen-label="SV Cases" style="max-width:960px;margin:0 auto;padding:48px 20px 8px;scroll-margin-top:72px;">
-    <button id="sv-toggle" type="button" class="toggle-btn-sketch" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:22px 24px;cursor:pointer;text-align:left;font-family:inherit;">
+    <button id="sv-toggle" type="button" class="toggle-btn-default" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:22px 24px;cursor:pointer;text-align:left;font-family:inherit;">
       <span style="display:flex;align-items:flex-start;gap:12px;">
         <span style="color:#9bbf00;font-size:20px;line-height:1.2;">☆</span>
         <span>
           <span style="display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;">StreetVoice 平台企劃案例</span>
-          <span style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;">PAPOAR 計畫 · 畢業歌徵選 · Simple Urban+ 品牌跨界｜點擊展開</span>
+          <span style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;">PAPOAR 計畫 · 畢業歌徵選 · Simple Urban+ 品牌跨界｜<span id="sv-hint" class="hint-badge">點擊展開</span></span>
         </span>
       </span>
       <span id="sv-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;">▾</span>
@@ -220,12 +220,12 @@
 
   <!-- OMUSIC PROJECTS (collapsible) -->
   <section id="omusic" data-screen-label="Omusic" style="max-width:960px;margin:0 auto;padding:48px 20px 8px;scroll-margin-top:72px;">
-    <button id="omusic-toggle" type="button" class="toggle-btn-sketch" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:22px 24px;cursor:pointer;text-align:left;font-family:inherit;">
+    <button id="omusic-toggle" type="button" class="toggle-btn-default" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:22px 24px;cursor:pointer;text-align:left;font-family:inherit;">
       <span style="display:flex;align-items:flex-start;gap:12px;">
         <span style="color:#9bbf00;font-size:20px;line-height:1.2;">☆</span>
         <span>
           <span style="display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;">Omusic 網路活動專案</span>
-          <span style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;">數位下載兌換 · APP 活動介面 · 數位活動企劃｜點擊展開</span>
+          <span style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;">數位下載兌換 · APP 活動介面 · 數位活動企劃｜<span id="omusic-hint" class="hint-badge">點擊展開</span></span>
         </span>
       </span>
       <span id="omusic-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;">▾</span>
@@ -567,15 +567,18 @@ class Component extends DCLogic {
     const expToggle = document.getElementById('exp-toggle');
     const expIcon = document.getElementById('exp-toggle-icon');
     const expLabel = document.getElementById('exp-toggle-label');
-    const setSketchBorder = (el) => { el.classList.remove('toggle-btn-default'); el.classList.add('toggle-btn-sketch'); };
-    const setDefaultBorder = (el) => { el.classList.remove('toggle-btn-sketch'); el.classList.add('toggle-btn-default'); };
+    const expHint = document.getElementById('exp-hint');
+    const toggleHint = (hintEl, open) => {
+      if (!hintEl) return;
+      if (open) { hintEl.textContent = '點擊展開'; hintEl.classList.add('hint-badge'); }
+      else { hintEl.textContent = '點擊收合'; hintEl.classList.remove('hint-badge'); }
+    };
     if (expToggle && expBody) {
       expToggle.addEventListener('click', () => {
         const open = expBody.style.display !== 'none';
         expBody.style.display = open ? 'none' : 'grid';
         if (expIcon) expIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
-        if (expLabel) expLabel.textContent = open ? 'Work Experience｜點擊展開' : 'Work Experience｜點擊收合';
-        open ? setSketchBorder(expToggle) : setDefaultBorder(expToggle);
+        toggleHint(expHint, open);
       });
     }
 
@@ -819,12 +822,13 @@ class Component extends DCLogic {
     }
     const omusicToggle = document.getElementById('omusic-toggle');
     const omusicIcon = document.getElementById('omusic-toggle-icon');
+    const omusicHint = document.getElementById('omusic-hint');
     if (omusicToggle && omusicBody) {
       omusicToggle.addEventListener('click', () => {
         const open = omusicBody.style.display !== 'none';
         omusicBody.style.display = open ? 'none' : 'block';
         if (omusicIcon) omusicIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
-        open ? setSketchBorder(omusicToggle) : setDefaultBorder(omusicToggle);
+        toggleHint(omusicHint, open);
       });
     }
 
@@ -962,12 +966,13 @@ class Component extends DCLogic {
     }
     const svToggle = document.getElementById('sv-toggle');
     const svIcon = document.getElementById('sv-toggle-icon');
+    const svHint = document.getElementById('sv-hint');
     if (svToggle && svBody) {
       svToggle.addEventListener('click', () => {
         const open = svBody.style.display !== 'none';
         svBody.style.display = open ? 'none' : 'block';
         if (svIcon) svIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
-        open ? setSketchBorder(svToggle) : setDefaultBorder(svToggle);
+        toggleHint(svHint, open);
       });
     }
 
