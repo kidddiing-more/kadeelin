@@ -34,6 +34,9 @@
   a{color:inherit;}
   .toggle-btn-default{border:2px solid #0a0a0a !important;border-radius:16px !important;box-shadow:4px 4px 0 #0a0a0a !important;}
   .hint-badge{display:inline-block;padding:1px 8px;border:2px solid #C6FF00;border-radius:4px 10px 5px 8px/8px 5px 10px 4px;box-shadow:2px 2px 0 #0a0a0a;font-size:11px;font-weight:700;color:#0a0a0a;background:#fff;vertical-align:middle;margin-left:4px;}
+  .has-tooltip{position:relative;cursor:default;}
+  .has-tooltip::after{content:attr(data-tooltip);position:absolute;left:0;bottom:calc(100% + 6px);background:#0a0a0a;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;padding:5px 10px;border-radius:6px;pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:10;}
+  .has-tooltip:hover::after{opacity:1;}
   ::selection{background:#C6FF00;color:#0a0a0a;}
 </style>
 </helmet>
@@ -585,10 +588,10 @@ class Component extends DCLogic {
     // ---- Music industry project groups ----
     const groups = [
       {title:'音樂宣傳執行', items:[
-        '2026.01 頑童 MJ116《OGS》台中洲際演唱會｜宣傳執行',
-        '2025.12 鄭興《尋找鄭先生》｜網路宣傳執行',
-        '{{2025.10 Lola Amour 媒體見面會|https://www.mirrormedia.mg/story/20251020ent032}}｜活動規劃執行',
-        '{{2025.09 Ed Sheeran《PLAY》搶聽會|https://www.instagram.com/p/DOdpkyDE3Wn/}}｜活動規劃執行',
+        ['2026.01 頑童 MJ116《OGS》台中洲際演唱會｜宣傳執行', 'worked for 得花添樂事務所'],
+        ['2025.12 鄭興《尋找鄭先生》｜網路宣傳執行', 'worked for 得花添樂事務所'],
+        ['{{2025.10 Lola Amour 媒體見面會|https://www.mirrormedia.mg/story/20251020ent032}}｜活動規劃執行', 'worked for 氪米厘娛樂'],
+        ['{{2025.09 Ed Sheeran《PLAY》搶聽會|https://www.instagram.com/p/DOdpkyDE3Wn/}}｜活動規劃執行', 'worked for 氪米厘娛樂'],
       ]},
       {title:'音樂節 / 大型活動行銷統籌', items:[
         '2019 Simple Urban+ {{簡單生活節|https://simplelife.streetvoice.com/2019/}}｜行銷宣傳統籌',
@@ -634,7 +637,7 @@ class Component extends DCLogic {
         <div style="border:2px solid #0a0a0a;border-radius:16px;padding:24px;background:#fff;">
           <h3 style="margin:0 0 16px;font-size:17px;font-weight:900;display:flex;align-items:center;gap:8px;"><span style="color:#9bbf00;">■</span>${g.title}</h3>
           <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;">
-            ${g.items.map(it=>`<li style="font-size:14px;line-height:1.7;color:#1a1a18;display:flex;gap:9px;"><span style="flex:none;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;font-weight:900;">·</span><span>${link(it)}</span></li>`).join('')}
+            ${g.items.map(it=>{ const txt=Array.isArray(it)?it[0]:it; const tip=Array.isArray(it)?it[1]:null; return `<li style="font-size:14px;line-height:1.7;color:#1a1a18;display:flex;gap:9px;"${tip?` class="has-tooltip" data-tooltip="${tip}"`:``}><span style="flex:none;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;font-weight:900;">·</span><span>${link(txt)}</span></li>`; }).join('')}
           </ul>
         </div>`).join('');
     }
