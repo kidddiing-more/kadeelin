@@ -214,7 +214,7 @@
         <span style="color:#9bbf00;font-size:20px;line-height:1.2;">☆</span>
         <span>
           <span style="display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;">StreetVoice 平台企劃案例</span>
-          <span style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;">芒果醬 × 好丘 · PAPOAR 計畫 · 畢業歌徵選 · Simple Urban+ 品牌跨界｜<span id="sv-hint" class="hint-badge">點擊展開</span></span>
+          <span style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;">芒果醬 × 好丘 · Apple Today · PAPOAR 計畫 · 畢業歌徵選 · Simple Urban+ 品牌跨界｜<span id="sv-hint" class="hint-badge">點擊展開</span></span>
         </span>
       </span>
       <span id="sv-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;">▾</span>
@@ -861,7 +861,17 @@ class Component extends DCLogic {
         video:{src:'assets/mango-reel.mp4', caption:'粉絲見面會活動現場紀錄'},
       },
       {
-        num:'02', eyebrow:'產品行銷 · 創作者經濟', title:'拍拍手 PAPOAR 音樂人打賞功能',
+        num:'02', eyebrow:'品牌合作 · 音樂內容推薦', title:'Apple Today 策劃音樂推薦',
+        link:null, cover:null,
+        what:'前期與 Apple 台灣團隊對接，推薦兩組街聲站上音樂人，並於 App Store Today 版面正式上線。',
+        sub:'',
+        role:[['合作對象','Apple 台灣'],['成果','兩組音樂人於 App Store Today 上線']],
+        did:[['A','跨國團隊對接','與 Apple 台灣團隊溝通合作流程與內容需求。'],['B','音樂人挑選推薦','從街聲平台挑選推薦適合的音樂人參與企劃。'],['C','內容統籌上線','統籌內容產出，確保於 App Store Today 版面順利上線。']],
+        featLabel:null, feat:[],
+        stats:[['2 組','街聲音樂人推薦'],['App Store','Today 版面上線']],
+      },
+      {
+        num:'04', eyebrow:'產品行銷 · 創作者經濟', title:'拍拍手 PAPOAR 音樂人打賞功能',
         link:'https://guide.streetvoice.com/clap/',
         cover:'https://guide.streetvoice.com/content/images/2023/04/cover.jpg',
         what:'把樂迷聆聽時的感動，變成創作人帳戶裡實質的收益。',
@@ -882,7 +892,7 @@ class Component extends DCLogic {
         stats:[['80%+','收益直接分配給音樂人'],['1萬+','上線三週累積掌聲數'],['8 組','首波拍拍主打星企劃']],
       },
       {
-        num:'03', eyebrow:'年度企劃 · 校園行銷', title:'StreetVoice 畢業歌徵選',
+        num:'05', eyebrow:'年度企劃 · 校園行銷', title:'StreetVoice 畢業歌徵選',
         link:'https://streetvoice.com/pages/graduateyeah/',
         cover:'assets/graduate-yeah.jpg',
         what:'把一年一度的畢業季，經營成連結全台校園創作能量的固定 IP。',
@@ -900,7 +910,7 @@ class Component extends DCLogic {
         stats:[['5 屆','連續年度企劃統籌'],['全台校園','畢業季學生創作者觸及'],['年度 IP','活動延續至今持續回歸']],
       },
       {
-        num:'04', eyebrow:'品牌跨界・現場活動', title:'2019 Simple Urban+ 簡單生活節',
+        num:'06', eyebrow:'品牌跨界・現場活動', title:'2019 Simple Urban+ 簡單生活節',
         link:'https://simplelife.streetvoice.com/2019/',
         cover:null,
         what:'將抽象的音樂氛圍具化為杯中風味，讓粉絲用味蕾感受最愛藝人的創作情感。',
@@ -962,8 +972,8 @@ class Component extends DCLogic {
               ${c.did.map(([n,t,d])=>`<div style="border:1px solid #e2e2da;border-radius:12px;padding:20px;"><div style="font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9bbf00;margin-bottom:10px;">${n}</div><div style="font-size:15px;font-weight:700;margin-bottom:8px;line-height:1.35;">${t}</div><div style="font-size:13px;line-height:1.75;color:#5a5a52;">${d}</div></div>`).join('')}
             </div>
 
-            <p style="margin:0 0 14px;font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5a5a52;">${c.featLabel}</p>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;">
+            ${c.featLabel ? `<p style="margin:0 0 14px;font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5a5a52;">${c.featLabel}</p>` : ''}
+            ${c.feat && c.feat.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;">
               ${c.feat.map(([name,note,url,img])=>`<a href="${url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;border:2px solid #0a0a0a;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;background:#fff;box-shadow:3px 3px 0 #0a0a0a;">
                 <img src="${img}" alt="${name}" style="display:block;width:100%;height:150px;object-fit:cover;background:#f4f4f0;" loading="lazy">
                 <span style="padding:16px 18px;display:flex;flex-direction:column;gap:8px;flex:1;">
@@ -972,7 +982,7 @@ class Component extends DCLogic {
                   <span style="font-size:13px;font-weight:700;color:#9bbf00;margin-top:4px;">查看 ↗</span>
                 </span>
               </a>`).join('')}
-            </div>
+            </div>` : ''}
 
             ${c.video ? `<div style="margin-bottom:24px;"><video src="${c.video.src}" controls playsinline style="display:block;width:100%;border-radius:12px;border:1px solid #e2e2da;background:#000;max-height:480px;"></video>${c.video.caption ? `<p style="margin:8px 0 0;font-size:11px;color:#5a5a52;font-weight:500;font-family:'Archivo',sans-serif;letter-spacing:0.04em;">${c.video.caption}</p>` : ''}</div>` : ''}
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:#e2e2da;border:1px solid #e2e2da;margin-bottom:${c.newsLink ? '24px' : '0'};">
