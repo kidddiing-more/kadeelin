@@ -858,6 +858,7 @@ class Component extends DCLogic {
           ['粉絲見面會','「#貝愛的人 修成正果」序號登錄抽獎','https://streetvoice.com/pages/mangojump520/bagelpass/','assets/mango-phase2-concert.webp'],
         ],
         stats:[['2 階段','完整商品週期',''],['40 名','快閃試吃名額',''],['樂迷 × 消費者','雙重身份轉換','']],
+        video:{src:'assets/mango-reel.mp4', caption:'粉絲見面會活動現場紀錄'},
       },
       {
         num:'02', eyebrow:'產品行銷 · 創作者經濟', title:'拍拍手 PAPOAR 音樂人打賞功能',
@@ -973,6 +974,7 @@ class Component extends DCLogic {
               </a>`).join('')}
             </div>
 
+            ${c.video ? `<div style="margin-bottom:24px;"><video src="${c.video.src}" controls playsinline style="display:block;width:100%;border-radius:12px;border:1px solid #e2e2da;background:#000;max-height:480px;"></video>${c.video.caption ? `<p style="margin:8px 0 0;font-size:11px;color:#5a5a52;font-weight:500;font-family:'Archivo',sans-serif;letter-spacing:0.04em;">${c.video.caption}</p>` : ''}</div>` : ''}
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:#e2e2da;border:1px solid #e2e2da;margin-bottom:${c.newsLink ? '24px' : '0'};">
               ${c.stats.map(([n,l])=>`<div style="background:#f4f4f0;padding:22px 20px;"><div style="font-family:'Archivo',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:900;letter-spacing:-0.02em;line-height:1;margin-bottom:8px;">${n}</div><div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#5a5a52;">${l}</div></div>`).join('')}
             </div>
