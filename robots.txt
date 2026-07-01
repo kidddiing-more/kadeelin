@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kidddiing-more.github.io/kadeelin/sitemap.xml
