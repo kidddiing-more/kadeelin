@@ -46,6 +46,8 @@
   ::selection{background:#C6FF00;color:#0a0a0a;}
   .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
   .fade-up.visible{opacity:1;transform:translateY(0);}
+  html{scroll-snap-type:y proximity;}
+  .snap-section{scroll-snap-align:start;min-height:100vh;display:flex;flex-direction:column;justify-content:center;}
 </style>
 </helmet>
 
@@ -70,7 +72,7 @@
   </nav>
 
   <!-- HERO -->
-  <header id="top" data-screen-label="Hero" style="max-width:960px;margin:0 auto;padding:56px 20px 24px;scroll-margin-top:72px;">
+  <header id="top" data-screen-label="Hero" class="snap-section" style="max-width:960px;margin:0 auto;padding:56px 20px 24px;scroll-margin-top:72px;">
     <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;">
       <div style="flex:1 1 300px;min-width:260px;">
         <p style="margin:0 0 14px;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#5a5a52;">Taipei, TW · 1985</p>
@@ -86,7 +88,7 @@
   </header>
 
   <!-- ABOUT -->
-  <section id="about" data-screen-label="About" style="max-width:960px;margin:0 auto;padding:48px 20px;scroll-margin-top:72px;">
+  <section id="about" data-screen-label="About" class="snap-section" style="max-width:960px;margin:0 auto;padding:48px 20px;scroll-margin-top:72px;">
     <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:22px;">
       <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;-webkit-text-stroke:1px #0a0a0a;">01</span>
       <h2 style="margin:0;font-weight:900;font-size:clamp(24px,4vw,34px);letter-spacing:-0.01em;">關於我 <span style="font-family:'Archivo',sans-serif;font-weight:500;font-size:0.6em;color:#5a5a52;">About</span></h2>
@@ -98,7 +100,7 @@
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" data-screen-label="Skills" style="background:#0a0a0a;color:#ffffff;scroll-margin-top:60px;">
+  <section id="skills" data-screen-label="Skills" class="snap-section" style="background:#0a0a0a;color:#ffffff;scroll-margin-top:60px;">
     <div style="max-width:960px;margin:0 auto;padding:56px 20px;">
       <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:32px;">
         <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.16em;color:#C6FF00;">02</span>
