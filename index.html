@@ -44,6 +44,8 @@
   .has-tooltip::after{content:attr(data-tooltip);position:absolute;left:0;bottom:calc(100% + 6px);background:#0a0a0a;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;padding:5px 10px;border-radius:6px;pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:10;}
   .has-tooltip:hover::after{opacity:1;}
   ::selection{background:#C6FF00;color:#0a0a0a;}
+  .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
 </style>
 </helmet>
 
@@ -1038,6 +1040,54 @@ class Component extends DCLogic {
   }
   renderVals() { return {}; }
 }
+</script>
+<script>
+(function(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const delay = el.dataset.delay || 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, {threshold: 0.12});
+
+  document.querySelectorAll('header, section').forEach((el, i) => {
+    el.classList.add('fade-up');
+    observer.observe(el);
+  });
+
+  const countTargets = [
+    {selector: 'b', match: '14 年以上', from: 0, to: 14, suffix: ' 年以上'},
+    {selector: 'b', match: '超過 10 年', from: 0, to: 10, suffix: ' 年'},
+  ];
+  document.querySelectorAll('b').forEach(el => {
+    const txt = el.textContent.trim();
+    countTargets.forEach(t => {
+      if(txt === t.match){
+        el.dataset.countTo = t.to;
+        el.dataset.countSuffix = t.suffix;
+        el.dataset.countFrom = t.from;
+        el.textContent = t.from + t.suffix;
+        const cObs = new IntersectionObserver(entries => {
+          if(entries[0].isIntersecting){
+            let cur = t.from;
+            const step = Math.ceil((t.to - t.from) / 40);
+            const timer = setInterval(() => {
+              cur = Math.min(cur + step, t.to);
+              el.textContent = cur + t.suffix;
+              if(cur >= t.to) clearInterval(timer);
+            }, 30);
+            cObs.unobserve(el);
+          }
+        }, {threshold: 1});
+        cObs.observe(el);
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>
