@@ -1059,34 +1059,6 @@ class Component extends DCLogic {
     observer.observe(el);
   });
 
-  const countTargets = [
-    {selector: 'b', match: '14 年以上', from: 0, to: 14, suffix: ' 年以上'},
-    {selector: 'b', match: '超過 10 年', from: 0, to: 10, suffix: ' 年'},
-  ];
-  document.querySelectorAll('b').forEach(el => {
-    const txt = el.textContent.trim();
-    countTargets.forEach(t => {
-      if(txt === t.match){
-        el.dataset.countTo = t.to;
-        el.dataset.countSuffix = t.suffix;
-        el.dataset.countFrom = t.from;
-        el.textContent = t.from + t.suffix;
-        const cObs = new IntersectionObserver(entries => {
-          if(entries[0].isIntersecting){
-            let cur = t.from;
-            const step = Math.ceil((t.to - t.from) / 40);
-            const timer = setInterval(() => {
-              cur = Math.min(cur + step, t.to);
-              el.textContent = cur + t.suffix;
-              if(cur >= t.to) clearInterval(timer);
-            }, 30);
-            cObs.unobserve(el);
-          }
-        }, {threshold: 1});
-        cObs.observe(el);
-      }
-    });
-  });
 })();
 </script>
 </body>
