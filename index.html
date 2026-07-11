@@ -46,7 +46,11 @@
   ::selection{background:#C6FF00;color:#0a0a0a;}
   .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
   .fade-up.visible{opacity:1;transform:translateY(0);}
-  .badge-wrap{transform-origin:50% 0;animation:badgeSwing 3.2s ease-in-out infinite;display:flex;flex-direction:column;align-items:center;flex:none;}
+  .badge-scene{position:relative;flex:none;display:flex;justify-content:center;}
+  .badge-ghost{position:absolute;width:196px;height:268px;border-radius:14px;border:2px solid #0a0a0a;top:104px;}
+  .badge-ghost-1{background:#d8e89a;transform:rotate(-7deg) translateX(-26px) translateY(10px);z-index:1;}
+  .badge-ghost-2{background:#0a0a0a;transform:rotate(6deg) translateX(26px) translateY(4px);z-index:2;}
+  .badge-wrap{transform-origin:50% 0;animation:badgeSwing 3.2s ease-in-out infinite;display:flex;flex-direction:column;align-items:center;flex:none;position:relative;z-index:3;}
   @keyframes badgeSwing{0%,100%{transform:rotate(4deg)}50%{transform:rotate(-4deg)}}
   .badge-strap{width:24px;height:88px;background:#0a0a0a;position:relative;}
   .badge-strap::after{content:'KADEE LIN';position:absolute;top:36px;left:50%;transform:translateX(-50%) rotate(90deg);color:#C6FF00;font-family:'Archivo',sans-serif;font-size:7px;font-weight:700;letter-spacing:2px;white-space:nowrap;}
@@ -103,6 +107,9 @@
         </h1>
         <p style="margin:18px 0 0;font-size:clamp(14px,1.8vw,17px);font-weight:500;color:#3a3a34;"><span style="background:linear-gradient(transparent 78%,#C6FF00 78%);padding:0 6px;">Music Marketing&nbsp;·&nbsp;Campaign Strategy&nbsp;·&nbsp;Social Content Strategy</span></p>
       </div>
+      <div class="badge-scene">
+        <div class="badge-ghost badge-ghost-1"></div>
+        <div class="badge-ghost badge-ghost-2"></div>
       <div class="badge-wrap">
         <div class="badge-strap"></div>
         <div class="badge-clip"></div>
@@ -116,6 +123,7 @@
             <div class="badge-barcode"><i style="height:13px"></i><i style="height:9px"></i><i style="height:13px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:13px"></i><i style="height:9px"></i><i style="height:13px"></i></div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </header>
