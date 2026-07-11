@@ -197,7 +197,7 @@
       <p class="card-sub">或直接寄信至 <a href="mailto:kidddiing@gmail.com">kidddiing@gmail.com</a></p>
     </div>
 
-    <form action="mailto:kidddiing@gmail.com" method="post" enctype="text/plain">
+    <form id="contact-form">
       <div class="field">
         <label for="sender">寄件人</label>
         <input type="text" id="sender" name="寄件人" placeholder="你的名字或稱呼" required>
@@ -216,5 +216,17 @@
   </div>
 </main>
 
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  var sender = document.getElementById('sender').value;
+  var subject = document.getElementById('subject').value;
+  var body = document.getElementById('body').value;
+  var mail = 'mailto:kidddiing@gmail.com'
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent('寄件人：' + sender + '\n\n' + body);
+  window.location.href = mail;
+});
+</script>
 </body>
 </html>
