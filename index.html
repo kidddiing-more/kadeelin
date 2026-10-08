@@ -46,8 +46,23 @@
   ::selection{background:#C6FF00;color:#0a0a0a;}
   .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
   .fade-up.visible{opacity:1;transform:translateY(0);}
-  .hero-avatar{flex:none;width:200px;height:200px;border-radius:50%;border:5px solid #C6FF00;box-shadow:0 0 0 2px #0a0a0a,6px 6px 0 2px rgba(10,10,10,0.85);object-fit:cover;background:#f0f0ec;display:block;margin-bottom:24px;}
-  @media (max-width:600px){.hero-avatar{width:160px;height:160px;}}
+  .badge-scene{position:relative;flex:none;display:flex;justify-content:center;padding-bottom:30px;}
+  .badge-ghost{position:absolute;width:196px;height:268px;border-radius:14px;border:2px solid #0a0a0a;top:104px;}
+  .badge-ghost-2{background:#c9c9c4;transform:rotate(6deg) translateX(26px) translateY(4px);z-index:2;}
+  .badge-wrap{transform-origin:50% 0;animation:badgeSwing 3.2s ease-in-out infinite;display:flex;flex-direction:column;align-items:center;flex:none;position:relative;z-index:3;}
+  @keyframes badgeSwing{0%,100%{transform:rotate(4deg)}50%{transform:rotate(-4deg)}}
+  .badge-strap{width:24px;height:88px;background:#0a0a0a;position:relative;}
+  .badge-strap::after{content:'KADEE LIN';position:absolute;top:36px;left:50%;transform:translateX(-50%) rotate(90deg);color:#C6FF00;font-family:'Archivo',sans-serif;font-size:7px;font-weight:700;letter-spacing:2px;white-space:nowrap;}
+  .badge-clip{width:38px;height:14px;background:#c9c9c4;border-radius:3px;margin-top:-2px;border:1px solid #a5a5a0;}
+  .badge-card{width:196px;background:#fff;border:2px solid #0a0a0a;border-radius:14px;box-shadow:6px 6px 0 rgba(10,10,10,0.85);overflow:hidden;margin-top:4px;}
+  .badge-top{background:#C6FF00;padding:9px 13px;font-family:'Archivo',sans-serif;font-size:9px;font-weight:900;letter-spacing:0.12em;color:#0a0a0a;display:flex;justify-content:space-between;}
+  .badge-photo{width:104px;height:104px;border-radius:50%;border:3px solid #C6FF00;margin:15px auto 9px;display:block;object-fit:cover;background:#f0f0ec;}
+  .badge-name{text-align:center;font-size:17px;font-weight:900;color:#0a0a0a;}
+  .badge-role{text-align:center;font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:0.1em;color:#5a5a52;margin-top:3px;padding-bottom:9px;}
+  .badge-bottom{background:#0a0a0a;padding:8px 13px;display:flex;justify-content:space-between;align-items:center;}
+  .badge-bottom span{font-family:'Archivo',sans-serif;font-size:7.5px;color:#C6FF00;letter-spacing:0.15em;font-weight:700;}
+  .badge-barcode{display:flex;gap:1.5px;}
+  .badge-barcode i{display:block;width:2px;background:#C6FF00;}
   .about-qa{margin-bottom:26px;opacity:0;animation:qaIn 0.5s ease forwards;}
   .about-qa:nth-child(1){animation-delay:0.5s;}
   .about-qa:nth-child(2){animation-delay:1.1s;}
@@ -91,7 +106,23 @@
         </h1>
         <p style="margin:18px 0 0;font-size:clamp(14px,1.8vw,17px);font-weight:500;color:#3a3a34;"><span style="background:linear-gradient(transparent 78%,#C6FF00 78%);padding:0 6px;">Music Marketing&nbsp;·&nbsp;Campaign Strategy&nbsp;·&nbsp;Social Content Strategy</span></p>
       </div>
-      <img class="hero-avatar" src="assets/avatar.png?v=7" alt="林子歡 Kadee Lin 大頭照" loading="eager">
+      <div class="badge-scene">
+        <div class="badge-ghost badge-ghost-2"></div>
+      <div class="badge-wrap">
+        <div class="badge-strap"></div>
+        <div class="badge-clip"></div>
+        <div class="badge-card">
+          <div class="badge-top"><span>STAFF PASS</span><span>NO. 001</span></div>
+          <img class="badge-photo" src="assets/avatar.png?v=7" alt="林子歡 Kadee Lin 大頭照" loading="eager">
+          <div class="badge-name">林子歡 Kadee Lin</div>
+          <div class="badge-role">MUSIC MARKETING · TAIPEI</div>
+          <div class="badge-bottom">
+            <span>MUSIC LIVE AND ALIVE</span>
+            <div class="badge-barcode"><i style="height:13px"></i><i style="height:9px"></i><i style="height:13px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:13px"></i><i style="height:9px"></i><i style="height:13px"></i></div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
   </header>
 
