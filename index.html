@@ -86,7 +86,11 @@
   .case-card{display:flex;flex-direction:column;text-decoration:none;color:#0a0a0a;background:#fff;border:2px solid #0a0a0a;border-radius:16px;overflow:hidden;box-shadow:4px 4px 0 #0a0a0a;transition:transform 0.15s,box-shadow 0.15s;}
   .case-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #0a0a0a;}
   .case-cover{aspect-ratio:16/10;background:#0a0a0a;border-bottom:2px solid #0a0a0a;overflow:hidden;display:flex;align-items:flex-end;}
+  .case-cover{position:relative;}
   .case-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+  .case-cover::after{content:'';position:absolute;inset:0;background:rgba(10,10,10,0.45);transition:background 0.2s;pointer-events:none;}
+  .case-card:hover .case-cover::after{background:rgba(10,10,10,0.2);}
+  .case-cover .type-cover{position:relative;z-index:1;}
   .case-cover .type-cover{padding:18px;font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;line-height:1.05;color:#C6FF00;letter-spacing:-0.02em;}
   .case-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1;}
   .case-tag{font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#5a5a52;}
@@ -230,9 +234,9 @@
   <!-- FEATURED CASE CARDS -->
   <section id="case-cards" data-screen-label="Case cards" style="max-width:960px;margin:0 auto;padding:0 20px 56px;">
     <div class="case-grid">
-      <a class="case-card" href="joyce-album/index.html">
-        <div class="case-cover"><div class="type-cover">JOYCE</div></div>
-        <div class="case-body"><span class="case-tag">2025–2026 · 專輯媒體宣傳</span><h3 class="case-title">JOYCE 就以斯《才華換桃花》</h3><p class="case-result"><mark>20+ 篇媒體報導</mark>，搭上金曲最佳新人入圍聲量</p><span class="case-more">看完整案例 ↗</span></div>
+      <a class="case-card" href="soulfa-album/index.html">
+        <div class="case-cover"><img src="soulfa-album/images/cover-front.jpg" alt="SoulFa 靈魂沙發《失望的山》" loading="lazy"></div>
+        <div class="case-body"><span class="case-tag">2026 · 實體專輯企劃</span><h3 class="case-title">SoulFa 靈魂沙發《失望的山》</h3><p class="case-result">從概念到成品，統籌<mark>一張可以「攀登」的實體專輯</mark></p><span class="case-more">看完整案例 ↗</span></div>
       </a>
       <a class="case-card" href="#awards">
         <div class="case-cover"><img src="https://img.cake.me/cdn-cgi/image/fit=scale-down,format=auto,w=1920/https://images.cakeresume.com/4aBBR/kidhuan/03e0821c-f403-48c6-ab28-65ecf9308cc9.png" alt="StreetVoice 街聲年度音樂趨勢大獎" loading="lazy"></div>
@@ -250,10 +254,6 @@
         <div class="case-cover"><img src="assets/graduate-yeah.jpg" alt="StreetVoice 畢業歌徵選" loading="lazy"></div>
         <div class="case-body"><span class="case-tag">2020–2024 · 校園年度企劃</span><h3 class="case-title">StreetVoice 畢業歌徵選</h3><p class="case-result">從單次徵件做成<mark>年度 IP</mark>，第二屆徵件突破百件</p><span class="case-more">看案例內容 ↓</span></div>
       </a>
-      <a class="case-card" href="soulfa-album/index.html">
-        <div class="case-cover"><img src="soulfa-album/images/cover-front.jpg" alt="SoulFa 靈魂沙發《失望的山》" loading="lazy"></div>
-        <div class="case-body"><span class="case-tag">2026 · 實體專輯企劃</span><h3 class="case-title">SoulFa 靈魂沙發《失望的山》</h3><p class="case-result">從概念到成品，統籌<mark>一張可以「攀登」的實體專輯</mark></p><span class="case-more">看完整案例 ↗</span></div>
-      </a>
       <a class="case-card" href="gather-album/index.html">
         <div class="case-cover"><div class="type-cover">GATHER<br>MUSIC</div></div>
         <div class="case-body"><span class="case-tag">2025–2026 · 行銷宣傳顧問</span><h3 class="case-title">給樂音樂</h3><p class="case-result">芒果醬、黃宇寒等藝人的<mark>新聞宣傳與音樂節行銷</mark></p><span class="case-more">看完整案例 ↗</span></div>
@@ -261,6 +261,10 @@
       <a class="case-card" href="#awards">
         <div class="case-cover"><img src="assets/simplelife2020-press.jpg" alt="簡單生活節「byebye 2020」記者會" loading="lazy"></div>
         <div class="case-body"><span class="case-tag">2020 · 記者會統籌</span><h3 class="case-title">簡單生活節「byebye 2020」記者會</h3><p class="case-result">邀請 <mark>23 組音樂人</mark>一起放氣球升空</p><span class="case-more">看案例內容 ↓</span></div>
+      </a>
+      <a class="case-card" href="joyce-album/index.html">
+        <div class="case-cover"><div class="type-cover">JOYCE</div></div>
+        <div class="case-body"><span class="case-tag">2025–2026 · 專輯媒體宣傳</span><h3 class="case-title">JOYCE 就以斯《才華換桃花》</h3><p class="case-result"><mark>20+ 篇媒體報導</mark>，搭上金曲最佳新人入圍聲量</p><span class="case-more">看完整案例 ↗</span></div>
       </a>
     </div>
   </section>
