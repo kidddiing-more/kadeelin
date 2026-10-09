@@ -121,6 +121,8 @@
         <a href="#projects" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;"><span style="font-family:'Archivo',sans-serif;font-size:10px;font-weight:900;letter-spacing:0.1em;color:#C6FF00;-webkit-text-stroke:0.5px #0a0a0a;margin-right:4px;">03</span>專案列表</a>
         <a href="#services" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;"><span style="font-family:'Archivo',sans-serif;font-size:10px;font-weight:900;letter-spacing:0.1em;color:#C6FF00;-webkit-text-stroke:0.5px #0a0a0a;margin-right:4px;">04</span>服務</a>
         <a href="#experience" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;"><span style="font-family:'Archivo',sans-serif;font-size:10px;font-weight:900;letter-spacing:0.1em;color:#C6FF00;-webkit-text-stroke:0.5px #0a0a0a;margin-right:4px;">05</span>經歷</a>
+        <a href="#skills" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;"><span style="font-family:'Archivo',sans-serif;font-size:10px;font-weight:900;letter-spacing:0.1em;color:#C6FF00;-webkit-text-stroke:0.5px #0a0a0a;margin-right:4px;">06</span>技能</a>
+        <a href="#playlist" style="text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;white-space:nowrap;color:#0a0a0a;"><span style="font-family:'Archivo',sans-serif;font-size:10px;font-weight:900;letter-spacing:0.1em;color:#C6FF00;-webkit-text-stroke:0.5px #0a0a0a;margin-right:4px;">07</span>精選歌單</a>
       </div>
     </div>
   </nav>
@@ -406,7 +408,7 @@
   </div>
 
   <!-- SPOTIFY PLAYLIST -->
-  <section style="background:#0a0a0a;padding:56px 20px;">
+  <section id="playlist" style="background:#0a0a0a;padding:56px 20px;scroll-margin-top:60px;">
     <div style="max-width:960px;margin:0 auto;">
       <p style="margin:0 0 6px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#C6FF00;">Now Playing</p>
       <h2 style="margin:0 0 24px;font-weight:900;font-size:clamp(18px,3vw,26px);letter-spacing:-0.02em;color:#fff;">近期推薦播放清單</h2>
@@ -1184,7 +1186,7 @@ class Component extends DCLogic {
         if (en.isIntersecting) setActive(a);
       });
     }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-    ['about','skills','experience','projects','works-header'].forEach(id => {
+    ['about','works-header','projects','services','experience','skills','playlist'].forEach(id => {
       const el = document.getElementById(id); if (el) obs.observe(el);
     });
   }
