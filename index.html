@@ -80,8 +80,10 @@
   .btn-primary{text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:#C6FF00;color:#0a0a0a;font-weight:700;font-size:15px;padding:12px 22px;border:2px solid #0a0a0a;border-radius:999px;box-shadow:3px 3px 0 #0a0a0a;}
   .btn-ghost{text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0a0a0a;font-weight:700;font-size:15px;padding:12px 22px;border:2px solid #0a0a0a;border-radius:999px;}
   .name-wall{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:820px;margin:0 auto;}
-  .name-wall span{font-weight:700;font-size:clamp(12px,1.4vw,14px);letter-spacing:0;padding:4px 12px;border:1.5px solid #0a0a0a;border-radius:999px;background:#fff;white-space:nowrap;}
-  .name-wall span:nth-child(3n+1){background:#ececE6;}
+  .name-wall a{color:#0a0a0a;text-decoration:none;cursor:pointer;transition:background 0.15s;font-weight:700;font-size:clamp(12px,1.4vw,14px);letter-spacing:0;padding:4px 12px;border:1.5px solid #0a0a0a;border-radius:999px;background:#fff;white-space:nowrap;}
+  .name-wall a:nth-child(3n+1){background:#ececE6;}
+  .name-wall a:hover{background:#C6FF00;}
+  .find-flash{outline:3px solid #C6FF00;outline-offset:4px;border-radius:12px;transition:outline-color 0.3s;}
   .case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
   .case-card{display:flex;flex-direction:column;text-decoration:none;color:#0a0a0a;background:#fff;border:2px solid #0a0a0a;border-radius:16px;overflow:hidden;box-shadow:4px 4px 0 #0a0a0a;transition:transform 0.15s,box-shadow 0.15s;}
   .case-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #0a0a0a;}
@@ -389,7 +391,7 @@
         </div>
     <p style="margin:0 0 18px;text-align:center;font-family:'Courier New',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#5a5a52;">合作過的音樂人與專案 · Worked with</p>
     <div class="name-wall">
-      <span>Ed Sheeran《PLAY》搶聽會</span><span>羅大佑 交響音樂會</span><span>五月天 瑪莎 大師講座</span><span>陶喆《自選 25》</span><span>頑童 MJ116《OGS》</span><span>竇靖童《狀況外》</span><span>JOYCE 就以斯</span><span>芒果醬 Mango Jump</span><span>美秀集團</span><span>土屋安娜</span><span>LINION</span><span>SoulFa 靈魂沙發</span><span>荷爾蒙少年</span><span>LÜCY</span><span>吳汶芳</span><span>淺堤</span><span>鶴 The Crane</span><span>Lola Amour</span><span>簡單生活節</span><span>街聲年度音樂趨勢大獎</span><span>畢業歌徵選</span><span>有朝一日音樂節</span>
+      <a href="#" data-find="Ed Sheeran">Ed Sheeran《PLAY》搶聽會</a><a href="#" data-find="羅大佑">羅大佑 交響音樂會</a><a href="#" data-find="瑪莎">五月天 瑪莎 大師講座</a><a href="#" data-find="陶喆">陶喆《自選 25》</a><a href="#" data-find="頑童">頑童 MJ116《OGS》</a><a href="#" data-find="竇靖童">竇靖童《狀況外》</a><a href="#" data-find="JOYCE">JOYCE 就以斯</a><a href="#" data-find="芒果醬">芒果醬 Mango Jump</a><a href="#" data-find="拍拍手">美秀集團</a><a href="#" data-find="土屋安娜">土屋安娜</a><a href="#" data-find="LINION">LINION</a><a href="#" data-find="SoulFa">SoulFa 靈魂沙發</a><a href="#" data-find="荷爾蒙少年">荷爾蒙少年</a><a href="#" data-find="LÜCY">LÜCY</a><a href="#" data-find="拍拍手">吳汶芳</a><a href="#" data-find="拍拍手">淺堤</a><a href="#" data-find="鶴 The Crane">鶴 The Crane</a><a href="#" data-find="Lola Amour">Lola Amour</a><a href="#" data-find="簡單生活節">簡單生活節</a><a href="#" data-find="年度音樂趨勢大獎">街聲年度音樂趨勢大獎</a><a href="#" data-find="畢業歌徵選">畢業歌徵選</a><a href="#" data-find="有朝一日">有朝一日音樂節</a>
     </div>
   </section>
 
@@ -1146,6 +1148,16 @@ class Component extends DCLogic {
           </div>
         </article>`).join('');
     }
+    // ---- Name wall: 點標籤捲到頁面上對應的案例卡或專案 ----
+    document.querySelectorAll('.name-wall [data-find]').forEach(a => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const k = a.dataset.find;
+      const el = [...document.querySelectorAll('#case-cards .case-card'), ...document.querySelectorAll('#proj-groups li')].find(x => x.textContent.includes(k));
+      if (!el) return;
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.classList.add('find-flash');
+      setTimeout(() => el.classList.remove('find-flash'), 1800);
+    }));
     document.querySelectorAll('[data-open="sv"]').forEach(a => a.addEventListener('click', () => {
       const b = document.getElementById('sv-cases-body');
       if (b && b.style.display === 'none') document.getElementById('sv-toggle')?.click();
