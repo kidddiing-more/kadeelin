@@ -21,13 +21,21 @@
     '.kd-blob{position:absolute;z-index:0;flex:none;width:150px;height:150px;right:calc(50% + 118px);top:150px;pointer-events:none;will-change:transform;}',
     '.kd-blob::before{content:"";position:absolute;inset:-14px;background:rgba(200,200,194,.35);border-radius:inherit;animation:kdMorph 9s ease-in-out infinite reverse;border-radius:44% 56% 52% 48%/50% 44% 56% 50%;}',
     '.kd-blob::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 34% 30%,#F2FFB8 0,#C6FF00 26%,#5BD000 70%,#2FA800 100%);animation:kdMorph 7s ease-in-out infinite;border-radius:56% 44% 48% 52%/46% 58% 42% 54%;box-shadow:inset -14px -18px 40px rgba(0,80,0,.25);}',
-    '.kd-plane{position:relative;z-index:1;max-width:960px;margin:-80px auto 0;padding:0 20px;pointer-events:none;}',
+    '.kd-plane{position:absolute;left:0;right:0;top:0;z-index:1;max-width:960px;margin:0 auto;padding:0 20px;box-sizing:border-box;pointer-events:none;}',
+    '#top{padding-bottom:75px!important;}',
     '.kd-plane svg{display:block;width:58%;max-width:560px;height:auto;overflow:visible;}',
-    '@media (max-width:860px){.kd-plane{margin-top:0;}.kd-plane svg{width:100%;max-width:none;}}',
+    '@media (max-width:860px){#top{padding-bottom:calc((100vw - 40px) * .27 + 5px)!important;}.kd-plane svg{width:100%;max-width:none;}}',
     '.badge-scene.kd-col{flex-direction:column;align-items:center;}',
+    '.kd-face{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible;}',
+    '.kd-ghost .kd-face{opacity:0;}',
+    '.kd-face .kd-eyes{transform-box:fill-box;transform-origin:center;animation:kdBlink 4.5s infinite;}',
+    '.kd-face .kd-play{transform-box:fill-box;transform-origin:center;animation:kdWiggle 2.4s ease-in-out infinite;}',
+    '@keyframes kdBlink{0%,92%,100%{transform:scaleY(1);}95%{transform:scaleY(.1);}}',
+    '@keyframes kdWiggle{0%,100%{transform:rotate(-6deg);}50%{transform:rotate(8deg) scale(1.06);}}',
     '.kd-blob.kd-ghost::before,.kd-blob.kd-ghost::after{opacity:0;}',
     '.kd-ball{position:fixed;left:0;top:0;width:150px;height:150px;margin:-75px 0 0 -75px;z-index:40;pointer-events:none;will-change:transform;}',
-    '.kd-ball::before,.kd-ball::after{content:"";position:absolute;border-radius:inherit;}',
+    '.kd-ball::before,.kd-ball::after{content:"";position:absolute;border-radius:inherit;pointer-events:none;}',
+    '.kd-ball{transition:opacity .25s;}','.kd-ball.kd-shy{opacity:.35;}',
     '.kd-ball::before{inset:-14px;background:rgba(200,200,194,.35);animation:kdMorph 9s ease-in-out infinite reverse;border-radius:44% 56% 52% 48%/50% 44% 56% 50%;}',
     '.kd-ball::after{inset:0;background:radial-gradient(circle at 34% 30%,#F2FFB8 0,#C6FF00 26%,#5BD000 70%,#2FA800 100%);animation:kdMorph 7s ease-in-out infinite;border-radius:56% 44% 48% 52%/46% 58% 42% 54%;box-shadow:inset -14px -18px 40px rgba(0,80,0,.25);}','@media (max-width:899px){.kd-blob{position:relative;right:auto;top:auto;margin-top:44px;}}','@media (max-width:640px){.kd-blob{width:120px;height:120px;margin-top:40px;}}',
     '@keyframes kdMorph{0%,100%{border-radius:56% 44% 48% 52%/46% 58% 42% 54%;transform:rotate(0) scale(1);}33%{border-radius:40% 60% 62% 38%/55% 40% 60% 45%;transform:rotate(25deg) scale(1.04);}66%{border-radius:62% 38% 40% 60%/38% 62% 46% 54%;transform:rotate(-18deg) scale(.97);}}',
@@ -163,6 +171,21 @@
     })();
   }
 
+
+  /* 手繪感笑臉 + 播放鍵 */
+  var faceN = 0;
+  function face(el) {
+    var id = 'kdRough' + (++faceN);
+    el.insertAdjacentHTML('beforeend',
+      '<svg class="kd-face" viewBox="0 0 150 150" aria-hidden="true"><defs><filter id="' + id + '"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter></defs>' +
+      '<g filter="url(#' + id + ')" fill="none" stroke="#0a0a0a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">' +
+      '<g class="kd-eyes"><path d="M56,58 C57,63 57,68 56,73"/><path d="M90,57 C91,62 91,67 89,72"/></g>' +
+      '<path d="M46,86 C55,104 86,110 102,84"/><path d="M42,83 L49,88" stroke-width="3"/><path d="M104,79 L100,88" stroke-width="3"/>' +
+      '<g class="kd-play"><path d="M120,98 C134,97 143,109 142,122 C141,135 130,144 117,143 C104,142 96,132 97,119 C98,107 107,99 123,100" fill="#fff" stroke-width="3.5"/>' +
+      '<path d="M112,109 C118,112 125,116 131,121 C125,125 118,129 113,132 C112,124 112,116 112,109 Z" fill="#0a0a0a" stroke-width="2.5"/></g>' +
+      '</g></svg>');
+  }
+
   /* ---------- 4. 首頁果凍光球（跟著滑鼠微微移動） ---------- */
   var blob = null;
   function heroBlob() {
@@ -170,21 +193,26 @@
     if (!scene || scene.querySelector('.kd-blob')) return;
     blob = document.createElement('div');
     blob.className = 'kd-blob';
+    face(blob);
     scene.classList.add('kd-col');
     scene.appendChild(blob);
     if (ball) blob.classList.add('kd-ghost');
   }
 
   /* ---------- 4b. 光球捲動時離開首頁，飛到右側跟著一起跑 ---------- */
-  var ball = null, px = 0, py = 0;
+  var ball = null, px = 0, py = 0, mouseX = null, mouseY = 0;
+  document.addEventListener('mousemove', function (e) { mouseX = e.clientX; mouseY = e.clientY; }, { passive: true });
+  document.addEventListener('mouseleave', function () { mouseX = null; });
   function followBall() {
     if (reduce || ball) return;
     ball = document.createElement('div');
     ball.className = 'kd-ball';
+    face(ball);
     document.body.appendChild(ball);
     if (blob) blob.classList.add('kd-ghost');
     var x = null, y = 0, s = 1, vx = 0, vy = 0, vs = 0, lastY = scrollY, vel = 0;
     function tick() {
+      if (!blob || !blob.isConnected) heroBlob(); // 名牌區被重畫時把光球位置補回來
       var r = blob && blob.isConnected ? blob.getBoundingClientRect() : null;
       var docked = r && r.width && r.bottom > 70 && r.top < innerHeight;
       var tx, ty, ts, k = 0.09, d = 0.72;
@@ -198,7 +226,15 @@
         ts = small ? 0.36 : 0.5;
         tx = innerWidth - (small ? 34 : 70) + px * 0.4;
         ty = innerHeight * 0.58 + py * 0.4 - Math.max(-90, Math.min(90, vel * 4));
+        // 滑鼠靠近時往上或往下閃開，不擋住右側的按鈕
+        if (mouseX !== null && Math.abs(mouseX - tx) < 120 && Math.abs(mouseY - ty) < 140) {
+          ty = mouseY < ty ? mouseY + 150 : mouseY - 150;
+          if (ty > innerHeight - 50) ty = mouseY - 150;
+          if (ty < 110) ty = mouseY + 150;
+        }
       }
+      var near = !docked && mouseX !== null && Math.hypot(mouseX - x, mouseY - y) < 90;
+      ball.classList.toggle('kd-shy', near);
       if (x === null) { x = tx; y = ty; s = ts; }
       vx = (vx + (tx - x) * k) * d; vy = (vy + (ty - y) * k) * d; vs = (vs + (ts - s) * 0.08) * 0.75;
       x += vx; y += vy; s += vs;
@@ -214,7 +250,9 @@
   var planeIO = null;
   function paperPlane() {
     var hero = document.getElementById('top');
-    if (!hero || !hero.parentNode || document.querySelector('.kd-plane')) return;
+    if (!hero) return;
+    var old = document.querySelector('.kd-plane');
+    if (old) { old._kdHero = hero; old._kdPos(); return; }
     var NS = 'http://www.w3.org/2000/svg';
     var box = document.createElement('div');
     box.className = 'kd-plane';
@@ -226,7 +264,17 @@
       '<path d="' + D + '" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-dasharray="7 7" stroke-linecap="round" mask="url(#kdPlaneMask)"/>' +
       '<g class="kd-pg"><path d="M0,0 L-30,-12 L-22,0 L-30,12 Z" fill="#fff" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>' +
       '<path d="M0,0 L-22,0" stroke="#0a0a0a" stroke-width="1.5"/><path d="M-22,0 L-27,6" stroke="#0a0a0a" stroke-width="1.5"/></g></svg>';
-    hero.parentNode.insertBefore(box, hero.nextSibling);
+    // 放在 React 畫面樹之外（插進去會讓頁面上的展開按鈕失效），再對齊到首頁底部
+    document.body.appendChild(box);
+    box._kdHero = hero;
+    box._kdPos = function () {
+      var h = box._kdHero.getBoundingClientRect();
+      box.style.top = (h.bottom + scrollY - box.offsetHeight) + 'px';
+    };
+    box._kdPos();
+    addEventListener('resize', box._kdPos);
+    addEventListener('load', box._kdPos);
+    if ('ResizeObserver' in window) new ResizeObserver(box._kdPos).observe(document.body);
     var mp = box.querySelector('.kd-pm'), g = box.querySelector('.kd-pg');
     var L = mp.getTotalLength();
     mp.style.strokeDasharray = L;
