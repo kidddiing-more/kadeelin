@@ -91,13 +91,22 @@
   article h2 { font-size: 20px; font-weight: 900; margin: 40px 0 14px; }
   article ul { margin: 0 0 18px 1.2em; }
   article li { font-size: 16px; line-height: 2; color: #2a2a26; }
-  .photo.portrait { max-width: 420px; }
+  .tour { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; margin: 36px 0; }
+  .tour .photo { margin: 0; }
+  .dates { list-style: none; padding: 0; margin: 0; font-size: 15px; }
+  .dates li { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid rgba(0,0,0,.1); }
+  .dates b { font-variant-numeric: tabular-nums; min-width: 44px; }
+  .dates span { margin-left: auto; color: #777; font-size: 13px; text-align: right; }
+  @media (max-width: 600px) { .tour { grid-template-columns: 1fr; } }
   .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
   .reels { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin: 8px 0 24px; }
   .reels a { display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 4/5; padding: 16px; background: #0a0a0a; color: #fff; border: 2px solid #0a0a0a; border-radius: 14px; box-shadow: 4px 4px 0 #0a0a0a; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
   .reels a:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #0a0a0a; background: #1a1a18; }
   .reels .n { font-family: 'Arial Black', sans-serif; font-size: 34px; color: #C6FF00; line-height: 1; }
   .reels .t { font-size: 13px; font-weight: 700; color: #d4d4cc; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; margin: 36px 0; }
+  .pair .photo { margin: 0; }
+  @media (max-width: 600px) { .pair { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -124,10 +133,28 @@
     <h2>單曲〈LOCO POCO〉</h2>
     <p>LINION 與阿根廷製作人 MUSA 明馬丁共同創作的拉丁搖擺單曲〈LOCO POCO〉，於 8 月 14 日全球數位發行。歌名取自西班牙文「有一點點瘋狂」，把 LINION 擅長的 R&amp;B 融合拉丁音樂的熱烈身體感，再嵌入台灣聽眾熟悉的 cha cha 律動，歌詞穿梭於西班牙文、英文、中文與台語之間。</p>
     <p>負責<b>單曲宣傳策略、新聞稿撰寫與發布、數位行銷規劃</b>，以「為身體而生的歌」與「拉丁 × 台式 cha cha」的跨文化反差作為溝通主軸，串起封面設計（藝術家 OK Liao 廖好）、合作製作人與創作幕後故事，讓單曲在發行期有清楚好記的話題切角。</p>
-    <div class="photo portrait"><img src="images/linion-promo.jpg" alt="LINION 宣傳照" loading="lazy"></div>
+    <div class="pair">
+      <div class="photo"><img src="images/loco-poco-cover.jpg" alt="〈LOCO POCO〉單曲封面（OK Liao 廖好 繪製）" loading="lazy"></div>
+      <div class="photo"><img src="images/linion-promo.jpg" alt="LINION 宣傳照" loading="lazy"></div>
+    </div>
 
     <h2>2026 海外巡演</h2>
-    <p>單曲發行後，LINION 展開一系列海外演出：<b>日本與東南亞巡演，接著前往峇里島，並飛往雅加達參加 LaLaLa Festival</b>。回到台灣後預計參與北流 JAM JAM ASIA 亞洲音樂節，作為〈LOCO POCO〉在台灣的首演，MUSA 明馬丁也將同台。</p>
+    <p>LINION 第一次亞洲巡演<b>《mi casa su casa 2026 Asia Tour》</b>，以專輯《自己自己 mi casa su casa》為名，從 7 月底一路走過<b>日本、印尼、菲律賓、馬來西亞到新加坡，共十站</b>，其中包括雅加達 LaLaLa Festival 與馬尼拉 Sonik Philippines。回到台灣後預計參與北流 JAM JAM ASIA 亞洲音樂節，作為〈LOCO POCO〉在台灣的首演，MUSA 明馬丁也將同台。</p>
+    <div class="tour">
+      <div class="photo"><img src="images/asia-tour-poster.jpg" alt="LINION mi casa su casa 2026 Asia Tour 巡演海報" loading="lazy"></div>
+      <ul class="dates">
+        <li><b>07.29</b> 日本 福岡<span>Mori-OTO</span></li>
+        <li><b>07.31</b> 日本 東京<span>Mori-OTO</span></li>
+        <li><b>08.18</b> 印尼 峇里島<span>Antida Sound Garden</span></li>
+        <li><b>08.22</b> 印尼 峇里島<span>Taiwan Beats</span></li>
+        <li><b>08.23</b> 印尼 雅加達<span>LaLaLa Festival</span></li>
+        <li><b>09.12</b> 菲律賓 馬尼拉<span>Sonik Philippines</span></li>
+        <li><b>09.13</b> 菲律賓 馬尼拉<span>CocoBistro</span></li>
+        <li><b>10.02</b> 馬來西亞 檳城<span>TBA</span></li>
+        <li><b>10.03</b> 馬來西亞 吉隆坡<span>eslite spectrum</span></li>
+        <li><b>10.04</b> 新加坡<span>Grassroots Book Room</span></li>
+      </ul>
+    </div>
     <p>巡演期間持續規劃社群內容與數位宣傳，把海外演出的現場能量帶回台灣樂迷的視野。</p>
 
     <h2>短影音企劃</h2>
