@@ -105,6 +105,26 @@
   .svc h3{margin:0 0 10px;font-size:16px;font-weight:900;color:#C6FF00;}
   .svc p{margin:0;font-size:14px;line-height:1.8;color:#d4d4cc;}
   .svc .eg{margin-top:12px;font-size:12px;color:#8a8a82;line-height:1.7;}
+  /* 工作經歷資料夾 */
+  .exp-folder{margin:44px 0 0;scroll-margin-top:90px;}
+  .folder-btn{all:unset;box-sizing:border-box;display:block;position:relative;width:100%;max-width:640px;height:232px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+  .folder-btn:focus-visible{outline:3px solid #C6FF00;outline-offset:6px;border-radius:16px;}
+  .folder-tab{position:absolute;left:0;top:0;height:32px;padding:0 18px;display:flex;align-items:center;gap:8px;background:#C6FF00;border:2px solid #0a0a0a;border-bottom:0;border-radius:12px 16px 0 0;font-family:'Archivo',sans-serif;font-size:11px;font-weight:900;letter-spacing:0.16em;color:#0a0a0a;z-index:1;}
+  .folder-back{position:absolute;left:0;right:0;top:28px;bottom:0;background:#C6FF00;border:2px solid #0a0a0a;border-radius:0 16px 16px 16px;}
+  .folder-paper{position:absolute;top:44px;height:140px;border:2px solid #0a0a0a;border-radius:6px;background:#fff repeating-linear-gradient(transparent 0 17px,#e2e2da 17px 18px);background-position:0 30px;transition:transform 0.4s cubic-bezier(.3,1.5,.5,1);}
+  .folder-paper.p1{left:26px;right:40px;transform:rotate(-2deg);}
+  .folder-paper.p2{left:54px;right:18px;top:38px;background-color:#f4f4f0;transform:rotate(2.5deg);}
+  .folder-paper.p2::before{content:'CV · KADEE LIN';position:absolute;top:8px;right:12px;font-family:'Archivo',sans-serif;font-size:9px;font-weight:900;letter-spacing:0.18em;color:#9bbf00;}
+  .folder-front{position:absolute;left:0;right:0;bottom:0;height:150px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px;background:#fff;border:2px solid #0a0a0a;border-radius:14px;box-shadow:6px 6px 0 #0a0a0a;transform-origin:50% 100%;transition:transform 0.35s ease;z-index:2;}
+  .folder-meta{display:inline-block;margin-top:10px;font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;color:#0a0a0a;background:#f4f4f0;border:1.5px dashed #0a0a0a;border-radius:6px;padding:3px 10px;}
+  .folder-btn:hover .p1{transform:translateY(-14px) rotate(-3deg);}
+  .folder-btn:hover .p2{transform:translateY(-22px) rotate(4deg);}
+  .folder-btn:hover .folder-front,.folder-btn.is-open .folder-front{transform:perspective(900px) rotateX(-14deg);}
+  .folder-btn.is-open .p1{transform:translateY(-30px) rotate(-1deg);}
+  .folder-btn.is-open .p2{transform:translateY(-38px) rotate(1.5deg);}
+  #exp-body{margin-top:30px;}
+  @media (max-width:640px){.folder-btn{height:220px;}.folder-front{height:146px;padding:18px;}}
+  @media (prefers-reduced-motion:reduce){.folder-paper,.folder-front{transition:none;}}
 </style>
 </helmet>
 
@@ -194,6 +214,26 @@
         <div class="qa-row"><div class="qa-avatar">K</div><div class="qa-q">近期在做些什麼呢？</div></div>
         <div class="qa-bubble">目前暫以 Freelance 身份參與音樂專案，持續協助創作者與品牌建立更具影響力的市場溝通，期望透過自身經驗與企劃能力，協助更多優秀的作品與創作者被更多人看見。</div>
       </div>
+    </div>
+    <div id="experience" class="exp-folder" data-screen-label="Experience">
+      <button id="exp-toggle" type="button" class="folder-btn" aria-label="工作經歷，點擊展開">
+        <span class="folder-tab">WORK EXPERIENCE</span>
+        <span class="folder-back"></span>
+        <span class="folder-paper p1"></span>
+        <span class="folder-paper p2"></span>
+        <span class="folder-front">
+          <span style="display:flex;align-items:flex-start;gap:12px;">
+            <span style="color:#9bbf00;font-size:20px;line-height:1.2;font-family:'Archivo',sans-serif;font-weight:700;">05</span>
+            <span>
+              <span style="display:block;font-size:clamp(20px,3vw,26px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;">工作經歷</span>
+              <span id="exp-toggle-label" style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;font-family:'Archivo',sans-serif;letter-spacing:0.04em;">Work Experience｜<span id="exp-hint" class="hint-badge">點擊展開</span></span>
+              <span class="folder-meta">2010 → 2025 · 6 份工作</span>
+            </span>
+          </span>
+          <span id="exp-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;color:#0a0a0a;transition:transform 0.25s;">▾</span>
+        </span>
+      </button>
+      <div id="exp-body" style="display:none;grid-template-columns:1fr;gap:20px;"></div>
     </div>
   </section>
 
@@ -316,21 +356,6 @@
     </div>
   </section>
 
-  <section id="experience" data-screen-label="Experience" style="background:#f4f4f0;scroll-margin-top:60px;border-top:2px solid #0a0a0a;border-bottom:2px solid #0a0a0a;">
-    <div style="max-width:960px;margin:0 auto;padding:56px 20px;">
-      <button id="exp-toggle" type="button" class="toggle-btn-default" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:22px 24px;cursor:pointer;text-align:left;font-family:inherit;margin-bottom:28px;">
-        <span style="display:flex;align-items:flex-start;gap:12px;">
-          <span style="color:#9bbf00;font-size:20px;line-height:1.2;">05</span>
-          <span>
-            <span style="display:block;font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-0.01em;color:#0a0a0a;">工作經歷</span>
-            <span id="exp-toggle-label" style="display:block;font-size:13px;font-weight:500;color:#5a5a52;margin-top:3px;font-family:'Archivo',sans-serif;letter-spacing:0.04em;">Work Experience｜<span id="exp-hint" class="hint-badge">點擊展開</span></span>
-          </span>
-        </span>
-        <span id="exp-toggle-icon" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#C6FF00;border:2px solid #0a0a0a;font-size:18px;font-weight:900;transition:transform 0.25s;">▾</span>
-      </button>
-      <div id="exp-body" style="display:none;grid-template-columns:1fr;gap:20px;"></div>
-    </div>
-  </section>
   <!-- SKILLS -->
   <section id="skills" data-screen-label="Skills" style="background:#0a0a0a;color:#ffffff;scroll-margin-top:60px;">
     <div style="max-width:960px;margin:0 auto;padding:56px 20px;">
@@ -686,6 +711,7 @@ class Component extends DCLogic {
       expToggle.addEventListener('click', () => {
         const open = expBody.style.display !== 'none';
         expBody.style.display = open ? 'none' : 'grid';
+        expToggle.classList.toggle('is-open', !open);
         if (expIcon) expIcon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
         toggleHint(expHint, open);
       });
