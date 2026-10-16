@@ -24,7 +24,12 @@
     '.kd-plane{position:relative;z-index:1;max-width:960px;margin:-80px auto 0;padding:0 20px;pointer-events:none;}',
     '.kd-plane svg{display:block;width:58%;max-width:560px;height:auto;overflow:visible;}',
     '@media (max-width:860px){.kd-plane{margin-top:0;}.kd-plane svg{width:100%;max-width:none;}}',
-    '.badge-scene.kd-col{flex-direction:column;align-items:center;}','@media (max-width:899px){.kd-blob{position:relative;right:auto;top:auto;margin-top:44px;}}','@media (max-width:640px){.kd-blob{width:120px;height:120px;margin-top:40px;}}',
+    '.badge-scene.kd-col{flex-direction:column;align-items:center;}',
+    '.kd-blob.kd-ghost::before,.kd-blob.kd-ghost::after{opacity:0;}',
+    '.kd-ball{position:fixed;left:0;top:0;width:150px;height:150px;margin:-75px 0 0 -75px;z-index:40;pointer-events:none;will-change:transform;}',
+    '.kd-ball::before,.kd-ball::after{content:"";position:absolute;border-radius:inherit;}',
+    '.kd-ball::before{inset:-14px;background:rgba(200,200,194,.35);animation:kdMorph 9s ease-in-out infinite reverse;border-radius:44% 56% 52% 48%/50% 44% 56% 50%;}',
+    '.kd-ball::after{inset:0;background:radial-gradient(circle at 34% 30%,#F2FFB8 0,#C6FF00 26%,#5BD000 70%,#2FA800 100%);animation:kdMorph 7s ease-in-out infinite;border-radius:56% 44% 48% 52%/46% 58% 42% 54%;box-shadow:inset -14px -18px 40px rgba(0,80,0,.25);}','@media (max-width:899px){.kd-blob{position:relative;right:auto;top:auto;margin-top:44px;}}','@media (max-width:640px){.kd-blob{width:120px;height:120px;margin-top:40px;}}',
     '@keyframes kdMorph{0%,100%{border-radius:56% 44% 48% 52%/46% 58% 42% 54%;transform:rotate(0) scale(1);}33%{border-radius:40% 60% 62% 38%/55% 40% 60% 45%;transform:rotate(25deg) scale(1.04);}66%{border-radius:62% 38% 40% 60%/38% 62% 46% 54%;transform:rotate(-18deg) scale(.97);}}',
     '.kd-hl{background-size:0% 100% !important;background-repeat:no-repeat !important;transition:background-size .9s cubic-bezier(.6,0,.2,1);}',
     '.kd-hl.on{background-size:100% 100% !important;}',
@@ -167,6 +172,41 @@
     blob.className = 'kd-blob';
     scene.classList.add('kd-col');
     scene.appendChild(blob);
+    if (ball) blob.classList.add('kd-ghost');
+  }
+
+  /* ---------- 4b. 光球捲動時離開首頁，飛到右側跟著一起跑 ---------- */
+  var ball = null, px = 0, py = 0;
+  function followBall() {
+    if (reduce || ball) return;
+    ball = document.createElement('div');
+    ball.className = 'kd-ball';
+    document.body.appendChild(ball);
+    if (blob) blob.classList.add('kd-ghost');
+    var x = null, y = 0, s = 1, vx = 0, vy = 0, vs = 0, lastY = scrollY, vel = 0;
+    function tick() {
+      var r = blob && blob.isConnected ? blob.getBoundingClientRect() : null;
+      var docked = r && r.width && r.bottom > 70 && r.top < innerHeight;
+      var tx, ty, ts, k = 0.09, d = 0.72;
+      var dy = scrollY - lastY; lastY = scrollY;
+      vel += (dy - vel) * 0.2;
+      if (docked) {
+        tx = r.left + r.width / 2 + px; ty = r.top + r.height / 2 + py; ts = r.width / 150;
+        if (Math.abs(x - tx) + Math.abs(y - ty) < 40) { k = 0.35; d = 0.5; }
+      } else {
+        var small = innerWidth < 640;
+        ts = small ? 0.36 : 0.5;
+        tx = innerWidth - (small ? 34 : 70) + px * 0.4;
+        ty = innerHeight * 0.58 + py * 0.4 - Math.max(-90, Math.min(90, vel * 4));
+      }
+      if (x === null) { x = tx; y = ty; s = ts; }
+      vx = (vx + (tx - x) * k) * d; vy = (vy + (ty - y) * k) * d; vs = (vs + (ts - s) * 0.08) * 0.75;
+      x += vx; y += vy; s += vs;
+      var sq = Math.max(-0.18, Math.min(0.18, (Math.abs(vy) - Math.abs(vx)) / 160));
+      ball.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + s * (1 - sq) + ',' + s * (1 + sq) + ')';
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   }
 
 
@@ -268,7 +308,7 @@
       cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px)';
       if (blob) {
         var bx = (mx / innerWidth - 0.5) * 36, by = (my / innerHeight - 0.5) * 36;
-        blob.style.transform = 'translate(' + bx + 'px,' + by + 'px)';
+        if (ball) { px = bx; py = by; } else blob.style.transform = 'translate(' + bx + 'px,' + by + 'px)';
       }
       if (Math.abs(mx - cx) + Math.abs(my - cy) > 0.3) requestAnimationFrame(loop); else moving = false;
     }
@@ -297,6 +337,7 @@
   function ensure() {
     fades();
     heroBlob();
+    followBall();
     paperPlane();
     wipes();
     highlights();
