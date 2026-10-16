@@ -446,8 +446,7 @@
 
   function ensure() {
     fades();
-    heroBlob();
-    followBall();
+    // 光球（heroBlob / followBall）依 Kadee 要求先關掉，要恢復就把這兩行加回來
     paperPlane();
     wipes();
     highlights();
