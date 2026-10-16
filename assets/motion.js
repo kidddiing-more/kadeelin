@@ -18,30 +18,13 @@
     '.kd-wipe{position:absolute;left:0;right:0;top:0;z-index:5;pointer-events:none;display:grid;}',
     '.kd-wipe i{display:block;background:#C6FF00;transition:transform .45s cubic-bezier(.6,0,.3,1);transform-origin:center;}',
     '.kd-wipe.go i{transform:scale(0);}',
-    '.kd-blob{position:absolute;z-index:0;width:150px;height:150px;right:calc(50% + 125px);top:-20px;pointer-events:none;will-change:transform;}',
+    '.kd-blob{position:relative;z-index:0;flex:none;width:150px;height:150px;margin-top:44px;pointer-events:none;will-change:transform;}',
     '.kd-blob::before{content:"";position:absolute;inset:-14px;background:rgba(200,200,194,.35);border-radius:inherit;animation:kdMorph 9s ease-in-out infinite reverse;border-radius:44% 56% 52% 48%/50% 44% 56% 50%;}',
     '.kd-blob::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 34% 30%,#F2FFB8 0,#C6FF00 26%,#5BD000 70%,#2FA800 100%);animation:kdMorph 7s ease-in-out infinite;border-radius:56% 44% 48% 52%/46% 58% 42% 54%;box-shadow:inset -14px -18px 40px rgba(0,80,0,.25);}',
-    '.kd-player{position:relative;z-index:4;width:250px;margin-top:22px;background:#fff;border:2px solid #0a0a0a;border-radius:16px;box-shadow:4px 4px 0 #0a0a0a;padding:12px 14px 12px 12px;display:flex;gap:12px;align-items:center;font-family:Archivo,"Noto Sans TC",sans-serif;color:#0a0a0a;}',
-    '.kd-vinyl{flex:none;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle,#C6FF00 0 17%,#0a0a0a 18% 21%,transparent 22%),repeating-radial-gradient(circle,#0a0a0a 0 2px,#262624 2px 3px);box-shadow:0 0 0 2px #0a0a0a;position:relative;animation:kdSpin 3.2s linear infinite;animation-play-state:paused;}',
-    '.kd-vinyl::before{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:#0a0a0a;}',
-    '.kd-vinyl::after{content:"";position:absolute;inset:6px;border-radius:50%;background:linear-gradient(135deg,rgba(255,255,255,.22),transparent 45%);}',
-    '.kd-player.playing .kd-vinyl{animation-play-state:running;}',
-    '@keyframes kdSpin{to{transform:rotate(360deg);}}',
-    '.kd-pl-main{flex:1;min-width:0;}',
-    '.kd-pl-t{font-size:13px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}',
-    '.kd-pl-a{font-size:10px;font-weight:700;color:#5a5a52;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}',
-    '.kd-pl-bar{height:4px;background:#e4e4de;border-radius:2px;margin:8px 0 3px;overflow:hidden;}',
-    '.kd-pl-bar b{display:block;height:100%;width:0;background:#0a0a0a;border-right:3px solid #C6FF00;}',
-    '.kd-pl-time{display:flex;justify-content:space-between;font-size:8px;font-weight:700;color:#5a5a52;letter-spacing:.05em;}',
-    '.kd-pl-ctl{display:flex;align-items:center;gap:8px;margin-top:6px;}',
-    '.kd-pl-ctl button{border:2px solid #0a0a0a;background:#fff;border-radius:50%;width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .12s,box-shadow .12s;}',
-    '.kd-pl-ctl button svg{width:12px;height:12px;display:block;}',
-    '.kd-pl-ctl .kd-pp{width:34px;height:34px;background:#C6FF00;box-shadow:2px 2px 0 #0a0a0a;}',
-    '.kd-pl-ctl button:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #0a0a0a;}',
-    '.kd-pl-ctl button:focus-visible{outline:2px solid #0a0a0a;outline-offset:2px;}',
-    '.kd-pl-go{margin-left:auto;font-size:10px;font-weight:700;color:#0a0a0a;text-decoration:none;border-bottom:2px solid #C6FF00;white-space:nowrap;}',
-    '.badge-scene.kd-has-player{flex-direction:column;align-items:center;}',
-    '@media (max-width:640px){.kd-blob{width:100px;height:100px;right:auto;left:calc(100% + 4px);top:16px;}}',
+    '.kd-plane{position:relative;z-index:1;max-width:960px;margin:-170px auto 0;padding:0 20px;pointer-events:none;}',
+    '.kd-plane svg{display:block;width:58%;max-width:560px;height:auto;overflow:visible;}',
+    '@media (max-width:860px){.kd-plane{margin-top:0;}.kd-plane svg{width:100%;max-width:none;}}',
+    '.badge-scene.kd-col{flex-direction:column;align-items:center;}','@media (max-width:640px){.kd-blob{width:120px;height:120px;margin-top:40px;}}',
     '@keyframes kdMorph{0%,100%{border-radius:56% 44% 48% 52%/46% 58% 42% 54%;transform:rotate(0) scale(1);}33%{border-radius:40% 60% 62% 38%/55% 40% 60% 45%;transform:rotate(25deg) scale(1.04);}66%{border-radius:62% 38% 40% 60%/38% 62% 46% 54%;transform:rotate(-18deg) scale(.97);}}',
     '.kd-hl{background-size:0% 100% !important;background-repeat:no-repeat !important;transition:background-size .9s cubic-bezier(.6,0,.2,1);}',
     '.kd-hl.on{background-size:100% 100% !important;}',
@@ -182,92 +165,53 @@
     if (!scene || scene.querySelector('.kd-blob')) return;
     blob = document.createElement('div');
     blob.className = 'kd-blob';
-    scene.insertBefore(blob, scene.firstChild);
+    scene.classList.add('kd-col');
+    scene.appendChild(blob);
   }
 
-  /* ---------- 6. 名牌下方的迷你播放器：轉動黑膠、進度條、上一首／下一首 ---------- */
-  // 歌單「KD HERE #2026」（Spotify）
-  var TRACKS = [
-    { t: "We Talk To iPhone But Not Our Best Friend", a: "SoulFa 靈魂沙發", d: 169 },
-    { t: "LOCO POCO", a: "LINION", d: 209 },
-    { t: "New notes", a: "陳嫺靜", d: 194 },
-    { t: "Chill Guy", a: "LINION, Matzka", d: 160 },
-    { t: "銀河之王", a: "SoulFa 靈魂沙發", d: 255 },
-    { t: "靠很近", a: "JOYCE 就以斯", d: 217 },
-    { t: "Wall.Eyes.Knee", a: "LINION", d: 161 },
-    { t: "妳和吉他", a: "JOYCE 就以斯", d: 190 },
-    { t: "Fantasy, Maybe", a: "LINION, Olin MattiBlue", d: 190 },
-    { t: "風", a: "芒果醬 Mango Jump", d: 252 },
-    { t: "Wui229", a: "陳嫺靜", d: 179 },
-    { t: "說出我的名字", a: "Tizzy Bac", d: 355 },
-    { t: "如果每天都可以 happy happy 誰想要sad:))", a: "陳嫺靜", d: 268 },
-    { t: "Nothing's gonna hurt us", a: "LÜCY", d: 187 },
-    { t: "Blue", a: "Chih Siou, SIRUP, Ichika Nito", d: 196 },
-    { t: "悲劇演員", a: "艾蜜莉AMILI", d: 187 },
-    { t: "夏夕夏景", a: "Lu Yun", d: 150 },
-    { t: "至少我們都還沒放棄", a: "公館青少年 GGteens", d: 287 },
-    { t: "輕輕放下", a: "9m88", d: 264 },
-    { t: "Bluebird", a: "落日飛車 Sunset Rollercoaster", d: 217 },
-    { t: "DESERVE", a: "Gummy B", d: 154 },
-    { t: "安", a: "Andr", d: 246 },
-    { t: "善良是 (ft. CHS)", a: "someshiit 山姆, CHS", d: 205 },
-    { t: "跟著感覺走", a: "Zhang Zhen Yue", d: 224 },
-    { t: "偽善", a: "Seizer", d: 294 }
-  ];
-  var pl = { i: 0, el: 0, playing: !reduce, timer: null };
-  var ICON = {
-    prev: '<svg viewBox="0 0 24 24"><path d="M6 4h3v16H6zM21 4v16L10 12z" fill="#0a0a0a"/></svg>',
-    next: '<svg viewBox="0 0 24 24"><path d="M15 4h3v16h-3zM3 4v16l11-8z" fill="#0a0a0a"/></svg>',
-    play: '<svg viewBox="0 0 24 24"><path d="M6 3.5v17L20 12z" fill="#0a0a0a"/></svg>',
-    pause: '<svg viewBox="0 0 24 24"><path d="M5 4h5v16H5zM14 4h5v16h-5z" fill="#0a0a0a"/></svg>'
-  };
-  function fmt(n) { n = Math.floor(n); return Math.floor(n / 60) + ':' + ('0' + n % 60).slice(-2); }
-  function miniPlayer() {
-    var scene = document.querySelector('.badge-scene');
-    if (!scene || scene.querySelector('.kd-player')) return;
-    scene.classList.add('kd-has-player');
+
+  /* ---------- 7. 紙飛機拉著虛線飛過（首頁與「關於我」之間） ---------- */
+  var planeIO = null;
+  function paperPlane() {
+    var hero = document.getElementById('top');
+    if (!hero || !hero.parentNode || document.querySelector('.kd-plane')) return;
+    var NS = 'http://www.w3.org/2000/svg';
     var box = document.createElement('div');
-    box.className = 'kd-player';
-    box.setAttribute('role', 'group');
-    box.setAttribute('aria-label', '迷你播放器');
+    box.className = 'kd-plane';
+    box.setAttribute('aria-hidden', 'true');
+    var D = 'M8,128 C90,132 150,60 230,70 C310,80 300,140 250,128 C200,116 240,40 340,36 C420,33 470,70 552,22';
     box.innerHTML =
-      '<div class="kd-vinyl" aria-hidden="true"></div>' +
-      '<div class="kd-pl-main">' +
-        '<div class="kd-pl-t" aria-live="polite"></div>' +
-        '<div class="kd-pl-a"></div>' +
-        '<div class="kd-pl-bar" aria-hidden="true"><b></b></div>' +
-        '<div class="kd-pl-time" aria-hidden="true"><span class="kd-pl-now">0:00</span><span class="kd-pl-dur"></span></div>' +
-        '<div class="kd-pl-ctl">' +
-          '<button type="button" class="kd-prev" aria-label="上一首">' + ICON.prev + '</button>' +
-          '<button type="button" class="kd-pp"></button>' +
-          '<button type="button" class="kd-next" aria-label="下一首">' + ICON.next + '</button>' +
-          '<a class="kd-pl-go" href="https://open.spotify.com/playlist/2aE8xe7Wfw9MpuoQNv16Y2" target="_blank" rel="noopener">Spotify ↗</a>' +
-        '</div>' +
-      '</div>';
-    scene.appendChild(box);
-    var $ = function (c) { return box.querySelector(c); };
-    function render() {
-      var tr = TRACKS[pl.i];
-      $('.kd-pl-t').textContent = tr.t;
-      $('.kd-pl-a').textContent = tr.a;
-      $('.kd-pl-dur').textContent = fmt(tr.d);
-      $('.kd-pl-now').textContent = fmt(pl.el);
-      $('.kd-pl-bar b').style.width = (pl.el / tr.d * 100) + '%';
-      box.classList.toggle('playing', pl.playing);
-      $('.kd-pp').innerHTML = pl.playing ? ICON.pause : ICON.play;
-      $('.kd-pp').setAttribute('aria-label', pl.playing ? '暫停' : '播放');
+      '<svg viewBox="0 0 560 150"><defs><mask id="kdPlaneMask" maskUnits="userSpaceOnUse">' +
+      '<path class="kd-pm" d="' + D + '" fill="none" stroke="#fff" stroke-width="8"/></mask></defs>' +
+      '<path d="' + D + '" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-dasharray="7 7" stroke-linecap="round" mask="url(#kdPlaneMask)"/>' +
+      '<g class="kd-pg"><path d="M0,0 L-30,-12 L-22,0 L-30,12 Z" fill="#fff" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>' +
+      '<path d="M0,0 L-22,0" stroke="#0a0a0a" stroke-width="1.5"/><path d="M-22,0 L-27,6" stroke="#0a0a0a" stroke-width="1.5"/></g></svg>';
+    hero.parentNode.insertBefore(box, hero.nextSibling);
+    var mp = box.querySelector('.kd-pm'), g = box.querySelector('.kd-pg');
+    var L = mp.getTotalLength();
+    mp.style.strokeDasharray = L;
+    function place(k) {
+      var l = L * k, p = mp.getPointAtLength(l), q = mp.getPointAtLength(Math.min(L, l + 1)), r = mp.getPointAtLength(Math.max(0, l - 1));
+      var ang = Math.atan2(q.y - r.y, q.x - r.x) * 180 / Math.PI;
+      g.setAttribute('transform', 'translate(' + p.x + ',' + p.y + ') rotate(' + ang + ')');
+      mp.style.strokeDashoffset = L * (1 - k);
+      g.style.opacity = k > 0.01 ? 1 : 0;
     }
-    function go(step) { pl.i = (pl.i + step + TRACKS.length) % TRACKS.length; pl.el = 0; render(); }
-    $('.kd-prev').addEventListener('click', function () { go(-1); });
-    $('.kd-next').addEventListener('click', function () { go(1); });
-    $('.kd-pp').addEventListener('click', function () { pl.playing = !pl.playing; render(); });
-    clearInterval(pl.timer);
-    pl.timer = setInterval(function () {
-      if (!pl.playing || !box.isConnected) return;
-      pl.el += 1;
-      if (pl.el >= TRACKS[pl.i].d) go(1); else render();
-    }, 1000);
-    render();
+    if (reduce || !('IntersectionObserver' in window)) { place(1); return; }
+    place(0);
+    function fly() {
+      var t0 = performance.now(), dur = 2600;
+      (function step(t) {
+        var k = Math.min(1, (t - t0) / dur);
+        place(k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+        if (k < 1) requestAnimationFrame(step);
+      })(t0);
+    }
+    planeIO = planeIO || new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { planeIO.unobserve(e.target); setTimeout(e.target._kdFly, Math.max(200, introUntil - Date.now() + 200)); } });
+    }, { threshold: 0.6 });
+    box._kdFly = fly;
+    planeIO.observe(box);
   }
 
   /* ---------- 5. 滑鼠：果凍游標 + 像素拖尾；手機：點擊噴出像素 ---------- */
@@ -353,7 +297,7 @@
   function ensure() {
     fades();
     heroBlob();
-    miniPlayer();
+    paperPlane();
     wipes();
     highlights();
   }
@@ -366,7 +310,7 @@
     new MutationObserver(function (list) {
       var other = list.some(function (m) {
         var tg = m.target.nodeType === 1 ? m.target : m.target.parentElement;
-        if (tg && tg.closest && tg.closest('.kd-player, .kd-blob, .kd-wipe')) return false;
+        if (tg && tg.closest && tg.closest('.kd-blob, .kd-wipe, .kd-plane')) return false;
         return [].some.call(m.addedNodes, function (n) { return !mine(n); }) ||
                [].some.call(m.removedNodes, function (n) { return !mine(n); });
       });
