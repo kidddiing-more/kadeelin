@@ -45,7 +45,18 @@
     '.kd-cursor::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 35% 30%,#F2FFB8 0,#C6FF00 40%,#5BD000 100%);border:1.5px solid #0a0a0a;animation:kdMorph 3s ease-in-out infinite;border-radius:50%;}',
     '.kd-cursor.on{opacity:.9;}',
     '.kd-cursor.big{width:58px;height:58px;margin:-29px 0 0 -29px;opacity:.55;}',
-    '.kd-px{position:fixed;left:0;top:0;z-index:9997;pointer-events:none;border:1px solid rgba(10,10,10,.15);will-change:transform,opacity;}'
+    '.kd-px{position:fixed;left:0;top:0;z-index:9997;pointer-events:none;border:1px solid rgba(10,10,10,.15);will-change:transform,opacity;}',
+    '.badge-photo{cursor:pointer;}',
+    '.kd-poke{position:fixed;z-index:9990;width:240px;background:#fff;color:#0a0a0a;border:2px solid #0a0a0a;border-radius:16px 18px 14px 20px/18px 14px 20px 16px;box-shadow:4px 4px 0 #0a0a0a;padding:14px 16px 14px;font-family:\'Noto Sans TC\',\'PingFang TC\',sans-serif;font-size:14px;line-height:1.6;transform-origin:var(--ox,20%) var(--oy,100%);animation:kdPop .35s cubic-bezier(.3,1.6,.5,1) both;}',
+    '.kd-poke.out{animation:kdPopOut .2s ease-in both;}',
+    '.kd-poke b{display:block;font-size:17px;font-weight:900;margin-bottom:4px;}',
+    '.kd-poke a{font-family:inherit;display:inline-block;margin-top:10px;background:#C6FF00;color:#0a0a0a;font-weight:800;font-size:13px;text-decoration:none;padding:7px 14px;border:2px solid #0a0a0a;border-radius:999px;box-shadow:2px 2px 0 #0a0a0a;}',
+    '.kd-poke button{position:absolute;top:6px;right:8px;border:0;background:none;font-size:18px;line-height:1;cursor:pointer;color:#5a5a52;padding:4px;}',
+    '.kd-poke::after{content:"";position:absolute;width:16px;height:16px;background:#fff;border:2px solid #0a0a0a;border-top:0;border-left:0;left:var(--tx,30px);transform:rotate(45deg);}',
+    '.kd-poke.below::after{top:-10px;transform:rotate(225deg);}',
+    '.kd-poke:not(.below)::after{bottom:-10px;}',
+    '@keyframes kdPop{from{opacity:0;transform:scale(.4) rotate(-6deg);}to{opacity:1;transform:none;}}',
+    '@keyframes kdPopOut{to{opacity:0;transform:scale(.7);}}'
   ].join('');
   var st = document.createElement('style');
   st.textContent = css;
@@ -382,6 +393,46 @@
     });
   }
 
+
+  /* ---------- 8. 戳名牌上的大頭照 → 跳出小對話框 ---------- */
+  var poke = null, pokeTimer = null;
+  function closePoke() {
+    if (!poke) return;
+    var el = poke; poke = null; clearTimeout(pokeTimer);
+    el.classList.add('out');
+    setTimeout(function () { el.remove(); }, 220);
+  }
+  function pokes() {
+    document.addEventListener('click', function (e) {
+      var img = e.target.closest && e.target.closest('.badge-photo');
+      if (!img) { if (poke && !poke.contains(e.target)) closePoke(); return; }
+      if (!reduce && img.animate) img.animate([{ transform: 'scale(1)' }, { transform: 'scale(.86,.8)' }, { transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 420, easing: 'ease-out' });
+      if (poke) { closePoke(); }
+      var r = img.getBoundingClientRect();
+      var el = document.createElement('div');
+      el.className = 'kd-poke';
+      el.setAttribute('role', 'dialog');
+      el.innerHTML = '<button type="button" aria-label="關閉">×</button><b>不要戳～不要戳！</b>我是 KD，想聯絡我～<br>就 mail 給我：）<br><a href="mailto:kidddiing@gmail.com">kidddiing@gmail.com ✉</a>';
+      document.body.appendChild(el);
+      var w = el.offsetWidth, h = el.offsetHeight;
+      var cx = r.left + r.width / 2;
+      var left = Math.max(12, Math.min(innerWidth - w - 12, cx - w * 0.3));
+      var top = r.top - h - 14, below = top < 70;
+      if (below) top = r.bottom + 14;
+      el.style.left = left + 'px'; el.style.top = top + 'px';
+      var tx = Math.max(16, Math.min(w - 30, cx - left - 8));
+      el.style.setProperty('--tx', tx + 'px');
+      el.style.setProperty('--ox', (tx + 8) + 'px');
+      el.style.setProperty('--oy', below ? '0%' : '100%');
+      if (below) el.classList.add('below');
+      el.querySelector('button').addEventListener('click', closePoke);
+      poke = el;
+      pokeTimer = setTimeout(closePoke, 7000);
+      el.addEventListener('mouseenter', function () { clearTimeout(pokeTimer); });
+    });
+    addEventListener('scroll', function () { if (poke) closePoke(); }, { passive: true });
+  }
+
   function ensure() {
     fades();
     heroBlob();
@@ -393,6 +444,7 @@
   function start() {
     intro();
     pointer();
+    pokes();
     ensure();
     var timer = null;
     var mine = function (n) { return n.nodeType === 1 && /(^|\s)kd-/.test(n.className || ''); };
