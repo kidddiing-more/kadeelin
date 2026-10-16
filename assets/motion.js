@@ -21,21 +21,27 @@
     '.kd-blob{position:absolute;z-index:0;width:300px;height:300px;left:50%;top:150px;margin:-150px 0 0 -150px;pointer-events:none;will-change:transform;}',
     '.kd-blob::before{content:"";position:absolute;inset:-22px;background:rgba(200,200,194,.35);border-radius:inherit;animation:kdMorph 9s ease-in-out infinite reverse;border-radius:44% 56% 52% 48%/50% 44% 56% 50%;}',
     '.kd-blob::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 34% 30%,#F2FFB8 0,#C6FF00 26%,#5BD000 70%,#2FA800 100%);animation:kdMorph 7s ease-in-out infinite;border-radius:56% 44% 48% 52%/46% 58% 42% 54%;box-shadow:inset -14px -18px 40px rgba(0,80,0,.25);}',
-    '.kd-play{position:absolute;z-index:4;right:-12px;top:14%;width:68px;height:68px;border-radius:50%;border:2px solid #0a0a0a;background:#fff;box-shadow:3px 3px 0 #0a0a0a;cursor:pointer;pointer-events:auto;display:flex;align-items:center;justify-content:center;padding:0;transition:transform .15s,box-shadow .15s;}',
-    '.kd-play:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #0a0a0a;}',
-    '.kd-play:focus-visible{outline:3px solid #0a0a0a;outline-offset:3px;}',
-    '.kd-play svg{width:24px;height:24px;margin-left:4px;display:block;}',
-    '.kd-play::before,.kd-play::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #C6FF00;animation:kdRing 2.4s ease-out infinite;pointer-events:none;}',
-    '.kd-play::after{animation-delay:1.2s;}',
-    '@keyframes kdRing{from{transform:scale(1);opacity:.9;}to{transform:scale(2.1);opacity:0;}}',
-    '.kd-now{position:absolute;z-index:4;left:6%;top:16%;display:flex;align-items:flex-end;gap:7px;font-family:Archivo,sans-serif;font-size:9px;font-weight:900;letter-spacing:.14em;color:#0a0a0a;pointer-events:none;}',
-    '.kd-eq{display:flex;align-items:flex-end;gap:2px;height:16px;}',
-    '.kd-eq i{display:block;width:3px;height:100%;background:#0a0a0a;transform-origin:bottom;animation:kdEq 1s ease-in-out infinite;}',
-    '.kd-eq i:nth-child(2){animation-delay:-.4s;animation-duration:.8s;}.kd-eq i:nth-child(3){animation-delay:-.7s;animation-duration:1.15s;}.kd-eq i:nth-child(4){animation-delay:-.2s;animation-duration:.9s;}',
-    '@keyframes kdEq{0%,100%{transform:scaleY(.25);}50%{transform:scaleY(1);}}',
-    '',
-    '@media (prefers-reduced-motion:reduce){.kd-play::before,.kd-play::after,.kd-eq i{animation:none;}}',
-    '@media (max-width:640px){.kd-blob{width:230px;height:230px;margin:-115px 0 0 -115px;top:125px;}.kd-play{width:56px;height:56px;right:-16px;top:8%;}.kd-now{top:22%;left:3%;}.kd-now-t{display:none;}}',
+    '.kd-player{position:relative;z-index:4;width:250px;margin-top:22px;background:#fff;border:2px solid #0a0a0a;border-radius:16px;box-shadow:4px 4px 0 #0a0a0a;padding:12px 14px 12px 12px;display:flex;gap:12px;align-items:center;font-family:Archivo,"Noto Sans TC",sans-serif;color:#0a0a0a;}',
+    '.kd-vinyl{flex:none;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle,#C6FF00 0 17%,#0a0a0a 18% 21%,transparent 22%),repeating-radial-gradient(circle,#0a0a0a 0 2px,#262624 2px 3px);box-shadow:0 0 0 2px #0a0a0a;position:relative;animation:kdSpin 3.2s linear infinite;animation-play-state:paused;}',
+    '.kd-vinyl::before{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:#0a0a0a;}',
+    '.kd-vinyl::after{content:"";position:absolute;inset:6px;border-radius:50%;background:linear-gradient(135deg,rgba(255,255,255,.22),transparent 45%);}',
+    '.kd-player.playing .kd-vinyl{animation-play-state:running;}',
+    '@keyframes kdSpin{to{transform:rotate(360deg);}}',
+    '.kd-pl-main{flex:1;min-width:0;}',
+    '.kd-pl-t{font-size:13px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}',
+    '.kd-pl-a{font-size:9px;font-weight:700;letter-spacing:.12em;color:#5a5a52;margin-top:1px;}',
+    '.kd-pl-bar{height:4px;background:#e4e4de;border-radius:2px;margin:8px 0 3px;overflow:hidden;}',
+    '.kd-pl-bar b{display:block;height:100%;width:0;background:#0a0a0a;border-right:3px solid #C6FF00;}',
+    '.kd-pl-time{display:flex;justify-content:space-between;font-size:8px;font-weight:700;color:#5a5a52;letter-spacing:.05em;}',
+    '.kd-pl-ctl{display:flex;align-items:center;gap:8px;margin-top:6px;}',
+    '.kd-pl-ctl button{border:2px solid #0a0a0a;background:#fff;border-radius:50%;width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .12s,box-shadow .12s;}',
+    '.kd-pl-ctl button svg{width:12px;height:12px;display:block;}',
+    '.kd-pl-ctl .kd-pp{width:34px;height:34px;background:#C6FF00;box-shadow:2px 2px 0 #0a0a0a;}',
+    '.kd-pl-ctl button:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #0a0a0a;}',
+    '.kd-pl-ctl button:focus-visible{outline:2px solid #0a0a0a;outline-offset:2px;}',
+    '.kd-pl-go{margin-left:auto;font-size:10px;font-weight:700;color:#0a0a0a;text-decoration:none;border-bottom:2px solid #C6FF00;white-space:nowrap;}',
+    '.badge-scene.kd-has-player{flex-direction:column;align-items:center;}',
+    '@media (max-width:640px){.kd-blob{width:230px;height:230px;margin:-115px 0 0 -115px;top:125px;}}',
     '@keyframes kdMorph{0%,100%{border-radius:56% 44% 48% 52%/46% 58% 42% 54%;transform:rotate(0) scale(1);}33%{border-radius:40% 60% 62% 38%/55% 40% 60% 45%;transform:rotate(25deg) scale(1.04);}66%{border-radius:62% 38% 40% 60%/38% 62% 46% 54%;transform:rotate(-18deg) scale(.97);}}',
     '.kd-hl{background-size:0% 100% !important;background-repeat:no-repeat !important;transition:background-size .9s cubic-bezier(.6,0,.2,1);}',
     '.kd-hl.on{background-size:100% 100% !important;}',
@@ -176,15 +182,69 @@
     if (!scene || scene.querySelector('.kd-blob')) return;
     blob = document.createElement('div');
     blob.className = 'kd-blob';
-    // 播放器樣式：播放鍵（點了捲到精選歌單）、NOW PLAYING 音量條
-    blob.innerHTML =
-      '<div class="kd-now" aria-hidden="true"><span class="kd-eq"><i></i><i></i><i></i><i></i></span><span class="kd-now-t">NOW PLAYING</span></div>' +
-      '<button type="button" class="kd-play" aria-label="播放：前往精選歌單"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5v17L20 12z" fill="#0a0a0a"/></svg></button>';
-    blob.querySelector('.kd-play').addEventListener('click', function () {
-      var pl = document.getElementById('playlist');
-      if (pl) pl.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
-    });
     scene.insertBefore(blob, scene.firstChild);
+  }
+
+  /* ---------- 6. 名牌下方的迷你播放器：轉動黑膠、進度條、上一首／下一首 ---------- */
+  var TRACKS = [
+    { t: 'Music Marketing', d: 214 },
+    { t: 'Campaign Strategy', d: 187 },
+    { t: 'Social Content Strategy', d: 236 },
+    { t: 'Music Live and Alive', d: 199 }
+  ];
+  var pl = { i: 0, el: 0, playing: !reduce, timer: null };
+  var ICON = {
+    prev: '<svg viewBox="0 0 24 24"><path d="M6 4h3v16H6zM21 4v16L10 12z" fill="#0a0a0a"/></svg>',
+    next: '<svg viewBox="0 0 24 24"><path d="M15 4h3v16h-3zM3 4v16l11-8z" fill="#0a0a0a"/></svg>',
+    play: '<svg viewBox="0 0 24 24"><path d="M6 3.5v17L20 12z" fill="#0a0a0a"/></svg>',
+    pause: '<svg viewBox="0 0 24 24"><path d="M5 4h5v16H5zM14 4h5v16h-5z" fill="#0a0a0a"/></svg>'
+  };
+  function fmt(n) { n = Math.floor(n); return Math.floor(n / 60) + ':' + ('0' + n % 60).slice(-2); }
+  function miniPlayer() {
+    var scene = document.querySelector('.badge-scene');
+    if (!scene || scene.querySelector('.kd-player')) return;
+    scene.classList.add('kd-has-player');
+    var box = document.createElement('div');
+    box.className = 'kd-player';
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', '迷你播放器');
+    box.innerHTML =
+      '<div class="kd-vinyl" aria-hidden="true"></div>' +
+      '<div class="kd-pl-main">' +
+        '<div class="kd-pl-t" aria-live="polite"></div>' +
+        '<div class="kd-pl-a">KADEE LIN</div>' +
+        '<div class="kd-pl-bar" aria-hidden="true"><b></b></div>' +
+        '<div class="kd-pl-time" aria-hidden="true"><span class="kd-pl-now">0:00</span><span class="kd-pl-dur"></span></div>' +
+        '<div class="kd-pl-ctl">' +
+          '<button type="button" class="kd-prev" aria-label="上一首">' + ICON.prev + '</button>' +
+          '<button type="button" class="kd-pp"></button>' +
+          '<button type="button" class="kd-next" aria-label="下一首">' + ICON.next + '</button>' +
+          '<a class="kd-pl-go" href="#playlist">聽歌單 ↓</a>' +
+        '</div>' +
+      '</div>';
+    scene.appendChild(box);
+    var $ = function (c) { return box.querySelector(c); };
+    function render() {
+      var tr = TRACKS[pl.i];
+      $('.kd-pl-t').textContent = tr.t;
+      $('.kd-pl-dur').textContent = fmt(tr.d);
+      $('.kd-pl-now').textContent = fmt(pl.el);
+      $('.kd-pl-bar b').style.width = (pl.el / tr.d * 100) + '%';
+      box.classList.toggle('playing', pl.playing);
+      $('.kd-pp').innerHTML = pl.playing ? ICON.pause : ICON.play;
+      $('.kd-pp').setAttribute('aria-label', pl.playing ? '暫停' : '播放');
+    }
+    function go(step) { pl.i = (pl.i + step + TRACKS.length) % TRACKS.length; pl.el = 0; render(); }
+    $('.kd-prev').addEventListener('click', function () { go(-1); });
+    $('.kd-next').addEventListener('click', function () { go(1); });
+    $('.kd-pp').addEventListener('click', function () { pl.playing = !pl.playing; render(); });
+    clearInterval(pl.timer);
+    pl.timer = setInterval(function () {
+      if (!pl.playing || !box.isConnected) return;
+      pl.el += 1;
+      if (pl.el >= TRACKS[pl.i].d) go(1); else render();
+    }, 1000);
+    render();
   }
 
   /* ---------- 5. 滑鼠：果凍游標 + 像素拖尾；手機：點擊噴出像素 ---------- */
@@ -270,6 +330,7 @@
   function ensure() {
     fades();
     heroBlob();
+    miniPlayer();
     wipes();
     highlights();
   }
@@ -281,6 +342,8 @@
     var mine = function (n) { return n.nodeType === 1 && /(^|\s)kd-/.test(n.className || ''); };
     new MutationObserver(function (list) {
       var other = list.some(function (m) {
+        var tg = m.target.nodeType === 1 ? m.target : m.target.parentElement;
+        if (tg && tg.closest && tg.closest('.kd-player, .kd-blob, .kd-wipe')) return false;
         return [].some.call(m.addedNodes, function (n) { return !mine(n); }) ||
                [].some.call(m.removedNodes, function (n) { return !mine(n); });
       });
