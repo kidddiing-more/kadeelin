@@ -21,7 +21,21 @@
     '.kd-blob{position:absolute;z-index:0;width:300px;height:300px;left:50%;top:150px;margin:-150px 0 0 -150px;pointer-events:none;will-change:transform;}',
     '.kd-blob::before{content:"";position:absolute;inset:-22px;background:rgba(200,200,194,.35);border-radius:inherit;animation:kdMorph 9s ease-in-out infinite reverse;border-radius:44% 56% 52% 48%/50% 44% 56% 50%;}',
     '.kd-blob::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 34% 30%,#F2FFB8 0,#C6FF00 26%,#5BD000 70%,#2FA800 100%);animation:kdMorph 7s ease-in-out infinite;border-radius:56% 44% 48% 52%/46% 58% 42% 54%;box-shadow:inset -14px -18px 40px rgba(0,80,0,.25);}',
-    '@media (max-width:640px){.kd-blob{width:230px;height:230px;margin:-115px 0 0 -115px;top:190px;}}',
+    '.kd-play{position:absolute;z-index:4;right:-12px;top:14%;width:68px;height:68px;border-radius:50%;border:2px solid #0a0a0a;background:#fff;box-shadow:3px 3px 0 #0a0a0a;cursor:pointer;pointer-events:auto;display:flex;align-items:center;justify-content:center;padding:0;transition:transform .15s,box-shadow .15s;}',
+    '.kd-play:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #0a0a0a;}',
+    '.kd-play:focus-visible{outline:3px solid #0a0a0a;outline-offset:3px;}',
+    '.kd-play svg{width:24px;height:24px;margin-left:4px;display:block;}',
+    '.kd-play::before,.kd-play::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #C6FF00;animation:kdRing 2.4s ease-out infinite;pointer-events:none;}',
+    '.kd-play::after{animation-delay:1.2s;}',
+    '@keyframes kdRing{from{transform:scale(1);opacity:.9;}to{transform:scale(2.1);opacity:0;}}',
+    '.kd-now{position:absolute;z-index:4;left:6%;top:16%;display:flex;align-items:flex-end;gap:7px;font-family:Archivo,sans-serif;font-size:9px;font-weight:900;letter-spacing:.14em;color:#0a0a0a;pointer-events:none;}',
+    '.kd-eq{display:flex;align-items:flex-end;gap:2px;height:16px;}',
+    '.kd-eq i{display:block;width:3px;height:100%;background:#0a0a0a;transform-origin:bottom;animation:kdEq 1s ease-in-out infinite;}',
+    '.kd-eq i:nth-child(2){animation-delay:-.4s;animation-duration:.8s;}.kd-eq i:nth-child(3){animation-delay:-.7s;animation-duration:1.15s;}.kd-eq i:nth-child(4){animation-delay:-.2s;animation-duration:.9s;}',
+    '@keyframes kdEq{0%,100%{transform:scaleY(.25);}50%{transform:scaleY(1);}}',
+    '',
+    '@media (prefers-reduced-motion:reduce){.kd-play::before,.kd-play::after,.kd-eq i{animation:none;}}',
+    '@media (max-width:640px){.kd-blob{width:230px;height:230px;margin:-115px 0 0 -115px;top:125px;}.kd-play{width:56px;height:56px;right:-16px;top:8%;}.kd-now{top:22%;left:3%;}.kd-now-t{display:none;}}',
     '@keyframes kdMorph{0%,100%{border-radius:56% 44% 48% 52%/46% 58% 42% 54%;transform:rotate(0) scale(1);}33%{border-radius:40% 60% 62% 38%/55% 40% 60% 45%;transform:rotate(25deg) scale(1.04);}66%{border-radius:62% 38% 40% 60%/38% 62% 46% 54%;transform:rotate(-18deg) scale(.97);}}',
     '.kd-hl{background-size:0% 100% !important;background-repeat:no-repeat !important;transition:background-size .9s cubic-bezier(.6,0,.2,1);}',
     '.kd-hl.on{background-size:100% 100% !important;}',
@@ -162,7 +176,14 @@
     if (!scene || scene.querySelector('.kd-blob')) return;
     blob = document.createElement('div');
     blob.className = 'kd-blob';
-    blob.setAttribute('aria-hidden', 'true');
+    // 播放器樣式：播放鍵（點了捲到精選歌單）、NOW PLAYING 音量條
+    blob.innerHTML =
+      '<div class="kd-now" aria-hidden="true"><span class="kd-eq"><i></i><i></i><i></i><i></i></span><span class="kd-now-t">NOW PLAYING</span></div>' +
+      '<button type="button" class="kd-play" aria-label="播放：前往精選歌單"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5v17L20 12z" fill="#0a0a0a"/></svg></button>';
+    blob.querySelector('.kd-play').addEventListener('click', function () {
+      var pl = document.getElementById('playlist');
+      if (pl) pl.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    });
     scene.insertBefore(blob, scene.firstChild);
   }
 
