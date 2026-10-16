@@ -23,6 +23,9 @@
     '.kd-blob::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 34% 30%,#F2FFB8 0,#C6FF00 26%,#5BD000 70%,#2FA800 100%);animation:kdMorph 7s ease-in-out infinite;border-radius:56% 44% 48% 52%/46% 58% 42% 54%;box-shadow:inset -14px -18px 40px rgba(0,80,0,.25);}',
     '.kd-plane{position:absolute;left:0;right:0;top:0;z-index:1;max-width:960px;margin:0 auto;padding:0 20px;box-sizing:border-box;pointer-events:none;}',
     '#top{padding-bottom:75px!important;}',
+    '@media (prefers-reduced-motion:no-preference){.kd-plane .kd-pd{animation:kdDash 1s linear infinite;}.kd-plane.done .kd-bob{animation:kdBob 2.2s ease-in-out infinite;}}',
+    '@keyframes kdDash{to{stroke-dashoffset:-14;}}',
+    '@keyframes kdBob{0%,100%{transform:translate(0,0) rotate(0);}50%{transform:translate(3px,-6px) rotate(-6deg);}}',
     '.kd-plane svg{display:block;width:58%;max-width:560px;height:auto;overflow:visible;}',
     '@media (max-width:860px){#top{padding-bottom:calc((100vw - 40px) * .27 + 5px)!important;}.kd-plane svg{width:100%;max-width:none;}}',
     '.badge-scene.kd-col{flex-direction:column;align-items:center;}',
@@ -272,9 +275,9 @@
     box.innerHTML =
       '<svg viewBox="0 0 560 150"><defs><mask id="kdPlaneMask" maskUnits="userSpaceOnUse">' +
       '<path class="kd-pm" d="' + D + '" fill="none" stroke="#fff" stroke-width="8"/></mask></defs>' +
-      '<path d="' + D + '" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-dasharray="7 7" stroke-linecap="round" mask="url(#kdPlaneMask)"/>' +
-      '<g class="kd-pg"><path d="M0,0 L-30,-12 L-22,0 L-30,12 Z" fill="#fff" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>' +
-      '<path d="M0,0 L-22,0" stroke="#0a0a0a" stroke-width="1.5"/><path d="M-22,0 L-27,6" stroke="#0a0a0a" stroke-width="1.5"/></g></svg>';
+      '<path class="kd-pd" d="' + D + '" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-dasharray="7 7" stroke-linecap="round" mask="url(#kdPlaneMask)"/>' +
+      '<g class="kd-pg"><g class="kd-bob"><path d="M0,0 L-30,-12 L-22,0 L-30,12 Z" fill="#fff" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>' +
+      '<path d="M0,0 L-22,0" stroke="#0a0a0a" stroke-width="1.5"/><path d="M-22,0 L-27,6" stroke="#0a0a0a" stroke-width="1.5"/></g></g></svg>';
     // 放在 React 畫面樹之外（插進去會讓頁面上的展開按鈕失效），再對齊到首頁底部
     document.body.appendChild(box);
     box._kdHero = hero;
@@ -298,18 +301,26 @@
     }
     if (reduce || !('IntersectionObserver' in window)) { place(1); return; }
     place(0);
+    // 每次捲進畫面就重新畫線飛一次；飛完後虛線持續流動、飛機輕輕上下飄
+    var flying = false, timer = null;
     function fly() {
+      if (flying) return;
+      flying = true; box.classList.remove('done');
       var t0 = performance.now(), dur = 2600;
       (function step(t) {
         var k = Math.min(1, (t - t0) / dur);
         place(k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
-        if (k < 1) requestAnimationFrame(step);
+        if (k < 1) requestAnimationFrame(step); else { flying = false; box.classList.add('done'); }
       })(t0);
     }
+    box._kdIn = function (on) {
+      clearTimeout(timer);
+      if (on) timer = setTimeout(fly, Math.max(200, introUntil - Date.now() + 200));
+      else if (!flying) { box.classList.remove('done'); place(0); }
+    };
     planeIO = planeIO || new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { planeIO.unobserve(e.target); setTimeout(e.target._kdFly, Math.max(200, introUntil - Date.now() + 200)); } });
+      es.forEach(function (e) { e.target._kdIn(e.isIntersecting); });
     }, { threshold: 0.6 });
-    box._kdFly = fly;
     planeIO.observe(box);
   }
 
